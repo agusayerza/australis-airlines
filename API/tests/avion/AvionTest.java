@@ -4,14 +4,17 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Agus on 3/10/17.
- */
 public class AvionTest {
     @Test
-    public void getAsientoLayout() throws Exception {
-        Avion avion = new Avion("TEST",15,3);
+    public void getPatente() throws Exception {
+        Avion avion = new Avion("test",1,1);
+        assertEquals("test", avion.getPatente());
+    }
 
+    @Test
+    public void getMapaDeAsientos() throws Exception {
+        Avion avion = new Avion("test",28,3);
+        assertEquals("test", avion.getPatente());
         System.out.println(avion.getAsientoLayout());
     }
 

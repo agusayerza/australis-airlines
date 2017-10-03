@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Avion {
     private String patente;
-    private HashMap<String, Asiento> mapaDeAsientos;
+    private HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
 
     private int cantidadDeFilasDeAsientos;
     private int cantidadDeColumnasDeAsientos;
@@ -22,6 +22,7 @@ public class Avion {
 
                 //TODO: Clase de asientos, ver clase Avion.Asiento y modificar este constructor
                 Asiento asiento = new Asiento(i + 1, columnaToChar(j), "Standard");
+                asiento.getCodigo();
 
                 mapaDeAsientos.put(asiento.getCodigo(),asiento);
 
