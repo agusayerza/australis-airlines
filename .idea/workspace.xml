@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="Mejorado mapa de asientos">
+    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/API/Tests/avion/AvionTest.java" afterPath="$PROJECT_DIR$/API/tests/avion/AvionTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/API.iml" afterPath="$PROJECT_DIR$/API/API.iml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Avion.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Avion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API/src/avion/Avion.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -53,11 +55,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="API.iml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/API/API.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AvionTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/Tests/avion/AvionTest.java">
+        <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -108,6 +120,7 @@
         <option value="$PROJECT_DIR$/API/src/vuelo/Vuelo.java" />
         <option value="$PROJECT_DIR$/API/Tests/avion/AvionTest.java" />
         <option value="$PROJECT_DIR$/API/src/avion/Avion.java" />
+        <option value="$PROJECT_DIR$/API/API.iml" />
       </list>
     </option>
   </component>
@@ -175,28 +188,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="australis-airlines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="australis-airlines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="avion" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -460,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507069929157</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Agregado AvionTest.java (JUnit 4)">
+      <created>1507070162581</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1507070162581</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -512,7 +510,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Mejorado mapa de asientos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mejorado mapa de asientos" />
+    <MESSAGE value="Agregado AvionTest.java (JUnit 4)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregado AvionTest.java (JUnit 4)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -621,10 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/API/Tests/avion/AvionTest.java">
+    <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -643,6 +642,14 @@
             <element signature="e#1267#1268#0" expanded="true" />
             <element signature="e#1318#1319#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API/API.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
