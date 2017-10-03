@@ -13,6 +13,7 @@ public class AvionTest {
 
     @Test
     public void getMapaDeAsientos() throws Exception {
+        //TODO: No es un test real, lo estoy usando para debugging -A
         Avion avion = new Avion("test",28,3);
         assertEquals("test", avion.getPatente());
         System.out.println(avion.getAsientoLayout());

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="Cambios organizacion de proyecto">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/australis-airlines.iml" afterPath="$PROJECT_DIR$/.idea/australis-airlines.iml" />
+    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/src/avion/Avion.java" afterPath="$PROJECT_DIR$/API/src/avion/Avion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/tests/avion/AvionTest.java" afterPath="$PROJECT_DIR$/API/tests/avion/AvionTest.java" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="Avion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API/src/avion/Avion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
               <folding>
                 <element signature="e#1047#1048#0" expanded="true" />
                 <element signature="e#1077#1078#0" expanded="true" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="AvionTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="210">
+              <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -338,6 +337,32 @@
       <patterns />
       <method />
     </configuration>
+    <configuration default="false" name="AvionTest.getMapaDeAsientos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="avion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="australis-airlines" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="avion" />
+      <option name="MAIN_CLASS_NAME" value="avion.AvionTest" />
+      <option name="METHOD_NAME" value="getMapaDeAsientos" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -542,14 +567,16 @@
       <listeners />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JUnit.AvionTest" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.AvionTest.getAsientoLayout" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AvionTest.getMapaDeAsientos" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="JUnit.AvionTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AvionTest.getAsientoLayout" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AvionTest.getMapaDeAsientos" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.AvionTest.getAsientoLayout" />
       </list>
     </recent_temporary>
   </component>
@@ -592,22 +619,17 @@
       <option name="project" value="LOCAL" />
       <updated>1507070286318</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Configurados los tests de Avion">
+      <created>1507071886798</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1507071886798</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AvionTest - 2017.10.03 at 19h 48m 31s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 19h 48m 54s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 19h 49m 30s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 19h 52m 41s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AvionTest - 2017.10.03 at 19h 57m 14s.xml">
       <configuration name="AvionTest" configurationId="JUnit" />
     </history-entry>
@@ -625,6 +647,18 @@
     </history-entry>
     <history-entry file="AvionTest - 2017.10.03 at 20h 02m 52s.xml">
       <configuration name="AvionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest - 2017.10.03 at 20h 10m 06s.xml">
+      <configuration name="AvionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest - 2017.10.03 at 20h 12m 36s.xml">
+      <configuration name="AvionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 11m 16s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 12m 13s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -674,11 +708,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Mejorado mapa de asientos" />
     <MESSAGE value="Agregado AvionTest.java (JUnit 4)" />
     <MESSAGE value="Cambios organizacion de proyecto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios organizacion de proyecto" />
+    <MESSAGE value="Configurados los tests de Avion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configurados los tests de Avion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -799,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/API/src/avion/Avion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
           <folding>
             <element signature="e#1047#1048#0" expanded="true" />
             <element signature="e#1077#1078#0" expanded="true" />
@@ -816,8 +852,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        <state relative-caret-position="210">
+          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

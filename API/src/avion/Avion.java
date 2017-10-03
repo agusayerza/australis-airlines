@@ -47,21 +47,27 @@ public class Avion {
     }
 
     public String getAsientoLayout(){
-        String output = "";
+        String output = "\t"; //Spacing
+
+        for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
+            output += Character.toString(columnaToChar(j)) + "\t";
+        }
+
+        output += "\n";
 
         for (int i = 0; i < cantidadDeFilasDeAsientos; i++) {
+            int fila = i + 1;
+            output += fila + " - ";
             for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
 
                 Asiento asiento;
-                int fila = i + 1;
-                String key = fila + Character.toString(columnaToChar(j));
 
+                String key = fila + Character.toString(columnaToChar(j));
                 asiento = mapaDeAsientos.get(key);
-                output += " - " + asiento.getCodigo() + "[";
                 if (asiento.isOcupado()){
-                    output += "X]";
+                    output += "[X] ";
                 }else{
-                    output += "O]";
+                    output += "[O] ";
                 }
 
             }
