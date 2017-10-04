@@ -4,7 +4,6 @@
     <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/src/avion/Avion.java" afterPath="$PROJECT_DIR$/API/src/avion/Avion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/tests/avion/AvionTest.java" afterPath="$PROJECT_DIR$/API/tests/avion/AvionTest.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Avion.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Avion.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/API/src/avion/Avion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="149">
+              <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="34" />
               <folding>
                 <element signature="e#1047#1048#0" expanded="true" />
                 <element signature="e#1077#1078#0" expanded="true" />
@@ -55,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AvionTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AvionTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -122,8 +121,8 @@
         <option value="$PROJECT_DIR$/API/src/vuelo/Vuelo.java" />
         <option value="$PROJECT_DIR$/API/Tests/avion/AvionTest.java" />
         <option value="$PROJECT_DIR$/API/API.iml" />
-        <option value="$PROJECT_DIR$/API/src/avion/Avion.java" />
         <option value="$PROJECT_DIR$/API/tests/avion/AvionTest.java" />
+        <option value="$PROJECT_DIR$/API/src/avion/Avion.java" />
       </list>
     </option>
   </component>
@@ -159,20 +158,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="australis-airlines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="australis-airlines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="australis-airlines" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,7 +269,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AvionTest">
+  <component name="RunManager" selected="JUnit.AvionTest.getMapaDeAsientos">
     <configuration default="false" name="AvionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -574,8 +559,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AvionTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AvionTest.getMapaDeAsientos" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AvionTest.getMapaDeAsientos" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AvionTest" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.AvionTest.getAsientoLayout" />
       </list>
     </recent_temporary>
@@ -637,21 +622,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AvionTest - 2017.10.03 at 19h 57m 14s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 19h 57m 41s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 19h 59m 42s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 20h 01m 57s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AvionTest - 2017.10.03 at 20h 02m 24s.xml">
-      <configuration name="AvionTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AvionTest - 2017.10.03 at 20h 02m 52s.xml">
       <configuration name="AvionTest" configurationId="JUnit" />
     </history-entry>
@@ -667,6 +637,21 @@
     <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 12m 13s.xml">
       <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 20m 27s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 25m 56s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 26m 12s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 26m 29s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AvionTest_getMapaDeAsientos - 2017.10.03 at 20h 26m 55s.xml">
+      <configuration name="AvionTest.getMapaDeAsientos" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -679,6 +664,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -840,10 +826,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/API/src/avion/Avion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="149">
+          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="34" />
           <folding>
             <element signature="e#1047#1048#0" expanded="true" />
             <element signature="e#1077#1078#0" expanded="true" />
@@ -853,16 +849,6 @@
             <element signature="e#1270#1271#0" expanded="true" />
             <element signature="e#1322#1323#0" expanded="true" />
             <element signature="e#1373#1374#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/API/tests/avion/AvionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

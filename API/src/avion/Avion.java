@@ -47,17 +47,20 @@ public class Avion {
     }
 
     public String getAsientoLayout(){
-        String output = "\t"; //Spacing
+        String output = "\t "; //Spacing
 
         for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
-            output += Character.toString(columnaToChar(j)) + "\t";
+            output += Character.toString(columnaToChar(j)) + "   ";
         }
 
         output += "\n";
 
         for (int i = 0; i < cantidadDeFilasDeAsientos; i++) {
             int fila = i + 1;
-            output += fila + " - ";
+            output += fila + "  ";
+            if(fila < 10){
+                output += " ";
+            }
             for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
 
                 Asiento asiento;
