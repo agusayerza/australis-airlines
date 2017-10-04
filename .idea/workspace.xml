@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="Agregado pequeña nocion de precios. Falta mucho trabajo.">
+    <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="Solucionado bug en hasPassed(), dentro de TimeControl. Se habia roto al hacer el cambio de Date a LocalDate.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/src/timeControl/TimeControl.java" afterPath="$PROJECT_DIR$/API/src/timeControl/TimeControl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/tests/timeControl/TimeControlTest.java" afterPath="$PROJECT_DIR$/API/tests/timeControl/TimeControlTest.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,8 +39,8 @@
       <file leaf-file-name="TimeControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/API/src/timeControl/TimeControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+            <state relative-caret-position="374">
+              <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,11 +63,9 @@
       <file leaf-file-name="TimeControlTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API/tests/timeControl/TimeControlTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1533,7 +1531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507158669612</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Solucionado bug en hasPassed(), dentro de TimeControl. Se habia roto al hacer el cambio de Date a LocalDate.">
+      <created>1507158822724</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1507158822724</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1626,7 +1631,8 @@
     <MESSAGE value="Fix a como se imprimian los Asientos de avion" />
     <MESSAGE value="Agregado controlador de tiempo" />
     <MESSAGE value="Agregado pequeña nocion de precios. Falta mucho trabajo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregado pequeña nocion de precios. Falta mucho trabajo." />
+    <MESSAGE value="Solucionado bug en hasPassed(), dentro de TimeControl. Se habia roto al hacer el cambio de Date a LocalDate." />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionado bug en hasPassed(), dentro de TimeControl. Se habia roto al hacer el cambio de Date a LocalDate." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2134,18 +2140,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/API/tests/timeControl/TimeControlTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/API/src/timeControl/TimeControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="8" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        <state relative-caret-position="374">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
