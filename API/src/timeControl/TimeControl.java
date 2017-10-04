@@ -2,25 +2,29 @@ package timeControl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class TimeControl {
-    private Date now;
+    private LocalDate now;
 
     public TimeControl() {
     }
 
     public boolean hasPassed(String dateToParse) throws ParseException {
 
-        Date now = new Date();
+        ZoneId z = ZoneId.systemDefault();
+        LocalDate now = LocalDate.now( z );
 
-        String myFormatString = "dd/MM/yy";
-        SimpleDateFormat df = new SimpleDateFormat(myFormatString);
-        Date givenDate = df.parse(dateToParse);
-        Long l = givenDate.getTime();
+
+        DateTimeFormatter f = DateTimeFormatter.ofPattern( "d/MM/yyyy" );
+        LocalDate ld = LocalDate.parse( dateToParse , f );
+
 
         //Comparamos las fechas
-        if(givenDate.after(now) || (givenDate.equals(now))){
+        if(ld.isAfter(now) || (ld.equals(now))){
             return false;
         } else {
             return true;

@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 public class Catalogo {
     private HashMap<String,Vuelo> vuelos; // <codigoDeVuelo, vuelo>
-    private HashMap<>
     public Catalogo() {
     }
 
