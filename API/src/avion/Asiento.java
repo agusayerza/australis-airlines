@@ -4,6 +4,7 @@ public class Asiento {
     int fila;
     char columna;
     boolean ocupado;
+    int DNI;
 
     //TODO: Crear un objeto Clase clase para manejar las categorias de asientos?? -A
     String clase;
@@ -34,5 +35,16 @@ public class Asiento {
     public String getCodigo(){
         return fila + Character.toString(columna); // 15A
 
+    }
+
+    public void ocupar(int DNI){
+
+        if(this.isOcupado()){
+            //TODO: Custom exception "Asiento ya ocupado"
+            throw new RuntimeException();
+        }
+
+        this.DNI = DNI;
+        ocupado = true;
     }
 }
