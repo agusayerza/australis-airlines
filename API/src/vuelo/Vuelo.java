@@ -1,37 +1,41 @@
 package vuelo;
 
-import java.time.Duration;
-import java.time.Instant;
+import java.util.Date;
+
 import avion.*;
+import catalogo.Pricing;
 
 public class Vuelo {
 
     /**
      * @param startDate Primer fecha de vuelo
+     * @param endDate Ultima fecha de vuelo
      * @param aeropuertoDePartida Aeropuerto de partida.
      * @param aeropuertoDeArribo Aeropuerto de arribo.
      * @param codigoDeVuelo Codigo Identificador del Vuelo.
-     * @param duracionDeOperaciones Durante cuanto tiempo desde startDate estara dispoible ese vuelo.
      * @param avion El avion utilizado para el vuelo.
      */
 
-    private Instant startDate;
+    private Date startDate;
+    private Date endDate;
     private String aeropuertoDePartida;
     private String aeropuertoDeArribo;
     private String codigoDeVuelo;
-    private Duration duracionDeOperaciones;
     private Avion avion;
+    private Pricing pricing;
 
-    public Vuelo(Instant startDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Duration duracionDeOperaciones, Avion avion) {
+    public Vuelo(Date startDate, Date endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
         this.startDate = startDate;
+        this.endDate = endDate;
         this.aeropuertoDePartida = aeropuertoDePartida;
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
-        this.duracionDeOperaciones = duracionDeOperaciones;
         this.avion = avion;
+        this.pricing = pricing;
+
     }
 
-    public Instant getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
@@ -47,12 +51,13 @@ public class Vuelo {
         return codigoDeVuelo;
     }
 
-    public Duration getDuracionDeOperaciones() {
-        return duracionDeOperaciones;
-    }
+    public Date getEndDate() { return endDate; }
 
     public Avion getAvion() {
         return avion;
     }
 
+    public Pricing getPricing() {
+        return pricing;
+    }
 }

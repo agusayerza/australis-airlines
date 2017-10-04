@@ -40,6 +40,10 @@ public class AvionTest {
 
         assertEquals("test", avion.getPatente());
         System.out.println(avion.getAsientoLayout());
+
+        //avion.ocuparAsiento
+        System.out.println(avion.getAsientoLayout());
+
     }
 
 }

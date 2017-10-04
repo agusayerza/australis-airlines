@@ -48,7 +48,7 @@ datos. Este es el paso 1 de la compra. Los datos del formulario serán:
    4. Cantidad de escalas máxima (pudiendo seleccionar que sea indistinta)
    5. Categoría deseada (pudiendo seleccionar que sea indistinta)
    6. Selección de criterio de orden para los resultados (siendo los mínimos
-      requeridos: precio, escalas y duración).
+      requeridos: pricing, escalas y duración).
       
    Luego, como paso 2 se deben mostrar los resultados pertinentes con un detalle
 de cada oferta, y solicitar al usuario si desea comprar una de dichas ofertas

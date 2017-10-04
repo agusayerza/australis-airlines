@@ -5,17 +5,18 @@ import java.util.HashMap;
 public class Clase {
     private int cantidadDeFilasDeAsientos;
     private int cantidadDeColumnasDeAsientos;
-    String nombreDeClase;
+    private String nombreDeClase;
     private HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
 
-    int ultimaFilaDeClase;
-    int primeraFilaDeClase;
+    private int ultimaFilaDeClase;
+    private int primeraFilaDeClase;
 
     public Clase(int primerFilaDeClase, int cantidadDeAsientos, int cantidadDeFilasDeAsientos, String nombreDeClase) {
         if(primerFilaDeClase <= 0){
             //TODO: Custom exception "El numero de la primer fila de clase no puede ser negativo o 0"
             throw new RuntimeException();
         }
+
         this.primeraFilaDeClase = primerFilaDeClase;
         this.cantidadDeFilasDeAsientos = cantidadDeFilasDeAsientos;
         this.nombreDeClase = nombreDeClase;
@@ -41,6 +42,17 @@ public class Clase {
 
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Clase)) return false;
+
+        Clase clase = (Clase) o;
+
+        return getNombreDeClase() != null ? getNombreDeClase().equals(clase.getNombreDeClase()) : clase.getNombreDeClase() == null;
+    }
+
 
     public int getCantidadDeFilasDeAsientos() {
         return cantidadDeFilasDeAsientos;
