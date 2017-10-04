@@ -4,31 +4,18 @@ import java.util.HashMap;
 
 public class Avion {
     private String patente;
-    private HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
+    private Clase[] clases;
 
-    private int cantidadDeFilasDeAsientos;
-    private int cantidadDeColumnasDeAsientos;
+    private int numeroDeClases;
 
     //  TODO: Pricing y catalogo de precios
     // Catalogo catalogoDePrecios;
 
-    public Avion(String patente, int filasDeAsientos, int columnasDeAsientos) {
 
+    public Avion(String patente, Clase[] clases) {
         this.patente = patente;
-        this.cantidadDeColumnasDeAsientos = columnasDeAsientos;
-        this.cantidadDeFilasDeAsientos = filasDeAsientos;
-
-        for (int i = 0; i < cantidadDeFilasDeAsientos; i++) {
-            for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
-
-                //TODO: Clase de asientos, ver clase Avion.Asiento y modificar este constructor
-                Asiento asiento = new Asiento(i + 1, columnaToChar(j), "Standard");
-                asiento.getCodigo();
-
-                mapaDeAsientos.put(asiento.getCodigo(),asiento);
-
-            }
-        }
+        this.clases = clases;
+        this.numeroDeClases = clases.length;
     }
 
     public String getPatente() {
@@ -36,48 +23,61 @@ public class Avion {
     }
 
     public HashMap<String, Asiento> getMapaDeAsientos() {
+        //TODO: No hay verdadera razon por la cual usar esto en vez de getClases...
+        HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
+        for (Clase clase: clases) {
+            mapaDeAsientos.putAll(clase.getMapaDeAsientos());
+        }
         return mapaDeAsientos;
     }
 
-    public int getCantidadDeFilasDeAsientos() {
-        return cantidadDeFilasDeAsientos;
+    public Clase[] getClases() {
+        return clases;
     }
 
-    public int getCantidadDeColumnasDeAsientos() {
-        return cantidadDeColumnasDeAsientos;
+    public int getNumeroDeClases() {
+        return numeroDeClases;
     }
 
     public String getAsientoLayout(){
-        String output = "\t "; //Spacing
+        String output = ""; //Spacing
+        for (Clase clase: clases) {
 
-        for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
-            output += Character.toString(columnaToChar(j)) + "   ";
-        }
+            output += "\n \t " + clase.getNombreDeClase() + "\n";
 
-        output += "\n";
+            int cantidadDeColumnasDeAsientos = clase.getCantidadDeColumnasDeAsientos();
+            int cantidadDeFilasDeAsientos = clase.getCantidadDeFilasDeAsientos();
+            HashMap<String, Asiento> mapaDeAsientos = clase.getMapaDeAsientos();
 
-        for (int i = 0; i < cantidadDeFilasDeAsientos; i++) {
-            int fila = i + 1;
-            output += fila + "  ";
-            if(fila < 10){
-                output += " ";
-            }
+            output += "\t ";
             for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
-
-                Asiento asiento;
-
-                String key = fila + Character.toString(columnaToChar(j));
-                asiento = mapaDeAsientos.get(key);
-                if (asiento.isOcupado()){
-                    output += "[X] ";
-                }else{
-                    output += "[O] ";
-                }
-
+                output += Character.toString(columnaToChar(j)) + "   ";
             }
-            output += "\n";
-        }
 
+            output += "\n";
+
+            for (int i = 0; i < cantidadDeFilasDeAsientos; i++) {
+                int fila = i + clase.getPrimeraFilaDeClase();
+                output += fila + "  ";
+                if(fila < 10){
+                    output += " ";
+                }
+                for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
+
+                    Asiento asiento;
+
+                    String key = fila + Character.toString(columnaToChar(j));
+                    asiento = mapaDeAsientos.get(key);
+                    if (asiento.isOcupado()){
+                        output += "[X] ";
+                    }else{
+                        output += "[O] ";
+                    }
+
+                }
+                output += "\n";
+            }
+        }
         return output;
     }
 
@@ -91,12 +91,12 @@ public class Avion {
         return patente.equals(avion.patente);
     }
 
-
+    //TODO: Creo que columnaToChar no se usa mas en esta clase
     private char columnaToChar(int columna){
         return (char) (65 + columna);
     }
 
-    public void ocuparAsiento(int DNI, String key){
+    /*public void ocuparAsiento(int DNI, String key){
         Asiento asiento;
         if(mapaDeAsientos.containsKey(key)){
             asiento = mapaDeAsientos.get(key);
@@ -110,5 +110,5 @@ public class Avion {
             throw new RuntimeException();
         }
 
-    }
+    }*/
 }

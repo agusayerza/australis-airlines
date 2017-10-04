@@ -6,13 +6,12 @@ public class Asiento {
     boolean ocupado;
     int DNI;
 
-    //TODO: Crear un objeto Clase clase para manejar las categorias de asientos?? -A
-    String clase;
+    ClaseDeAsiento clase;
 
     public Asiento(int fila, char columna, String clase) {
         this.fila = fila;
         this.columna = columna;
-        this.clase = clase;
+        this.clase = new ClaseDeAsiento(clase);
         this.ocupado = false;
     }
 
@@ -28,11 +27,11 @@ public class Asiento {
         return ocupado;
     }
 
-    public String getClase() {
+    public ClaseDeAsiento getClase() {
         return clase;
     }
 
-    public String getCodigo(){
+    public String getFilaYColumna(){
         return fila + Character.toString(columna); // 15A
 
     }
