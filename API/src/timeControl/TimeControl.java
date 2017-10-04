@@ -1,11 +1,11 @@
 package timeControl;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 
 public class TimeControl {
     private LocalDate now;
@@ -14,20 +14,26 @@ public class TimeControl {
     }
 
     public boolean hasPassed(String dateToParse) throws ParseException {
+        /*
+        *  La funcion has passed compara dia contra dia, no tiene en cuenta horarios y por ende
+        *  si las fechas son iguales, considera que esa fecha ya paso.
+        *  Consultar con Agus si creen que hay que modificar este comportamiento.
+        *   -A
+        * */
+        
+        ZoneId zone = ZoneId.systemDefault();
+        now = LocalDate.now(zone);
 
-        ZoneId z = ZoneId.systemDefault();
-        LocalDate now = LocalDate.now( z );
-
-
-        DateTimeFormatter f = DateTimeFormatter.ofPattern( "d/MM/yyyy" );
-        LocalDate ld = LocalDate.parse( dateToParse , f );
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "dd/MM/uu" );
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        LocalDate localDate = LocalDate.parse(dateToParse, formatter);
 
 
         //Comparamos las fechas
-        if(ld.isAfter(now) || (ld.equals(now))){
-            return false;
-        } else {
+        if(localDate.isBefore(now) || (localDate.equals(now))){
             return true;
+        } else {
+            return false;
         }
     }
 }

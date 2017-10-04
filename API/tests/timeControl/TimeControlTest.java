@@ -3,6 +3,8 @@ package timeControl;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -12,18 +14,20 @@ public class TimeControlTest {
     public void hasPassed() throws Exception {
         TimeControl timer = new TimeControl();
 
-        String oldDate  = "03/10/2017";
+        String oldDate  = "2017-10-03";
         assertEquals(true, timer.hasPassed(oldDate));
 
-        String futureDate  = "20/12/2099"; //Esto puede fallar dentro de varios años....
+        String futureDate  = "2099-12-30"; //Esto puede fallar dentro de varios años....
         assertEquals(false, timer.hasPassed(futureDate));
 
-        Date now = new Date();
-        String myFormatString = "dd/MM/yy";
-        SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDate now = LocalDate.now(zone);
 
-        String actualDate = df.format(now).toString();
-        assertEquals(true, timer.hasPassed(actualDate));
+        //String myFormatString = "dd/MM/yy";
+        //SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+        //String actualDate = df.format(now).toString();
+
+        assertEquals(true, timer.hasPassed(now.toString()));
     }
 
 }
