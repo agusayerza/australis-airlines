@@ -1,5 +1,7 @@
 package personas;
 
+import CustomExceptions.AdministratorNotAbleToSellException;
+
 public class Administrador extends Persona implements AreaDeEmpleado{
 
     private boolean puedeVender;
@@ -11,8 +13,7 @@ public class Administrador extends Persona implements AreaDeEmpleado{
     @Override
     public boolean puedeVender(){
         if(puedeVender == false){
-            //TODO custom runtime exception.
-            throw new RuntimeException("El administrador no esta habilitado para vender.");
+            throw new AdministratorNotAbleToSellException("El administrador no esta habilitado para vender.");
         }
         return true;
     }

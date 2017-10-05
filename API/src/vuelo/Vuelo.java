@@ -40,6 +40,10 @@ public class Vuelo {
         return startDate;
     }
 
+    public void ocuparAsiento(){
+
+    }
+
     public String getAeropuertoDePartida() {
         return aeropuertoDePartida;
     }

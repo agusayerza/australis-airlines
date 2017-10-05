@@ -1,5 +1,7 @@
 package UI;
 
+import CustomExceptions.MenuInvalidOptionSelectedException;
+
 public class Menu {
     private String[] opcionesMenu;
     private String nombreMenu;
@@ -31,8 +33,8 @@ public class Menu {
         if(i < opcionesMenu.length && i >= 0){
             return i;
         } else {
-            //TODO: Custom Exception "Menu: Invalid option selected"
-            throw new RuntimeException();
+            //"Menu: Invalid option selected" by agus; "Menu: Opcion invalida seleccionada" by yo;
+            throw new MenuInvalidOptionSelectedException("Menu: Opcion invalida seleccionada");
         }
     }
 }
