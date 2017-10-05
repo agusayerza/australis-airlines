@@ -1,14 +1,17 @@
 package vuelo;
 
 import avion.Asiento;
+import personas.Pasajero;
 
 public class Pasaje {
-    Asiento asiento;
-    Vuelo vuelo;
+    private Asiento asiento;
+    private Vuelo vuelo;
+    private Pasajero pasajero;
 
-    public Pasaje(Asiento asiento, Vuelo vuelo) {
+    public Pasaje(Asiento asiento, Vuelo vuelo, Pasajero pasajero) {
         this.asiento = asiento;
         this.vuelo = vuelo;
+        this.pasajero = pasajero;
     }
 
     public Asiento getAsiento() {

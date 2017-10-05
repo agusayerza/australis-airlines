@@ -8,5 +8,4 @@ public class Pasajero extends Persona{
     public ... comprarPasaje(Pasaje){
 
     }
-
 }
