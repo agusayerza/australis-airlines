@@ -4,6 +4,10 @@ package catalogo;
 import avion.Avion;
 import avion.Clase;
 
+import CustomExceptions.PriceMissingLeftoverForClassException;
+import CustomExceptions.PriceNegativeException;
+import CustomExceptions.PriceListNotContainClassException;
+
 import java.util.HashMap;
 
 public class Pricing {
@@ -13,16 +17,14 @@ public class Pricing {
 
     public Pricing(Clase[] clases, double[] precios) {
         if(clases.length != precios.length) {
-            //TODO: Custom exception "Falta o sobra un precio de alguna clase"
-            throw new RuntimeException();
+            throw new PriceMissingLeftoverForClassException("Falta o sobra un precio de alguna clase");
         }
         int i = 0;
 
         for (Clase clase: clases) {
 
             if(precios[i] < 0){
-                //TODO: Custom exception "Precio negativo"
-                throw new RuntimeException();
+                throw new PriceNegativeException("Precio negativo");
             }
 
             this.precios.put(clase.getNombreDeClase(),precios[i]);
@@ -36,8 +38,7 @@ public class Pricing {
 
     public double getPrecioDeClase(String nombreDeClase){
         if(!precios.containsKey(nombreDeClase)){
-            //TODO: Custom exception "La lista de precios no contiene la clase"
-            throw new RuntimeException();
+            throw new PriceListNotContainClassException("La lista de precios no contiene la clase");
         }
 
         return precios.get(nombreDeClase);

@@ -3,6 +3,9 @@ package catalogo;
 
 import vuelo.Vuelo;
 
+import CustomExceptions.FlightCodeAlreadyExistsException;
+import CustomExceptions.FlightCodeNonexistentException;
+
 import java.util.HashMap;
 
 public class Catalogo {
@@ -12,8 +15,7 @@ public class Catalogo {
 
     public void addVuelo(Vuelo vuelo){
         if(vuelos.containsKey(vuelo.getCodigoDeVuelo())){
-            //TODO: Custom exception "Un vuelo con este codigo ya existe"
-            throw new RuntimeException();
+            throw new FlightCodeAlreadyExistsException("Un vuelo con este codigo ya existe");
         }
 
         vuelos.put(vuelo.getCodigoDeVuelo(),vuelo);
@@ -22,8 +24,7 @@ public class Catalogo {
 
     public void removeVuelo(String codigoDeVuelo){
         if(vuelos.containsKey(codigoDeVuelo)){
-            //TODO: Custom exception "No existe un vuelo con este codigo"
-            throw new RuntimeException();
+            throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
         }
 
         vuelos.remove(codigoDeVuelo);
