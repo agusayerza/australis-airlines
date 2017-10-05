@@ -21,4 +21,8 @@ public class Pasaje {
     public Vuelo getVuelo() {
         return vuelo;
     }
+
+    public Pasajero getPasajero() {
+        return pasajero;
+    }
 }
