@@ -40,6 +40,9 @@ public class Clase {
             throw new RuntimeException();
         }
 
+    }
+
+    public void ocuparAsiento(String key){
 
     }
 
