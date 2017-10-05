@@ -2,6 +2,9 @@ package avion;
 
 import java.util.HashMap;
 
+import CustomExceptions.NumberFirstClassRowNegativeZeroException;
+import CustomExceptions.SeatsRowsNotDistributableException;
+
 public class Clase {
     private int cantidadDeFilasDeAsientos;
     private int cantidadDeColumnasDeAsientos;
@@ -13,8 +16,7 @@ public class Clase {
 
     public Clase(int primerFilaDeClase, int cantidadDeAsientos, int cantidadDeFilasDeAsientos, String nombreDeClase) {
         if(primerFilaDeClase <= 0){
-            //TODO: Custom exception "El numero de la primer fila de clase no puede ser negativo o 0"
-            throw new RuntimeException();
+            throw new NumberFirstClassRowNegativeZeroException("El numero de la primer fila de clase no puede ser negativo o 0");
         }
 
         this.primeraFilaDeClase = primerFilaDeClase;
@@ -36,8 +38,7 @@ public class Clase {
                 ultimaFilaDeClase = primerFilaDeClase + i;
             }
         }else{
-            //TODO: Custom exception "Cantidad de Asientos no distribuible en Cantidad de Filas"
-            throw new RuntimeException();
+            throw new SeatsRowsNotDistributableException("Cantidad de Asientos no distribuible en Cantidad de Filas");
         }
 
     }

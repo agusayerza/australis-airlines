@@ -1,5 +1,7 @@
 package avion;
 
+import CustomExceptions.SeatAlreadyOccupiedException;
+
 public class Asiento {
     int fila;
     char columna;
@@ -38,8 +40,7 @@ public class Asiento {
     public void ocupar(int DNI){
 
         if(this.isOcupado()){
-            //TODO: Custom exception "Asiento ya ocupado"
-            throw new RuntimeException();
+            throw new SeatAlreadyOccupiedException("Asiento ya ocupado");
         }
 
         this.DNI = DNI;
