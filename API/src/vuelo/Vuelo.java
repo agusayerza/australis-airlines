@@ -14,6 +14,7 @@ public class Vuelo {
      * @param aeropuertoDeArribo Aeropuerto de arribo.
      * @param codigoDeVuelo Codigo Identificador del Vuelo.
      * @param avion El avion utilizado para el vuelo.
+     * @param pricing El precio de cada categoria de asiento.
      */
 
     private Date startDate;
