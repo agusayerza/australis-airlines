@@ -5,13 +5,12 @@ public class Asiento {
     char columna;
     boolean ocupado;
     int DNI;
-
-    ClaseDeAsiento clase;
+    String clase;
 
     public Asiento(int fila, char columna, String clase) {
         this.fila = fila;
         this.columna = columna;
-        this.clase = new ClaseDeAsiento(clase);
+        this.clase = clase;
         this.ocupado = false;
     }
 
@@ -27,7 +26,7 @@ public class Asiento {
         return ocupado;
     }
 
-    public ClaseDeAsiento getClase() {
+    public String getClase() {
         return clase;
     }
 
