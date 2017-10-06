@@ -5,7 +5,8 @@ public class Pasajero extends Persona{
     public Pasajero() {
     }
 
-    public ... comprarPasaje(Pasaje){
+    //public ... comprarPasaje(Pasaje){
 
-    }
+    //}
+
 }
