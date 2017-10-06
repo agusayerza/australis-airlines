@@ -1,10 +1,10 @@
 package UI;
 
-import CustomExceptions.MenuInvalidOptionSelectedException;
-
 public class Menu {
     private String[] opcionesMenu;
     private String nombreMenu;
+
+    private UI.Scanner scanner =  new Scanner();
 
     public Menu(String[] opcionesMenu, String nombreMenu) {
         this.opcionesMenu = opcionesMenu;
@@ -29,12 +29,24 @@ public class Menu {
         return output;
     }
 
-    public int validateOption(int i){
+    private boolean esOpcionInvalida(int i){
         if(i < opcionesMenu.length && i >= 0){
-            return i;
+            return false;
         } else {
+            return true;
             //"Menu: Invalid option selected" by agus; "Menu: Opcion invalida seleccionada" by yo;
-            throw new MenuInvalidOptionSelectedException("Menu: Opcion invalida seleccionada");
+            //throw new MenuInvalidOptionSelectedException("Menu: Opcion invalida seleccionada");
         }
+    }
+
+    public int pedirOpcionAlUsuario(){
+        boolean esperarOpcion = true;
+        int i = 0;
+        while(esperarOpcion) {
+            i = scanner.getInt("Seleccione una opcion:");
+            esperarOpcion = esOpcionInvalida(i);
+        }
+
+        return i;
     }
 }
