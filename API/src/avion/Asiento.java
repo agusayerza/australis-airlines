@@ -46,4 +46,8 @@ public class Asiento {
         this.DNI = DNI;
         ocupado = true;
     }
+
+    public int getDni() {
+        return DNI;
+    }
 }
