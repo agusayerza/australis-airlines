@@ -4,7 +4,7 @@ import vuelo.Vuelo;
 
 import java.util.ArrayList;
 
-public class Piloto extends Persona implements AreaDeEmpleado {
+public class Piloto extends Empleado {
 
     private ArrayList<Vuelo> listaDeVuelos;
 

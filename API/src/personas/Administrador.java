@@ -2,7 +2,7 @@ package personas;
 
 import CustomExceptions.AdministratorNotAbleToSellException;
 
-public class Administrador extends Persona implements AreaDeEmpleado{
+public class Administrador extends Empleado{
 
     private boolean puedeVender;
 
