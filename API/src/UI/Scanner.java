@@ -8,7 +8,7 @@ public class Scanner {
 
     /** Muestra un mensaje y espera el input del usuario.
      * @param message a mostrar.
-     * @return text ingresado por el usuario.
+     * @return texto ingresado por el usuario.
      */
     public String getString(String message) {
         System.out.print(message);
