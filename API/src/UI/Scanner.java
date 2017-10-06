@@ -6,9 +6,9 @@ public class Scanner {
 
     public Scanner() { }
 
-    /** Displays the given message and waits for user to enter some text.
-     * @param message to be displayed.
-     * @return text entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return text ingresado por el usuario.
      */
     public String getString(String message) {
         System.out.print(message);
@@ -20,45 +20,45 @@ public class Scanner {
         return result;
     }
 
-    /** Displays the given message and waits for user to enter a character.
-     * @param message to be displayed.
-     * @return char entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return char ingresado por el usuario.
      */
     public char getChar(String message) {
         return getString(message).charAt(0);
     }
 
-    /** Displays the given message and waits for user to enter an int.
-     * @param message to be displayed.
-     * @return integer entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return integer ingresado por el usuario.
      */
     public int getInt(String message) {
         System.out.print(message);
         try {
             return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Por favor, ingrese solo numeros.");
+            System.out.println("Por favor, ingrese solo numeros enteros.");
             return getInt(message);
         }
     }
 
-    /** Displays the given message and waits for user to enter a long.
-     * @param message to be displayed.
-     * @return long entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return long ingresado por el usuario.
      */
     public long getLong(String message) {
         System.out.print(message);
         try {
             return Long.parseLong(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Por favor, ingrese solo numeros.");
+            System.out.println("Por favor, ingrese solo numeros enteros.");
             return getLong(message);
         }
     }
 
-    /** Displays the given message and waits for user to enter a float.
-     * @param message to be displayed.
-     * @return float entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return float ingresado por el usuario.
      */
     public float getFloat(String message) {
         System.out.print(message);
@@ -70,9 +70,9 @@ public class Scanner {
         }
     }
 
-    /** Displays the given message and waits for user to enter a double.
-     * @param message to be displayed.
-     * @return double entered by the user.
+    /** Muestra un mensaje y espera el input del usuario.
+     * @param message a mostrar.
+     * @return double ingresado por el usuario.
      */
     public double getDouble(String message) {
         System.out.print(message);
