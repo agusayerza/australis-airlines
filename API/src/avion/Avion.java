@@ -96,19 +96,5 @@ public class Avion {
         return (char) (65 + columna);
     }
 
-    /*public void ocuparAsiento(int DNI, String key){
-        Asiento asiento;
-        if(mapaDeAsientos.containsKey(key)){
-            asiento = mapaDeAsientos.get(key);
-            if(asiento.isOcupado()){
-                //TODO: Custom exception "Asiento ya ocupado"
-                throw new RuntimeException();
-            }
-            asiento.ocupar(DNI);
-        }else{
-            //TODO: Custom exception "Asiento inexistente"
-            throw new RuntimeException();
-        }
 
-    }*/
 }

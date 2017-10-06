@@ -3,7 +3,10 @@ package avion;
 import java.util.HashMap;
 
 import CustomExceptions.NumberFirstClassRowNegativeZeroException;
+import CustomExceptions.SeatAlreadyOccupiedException;
+import CustomExceptions.SeatNonexistentException;
 import CustomExceptions.SeatsRowsNotDistributableException;
+import personas.Pasajero;
 
 public class Clase {
     private int cantidadDeFilasDeAsientos;
@@ -43,8 +46,22 @@ public class Clase {
 
     }
 
-    public void ocuparAsiento(String key){
-
+    public void ocuparAsiento(String key, Pasajero pasajero) {
+        Asiento asiento;
+        if (mapaDeAsientos.containsKey(key)) {
+            asiento = mapaDeAsientos.get(key);
+            if (asiento.getClase().equals(nombreDeClase)) {
+                if (asiento.isOcupado()) {
+                    throw new SeatAlreadyOccupiedException("El asiento deseado ya esta ocupado.");
+                }
+                int DNI = pasajero.getDni();
+                asiento.ocupar(DNI);
+            } else {
+                throw new SeatNonexistentException("No existe el asiento buscado.");
+            }
+        }
+        //TODO hacer una custom exception para esto.
+        throw new RuntimeException("El asiento deseado no pertenece a esta clase.");
     }
 
     @Override
