@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cfd64a6-7af4-453e-a7b8-efcd42c13115" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/australis-airlines.iml" afterPath="$PROJECT_DIR$/.idea/australis-airlines.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API/src/UI/Scanner.java" afterPath="$PROJECT_DIR$/API/src/UI/Scanner.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,16 +55,6 @@
                 <element signature="e#445#446#0" expanded="true" />
                 <element signature="e#475#476#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AreaDeEmpleado.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/API/src/personas/AreaDeEmpleado.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -923,7 +910,21 @@
       <option name="project" value="LOCAL" />
       <updated>1507298697934</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Configurada compilacion de App Empleados">
+      <created>1507304514189</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1507304514189</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Pequeños cambios a clase Scanner">
+      <created>1507304544346</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1507304544346</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1020,7 +1021,9 @@
     <MESSAGE value="Inicio App Empleados" />
     <MESSAGE value="Agregado objeto Scanner (personalizado) al paquete UI" />
     <MESSAGE value="Arreglado algunos comentarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglado algunos comentarios" />
+    <MESSAGE value="Configurada compilacion de App Empleados" />
+    <MESSAGE value="Pequeños cambios a clase Scanner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pequeños cambios a clase Scanner" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
