@@ -1,6 +1,6 @@
 package vuelo;
 
-import java.util.Date;
+import java.time.*;
 
 import avion.*;
 import catalogo.Pricing;
@@ -8,7 +8,6 @@ import catalogo.Pricing;
 public class Vuelo {
 
     /**
-     * @param startDate Primer fecha de vuelo
      * @param endDate Ultima fecha de vuelo
      * @param aeropuertoDePartida Aeropuerto de partida.
      * @param aeropuertoDeArribo Aeropuerto de arribo.
@@ -17,16 +16,21 @@ public class Vuelo {
      * @param pricing El precio de cada categoria de asiento.
      */
 
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private Duration duracionDeVuelo;
+    private LocalDate endDate;
     private String aeropuertoDePartida;
     private String aeropuertoDeArribo;
     private String codigoDeVuelo;
     private Avion avion;
     private Pricing pricing;
 
-    public Vuelo(Date startDate, Date endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
+    private DayOfWeek diaDeVuelo;
+    private LocalTime horarioDeVuelo;
+
+    public Vuelo(LocalDateTime startDate, Duration duracionDeVuelo, LocalDate endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
         this.startDate = startDate;
+        this.duracionDeVuelo = duracionDeVuelo;
         this.endDate = endDate;
         this.aeropuertoDePartida = aeropuertoDePartida;
         this.aeropuertoDeArribo = aeropuertoDeArribo;
@@ -34,14 +38,28 @@ public class Vuelo {
         this.avion = avion;
         this.pricing = pricing;
 
-    }
-
-    public Date getStartDate() {
-        return startDate;
+        diaDeVuelo = startDate.getDayOfWeek();
+        horarioDeVuelo = startDate.toLocalTime();
     }
 
     public void ocuparAsiento(){
 
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public Duration getDuracionDeVuelo() {
+        return duracionDeVuelo;
+    }
+
+    public DayOfWeek getDiaDeVuelo() {
+        return diaDeVuelo;
+    }
+
+    public LocalTime getHorarioDeVuelo() {
+        return horarioDeVuelo;
     }
 
     public String getAeropuertoDePartida() {
@@ -56,7 +74,9 @@ public class Vuelo {
         return codigoDeVuelo;
     }
 
-    public Date getEndDate() { return endDate; }
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 
     public Avion getAvion() {
         return avion;
