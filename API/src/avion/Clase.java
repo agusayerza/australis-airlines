@@ -2,10 +2,10 @@ package avion;
 
 import java.util.HashMap;
 
-import CustomExceptions.NumberFirstClassRowNegativeZeroException;
-import CustomExceptions.SeatAlreadyOccupiedException;
-import CustomExceptions.SeatNonexistentException;
-import CustomExceptions.SeatsRowsNotDistributableException;
+import customExceptions.NumberFirstClassRowNegativeZeroException;
+import customExceptions.SeatAlreadyOccupiedException;
+import customExceptions.SeatNonexistentException;
+import customExceptions.SeatsRowsNotDistributableException;
 import personas.Pasajero;
 
 public class Clase {

@@ -1,7 +1,7 @@
 package catalogo;
 
-import CustomExceptions.FlightCodeAlreadyExistsException;
-import CustomExceptions.FlightCodeNonexistentException;
+import customExceptions.FlightCodeAlreadyExistsException;
+import customExceptions.FlightCodeNonexistentException;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package CustomExceptions;
+package customExceptions;
 
 public class FlightCodeNonexistentException extends RuntimeException{
     public FlightCodeNonexistentException(String mensaje) {

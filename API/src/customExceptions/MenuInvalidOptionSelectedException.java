@@ -1,4 +1,4 @@
-package CustomExceptions;
+package customExceptions;
 
 public class MenuInvalidOptionSelectedException extends RuntimeException{
     public MenuInvalidOptionSelectedException(String mensaje) {

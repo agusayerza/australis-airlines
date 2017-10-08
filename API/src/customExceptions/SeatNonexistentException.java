@@ -1,4 +1,4 @@
-package CustomExceptions;
+package customExceptions;
 
 public class SeatNonexistentException extends RuntimeException {
     public SeatNonexistentException(String mensaje) {

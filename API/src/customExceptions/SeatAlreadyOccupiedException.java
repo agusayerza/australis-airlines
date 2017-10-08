@@ -1,4 +1,4 @@
-package CustomExceptions;
+package customExceptions;
 
 public class SeatAlreadyOccupiedException extends RuntimeException{
     public SeatAlreadyOccupiedException(String mensaje) {

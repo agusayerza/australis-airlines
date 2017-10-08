@@ -1,6 +1,6 @@
 package personas;
 
-import CustomExceptions.AdministratorNotAbleToSellException;
+import customExceptions.AdministratorNotAbleToSellException;
 
 public class Administrador extends Empleado{
 

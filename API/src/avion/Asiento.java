@@ -1,6 +1,6 @@
 package avion;
 
-import CustomExceptions.SeatAlreadyOccupiedException;
+import customExceptions.SeatAlreadyOccupiedException;
 
 public class Asiento {
     int fila;

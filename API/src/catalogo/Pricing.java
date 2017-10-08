@@ -4,9 +4,9 @@ package catalogo;
 import avion.Avion;
 import avion.Clase;
 
-import CustomExceptions.PriceMissingLeftoverForClassException;
-import CustomExceptions.PriceNegativeException;
-import CustomExceptions.PriceListNotContainClassException;
+import customExceptions.PriceMissingLeftoverForClassException;
+import customExceptions.PriceNegativeException;
+import customExceptions.PriceListNotContainClassException;
 
 import java.util.HashMap;
 
