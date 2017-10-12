@@ -1,4 +1,5 @@
 import UI.*;
+import customExceptions.MenuInvalidOptionSelectedException;
 import vuelo.*;
 
 public class Consola {
@@ -59,7 +60,7 @@ public class Consola {
                 programRun = false;
                 break;
             default:
-                throw new RuntimeException("Opcion de menu invalida");
+                throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
     }
 }
