@@ -2,7 +2,7 @@ package personas;
 
 import customExceptions.AdministratorNotAbleToSellException;
 
-public class Administrador extends Empleado{
+public class Administrador extends Persona implements AreaDeEmpleado{
 
     private boolean puedeVender;
 
@@ -12,7 +12,7 @@ public class Administrador extends Empleado{
 
     @Override
     public boolean puedeVender(){
-        if(puedeVender == false){
+        if(!puedeVender){
             throw new AdministratorNotAbleToSellException("El administrador no esta habilitado para vender.");
         }
         return true;
