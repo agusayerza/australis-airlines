@@ -11,6 +11,7 @@ public class Consola {
     static boolean programRun = true;
     public static void main(String[] args){
 
+
         mainScanner = new Scanner();
 
         System.out.println("Bienvenido a la aplicacion de Clientes de Australis Airlines");

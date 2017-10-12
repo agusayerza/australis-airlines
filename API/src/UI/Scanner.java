@@ -8,6 +8,8 @@ public class Scanner {
 
     private static final java.util.Scanner scanner = new java.util.Scanner(System.in);
 
+
+
     public Scanner() { }
 
     /** Muestra un mensaje y espera el input del usuario.
@@ -22,6 +24,7 @@ public class Scanner {
             return getString(message);
         }
         return result;
+
     }
 
     /** Muestra un mensaje y espera el input del usuario.

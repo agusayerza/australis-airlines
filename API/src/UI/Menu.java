@@ -7,6 +7,7 @@ public class Menu {
     private String nombreMenu;
 
 
+
     private UI.Scanner scanner =  new Scanner();
 
     public Menu(String[] opcionesMenu, String nombreMenu) {
