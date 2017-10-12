@@ -23,19 +23,17 @@ public class Menu {
         String output = nombreMenu + "\n";
 
         for (int i = 0; i < opcionesMenu.length ; i++) {
-            output += i + " - " + opcionesMenu[i] + "\n";
+            output += (i + 1) + " - " + opcionesMenu[i] + "\n";
         }
 
         return output;
     }
 
     private boolean esOpcionInvalida(int i){
-        if(i < opcionesMenu.length && i >= 0){
+        if(i < (opcionesMenu.length + 1) && (i >= 0)){
             return false;
         } else {
             return true;
-            //"Menu: Invalid option selected" by agus; "Menu: Opcion invalida seleccionada" by yo;
-            //throw new MenuInvalidOptionSelectedException("Menu: Opcion invalida seleccionada");
         }
     }
 
