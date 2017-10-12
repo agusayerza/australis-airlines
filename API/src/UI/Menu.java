@@ -1,5 +1,7 @@
 package UI;
 
+import customExceptions.MenuInvalidOptionSelectedException;
+
 public class Menu {
     private String[] opcionesMenu;
     private String nombreMenu;
@@ -29,12 +31,9 @@ public class Menu {
         return output + "\n";
     }
 
-    private boolean esOpcionInvalida(int i){
+    private boolean esOpcionInvalida (int i) throws MenuInvalidOptionSelectedException{
         if(i < (opcionesMenu.length + 1) && (i >= 0)){
-            System.out.println("Opcion invalida. \n");
-            System.out.println(this.strPrintMenu());
-
-            return false;
+            throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         } else {
             return true;
         }
@@ -45,7 +44,14 @@ public class Menu {
         int i = 0;
         while(esperarOpcion) {
             i = scanner.getInt("Seleccione una opcion: ");
-            esperarOpcion = esOpcionInvalida(i);
+            try{
+                this.esOpcionInvalida(i);
+                esperarOpcion = false;
+            }
+            catch (MenuInvalidOptionSelectedException e){
+                System.out.println(e.getMessage());
+                System.out.println(this.strPrintMenu());
+            }
         }
 
         return i;
