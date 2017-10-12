@@ -4,7 +4,7 @@ import vuelo.Vuelo;
 
 import java.util.ArrayList;
 
-public class Piloto extends Empleado {
+public class Piloto extends Persona implements AreaDeEmpleado {
 
     private ArrayList<Vuelo> listaDeVuelos;
 
@@ -30,8 +30,6 @@ public class Piloto extends Empleado {
                 throw new RuntimeException("El vuelo no existe.");
             }
         }
-
-
     }
 
     @Override
