@@ -30,14 +30,20 @@ public class Consola {
 
         //TODO: Preguntar si el concepto de progRun esta bien.
         while(programRun){
-            loopMenuPrincipal();
+            try{
+                loopMenuPrincipal();
+            } catch (MenuInvalidOptionSelectedException e){
+                // Esto NUNCA deberia pasar, ya que se chequea en UI.Menu
+                System.out.println(e.getMessage());
+                System.exit(1); //End with error
+            }
         }
 
         System.out.println("Gracias por volar con nosotros.");
 
     }
 
-    public static void loopMenuPrincipal(){
+    public static void loopMenuPrincipal() throws MenuInvalidOptionSelectedException{
         String[] opcionesMenuPrincipal = new String[3];
 
         opcionesMenuPrincipal[0] = "Ver Pasajes";
