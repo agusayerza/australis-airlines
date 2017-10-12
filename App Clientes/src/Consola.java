@@ -39,12 +39,13 @@ public class Consola {
     public static void loopMenuPrincipal(){
         String[] opcionesMenuPrincipal = new String[3];
 
-        opcionesMenuPrincipal[0] = "1. Ver Pasajes";
-        opcionesMenuPrincipal[1] = "2. Reservar Pasajes";
-        opcionesMenuPrincipal[2] = "3. Salir";
+        opcionesMenuPrincipal[0] = "Ver Pasajes";
+        opcionesMenuPrincipal[1] = "Reservar Pasajes";
+        opcionesMenuPrincipal[2] = "Salir";
 
         Menu menuPrincipal = new Menu(opcionesMenuPrincipal, "Menú Principal");
 
+        System.out.println(menuPrincipal.strPrintMenu());
         int option = menuPrincipal.pedirOpcionAlUsuario();
 
         switch(option){
