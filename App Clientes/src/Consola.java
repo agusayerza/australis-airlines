@@ -1,15 +1,19 @@
 import UI.*;
 import customExceptions.MenuInvalidOptionSelectedException;
-import vuelo.*;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class Consola {
     Menu menuPrincipal;
     static Protocol protocol;
+    static Scanner mainScanner;
     static int DNI;
     static boolean programRun = true;
     public static void main(String[] args){
 
-        Scanner mainScanner = new Scanner();
+        mainScanner = new Scanner();
 
         System.out.println("Bienvenido a la aplicacion de Clientes de Australis Airlines");
 
@@ -33,6 +37,7 @@ public class Consola {
             try{
                 loopMenuPrincipal();
             } catch (MenuInvalidOptionSelectedException e){
+                //TODO: Consultar si este tipo de redundancias se ponen o no
                 // Esto NUNCA deberia pasar, ya que se chequea en UI.Menu
                 System.out.println(e.getMessage());
                 System.exit(1); //End with error
@@ -57,9 +62,11 @@ public class Consola {
 
         switch(option){
             case 1:
+                System.out.println("Buscando sus vuelos ...");
                 protocol.getTicketsForThisUser();
                 break;
             case 2:
+                searchFlightForReservation();
                 break;
             case 3:
                 //Prog run se controla desde el main loop.
@@ -68,5 +75,23 @@ public class Consola {
             default:
                 throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
+    }
+
+    private static void searchFlightForReservation() {
+        String aeropuertoSalida;
+        String aeropuertoLlegada;
+
+        LocalDate fechaDeSalida;
+        String dateToParse;
+
+        aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
+        aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
+
+        //TODO: Cambiar el formato de ingreso de la fecha a dd/MM/yy
+        fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
+
+        System.out.println(fechaDeSalida.toString());
+
+
     }
 }
