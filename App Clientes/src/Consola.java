@@ -1,7 +1,10 @@
 import UI.*;
+import customExceptions.InvalidPassengersQuantity;
 import customExceptions.MenuInvalidOptionSelectedException;
+import vuelo.Vuelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Consola {
     Menu menuPrincipal;
@@ -82,15 +85,50 @@ public class Consola {
 
         LocalDate fechaDeSalida;
         String dateToParse;
-//marko was here
+
+        int cantidadDePasajeros;
+
         aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
         aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
 
-        //TODO: Cambiar el formato de ingreso de la fecha a dd/MM/yy
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
-        System.out.println(fechaDeSalida.toString());
+        cantidadDePasajeros = getPassengerQuantity();
+
+        String[] opcionesEscalas = new String[3];
+
+        opcionesEscalas[0] = "Sin escalas";
+        opcionesEscalas[1] = "Una escala";
+        opcionesEscalas[2] = "Dos escalas";
+        opcionesEscalas[3] = "Tres escalas";
+
+        Menu menuEscalas = new Menu(opcionesEscalas,"Seleccione cuantas escalas desea:");
+        System.out.println(menuEscalas.strPrintMenu());
+
+        int escalas = menuEscalas.pedirOpcionAlUsuario();
+
+        //ArrayList que contiene ArrayLists con Vuelos. Cada ArrayList es un "set" de escalas. Si solo tiene un vuelo, es un vuelo directo.
+
+        ArrayList<ArrayList<Vuelo>> posiblesVuelos = new ArrayList<>();
+        posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida,cantidadDePasajeros,escalas);
+
+        //TODO: Esto es despues de que se seleccione un posible vuelo
+        String[] opcionesCategoria = new String[3];
+        opcionesCategoria[0] = "Cualquiera";
 
 
+    }
+
+    private static int getPassengerQuantity(){
+        int cantidadDePasajeros;
+        try {
+            cantidadDePasajeros = mainScanner.getInt("Ingrese cantidad de pasajeros: ");
+            if (cantidadDePasajeros < 1) {
+                throw new InvalidPassengersQuantity("Cantidad de pasajeros invalida.");
+            }
+        }catch(InvalidPassengersQuantity e){
+            return getPassengerQuantity();
+        }
+        return cantidadDePasajeros;
     }
 }
