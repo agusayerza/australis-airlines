@@ -2,8 +2,6 @@ import UI.*;
 import customExceptions.MenuInvalidOptionSelectedException;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 public class Consola {
     Menu menuPrincipal;
