@@ -26,11 +26,14 @@ public class Menu {
             output += (i + 1) + " - " + opcionesMenu[i] + "\n";
         }
 
-        return output;
+        return output + "\n";
     }
 
     private boolean esOpcionInvalida(int i){
         if(i < (opcionesMenu.length + 1) && (i >= 0)){
+            System.out.println("Opcion invalida. \n");
+            System.out.println(this.strPrintMenu());
+
             return false;
         } else {
             return true;
@@ -41,7 +44,7 @@ public class Menu {
         boolean esperarOpcion = true;
         int i = 0;
         while(esperarOpcion) {
-            i = scanner.getInt("Seleccione una opcion:");
+            i = scanner.getInt("Seleccione una opcion: ");
             esperarOpcion = esOpcionInvalida(i);
         }
 
