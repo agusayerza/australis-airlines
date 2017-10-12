@@ -81,7 +81,7 @@ public class Consola {
 
         LocalDate fechaDeSalida;
         String dateToParse;
-
+//marko was here
         aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
         aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
 
