@@ -4,6 +4,8 @@ import vuelo.Pasaje;
 
 import java.util.ArrayList;
 
+import customExceptions.PassageAlreadyExistsException;
+
 public class Pasajero extends Persona{
 
     ArrayList<Pasaje> pasajesAdquiridos;
@@ -20,7 +22,7 @@ public class Pasajero extends Persona{
             if(pas.equals(pasaje))
                {
                    //TODO: Hacer esta exception
-                   throw new RuntimeException("Ya existe este pasaje");
+                   throw new PassageAlreadyExistsException("Ya existe este pasaje");
                }
             pasajesAdquiridos.add(pasaje);
         }
