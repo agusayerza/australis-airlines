@@ -1,14 +1,10 @@
-package UI;
-
 import customExceptions.MenuInvalidOptionSelectedException;
 
 public class Menu {
     private String[] opcionesMenu;
     private String nombreMenu;
 
-
-
-    private UI.Scanner scanner =  new Scanner();
+    private Scanner scanner =  new Scanner();
 
     public Menu(String[] opcionesMenu, String nombreMenu) {
         this.opcionesMenu = opcionesMenu;
@@ -41,15 +37,15 @@ public class Menu {
 
     public int pedirOpcionAlUsuario(){
         int i = 0;
-            i = scanner.getInt("Seleccione una opcion: ");
-            try{
-                this.esOpcionInvalida(i);
-            }
-            catch (MenuInvalidOptionSelectedException e){
-                System.out.println(e.getMessage());
-                System.out.println(this.strPrintMenu());
-                return this.pedirOpcionAlUsuario();    //Viva la recursividad
-            }
+        i = scanner.getInt("Seleccione una opcion: ");
+        try{
+            this.esOpcionInvalida(i);
+        }
+        catch (MenuInvalidOptionSelectedException e){
+            System.out.println(e.getMessage());
+            System.out.println(this.strPrintMenu());
+            return this.pedirOpcionAlUsuario();    //Viva la recursividad
+        }
 
         return i;
     }

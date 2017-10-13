@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/App Empleados/App Empleados.iml" filepath="$PROJECT_DIR$/App Empleados/App Empleados.iml" />
       <module fileurl="file://$PROJECT_DIR$/App Pilotos/App Pilotos.iml" filepath="$PROJECT_DIR$/App Pilotos/App Pilotos.iml" />
       <module fileurl="file://$PROJECT_DIR$/ObjetosComunes/ObjetosComunes.iml" filepath="$PROJECT_DIR$/ObjetosComunes/ObjetosComunes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserInterface/UserInterface.iml" filepath="$PROJECT_DIR$/UserInterface/UserInterface.iml" />
     </modules>
   </component>
 </project>
