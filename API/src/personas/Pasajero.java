@@ -16,6 +16,11 @@ public class Pasajero extends Persona{
     {
         return asientosAdquiridos.size();
     }
+    
+    public ArrayList<Asiento> getListaAsientos()
+    {
+        return asientosAdquiridos;
+    }
 
     //public ... comprarPasaje(Pasaje){
 
