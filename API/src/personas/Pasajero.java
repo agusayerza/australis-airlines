@@ -8,8 +8,14 @@ public class Pasajero extends Persona{
 
     ArrayList<Pasaje> pasajesAdquiridos = new ArrayList<>();
     
-    public Pasajero(ArrayList<Pasaje> pasajes) {
-        this.pasajesAdquiridos = pasajes;
+    public Pasajero() 
+    {
+        
+    }
+    
+    public void agregarPasaje(Pasaje pasaje)
+    {
+        pasajesAdquiridos.add(pasaje);
     }
     
     public int getCantidadPasajes()
