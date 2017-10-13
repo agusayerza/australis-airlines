@@ -33,7 +33,6 @@ public class Clase {
                 for (int j = 0; j < cantidadDeColumnasDeAsientos; j++) {
 
                     Asiento asiento = new Asiento(i + primerFilaDeClase, columnaToChar(j), nombreDeClase);
-                    asiento.getFilaYColumna();
 
                     mapaDeAsientos.put(asiento.getFilaYColumna(),asiento);
 
