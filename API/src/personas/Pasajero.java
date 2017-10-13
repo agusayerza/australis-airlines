@@ -21,7 +21,6 @@ public class Pasajero extends Persona{
         {
             if(pas.equals(pasaje))
                {
-                   //TODO: Hacer esta exception
                    throw new PassageAlreadyExistsException("Ya existe este pasaje");
                }
             pasajesAdquiridos.add(pasaje);
