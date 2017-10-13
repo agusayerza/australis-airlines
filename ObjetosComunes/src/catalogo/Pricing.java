@@ -11,7 +11,7 @@ import customExceptions.PriceListNotContainClassException;
 import java.util.HashMap;
 
 public class Pricing {
-    HashMap<String, Double> precios;
+    HashMap<String, Double> precios = new HashMap<>();
     Avion avion;
 
     public Pricing(Avion unAvion, double[] precios) {

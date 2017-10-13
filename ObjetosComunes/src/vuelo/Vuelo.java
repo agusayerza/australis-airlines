@@ -28,8 +28,8 @@ public class Vuelo {
     private DayOfWeek diaDeVuelo;
     private LocalTime horarioDeVuelo;
 
-    public Vuelo(LocalDateTime startDate, Duration duracionDeVuelo, LocalDate endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
-        this.startDate = startDate;
+    public Vuelo(LocalDateTime startDateAndTime, Duration duracionDeVuelo, LocalDate endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
+        this.startDate = startDateAndTime;
         this.duracionDeVuelo = duracionDeVuelo;
         this.endDate = endDate;
         this.aeropuertoDePartida = aeropuertoDePartida;
