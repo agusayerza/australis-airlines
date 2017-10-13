@@ -9,10 +9,12 @@ import java.util.ArrayList;
 
 
 public class ListaDeVuelos {
-    ArrayList<Vuelo> lista = new ArrayList<>();
-    ArrayList<String> codigosDeVuelo = new ArrayList<>();
+    ArrayList<Vuelo> lista;
+    ArrayList<String> codigosDeVuelo;
 
     public ListaDeVuelos() {
+        lista = new ArrayList<>();
+        codigosDeVuelo = new ArrayList<>();
     }
 
     public ArrayList<Vuelo> getLista() {
