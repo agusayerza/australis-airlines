@@ -10,7 +10,7 @@ public class Piloto extends Persona{
     private ArrayList<Vuelo> listaDeVuelos;
 
     public Piloto(Area area){
-        ArrayList<Vuelo> listaDeVuelos = new ArrayList<>();
+        listaDeVuelos = new ArrayList<>();
     }
 
     public void agregarVuelo(Vuelo unVuelo){
