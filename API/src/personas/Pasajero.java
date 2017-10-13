@@ -15,7 +15,15 @@ public class Pasajero extends Persona{
     
     public void agregarPasaje(Pasaje pasaje)
     {
-        pasajesAdquiridos.add(pasaje);
+        for(Pasaje pas : pasajesAdquiridos)
+        {
+            if(pas.equals(pasaje)
+               {
+                   //TODO: Hacer esta exception
+                   throw new RuntimeException("Ya existe este pasaje");
+               }
+            pasajesAdquiridos.add(pasaje);
+        }
     }
     
     public int getCantidadPasajes()
