@@ -5,12 +5,7 @@ import java.util.HashMap;
 public class Avion {
     private String patente;
     private Clase[] clases;
-
     private int numeroDeClases;
-
-    //  TODO: Pricing y catalogo de precios
-    // Catalogo catalogoDePrecios;
-
 
     public Avion(String patente, Clase[] clases) {
         this.patente = patente;

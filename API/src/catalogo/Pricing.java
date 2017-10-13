@@ -12,10 +12,12 @@ import java.util.HashMap;
 
 public class Pricing {
     HashMap<String, Double> precios;
-    Avion avion; //TODO: Cambiar todo esto para que el Pricing conozca el avion y de ahi extraiga las clases.
+    Avion avion;
 
+    public Pricing(Avion unAvion, double[] precios) {
+        this.avion = unAvion;
+        Clase[] clases = avion.getClases();
 
-    public Pricing(Clase[] clases, double[] precios) {
         if(clases.length != precios.length) {
             throw new PriceMissingLeftoverForClassException("Falta o sobra un precio de alguna clase");
         }
