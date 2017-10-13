@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class Pasajero extends Persona{
 
-    ArrayList<Pasaje> pasajesAdquiridos = new ArrayList<>();
+    ArrayList<Pasaje> pasajesAdquiridos;
     
     public Pasajero() 
     {
-        
+        pasajesAdquiridos = new ArrayList<>();
     }
     
     public void agregarPasaje(Pasaje pasaje)
