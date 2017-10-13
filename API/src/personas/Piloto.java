@@ -31,6 +31,11 @@ public class Piloto extends Persona{
             }
         }
     }
+    
+    public ArrayList<Vuelo> getListaVuelos()
+    {
+        return listaDeVuelos;
+    }
 
     //TODO: revisar si esto esta al pedo
     public void puedeVender(){
