@@ -7,7 +7,6 @@ import vuelo.Vuelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
     ArrayList<String> codigosDeVuelo;
@@ -34,15 +33,15 @@ public class ListaDeVuelos {
         if(codigosDeVuelo.contains(codigoDeVuelo)){
             throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
         }
-
-        for (int i = 0; i < lista.size(); i++) {
-            if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo)){
+        
+        for(int i = 0; i <= lista.size() - 1; i++)
+        {
+            if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo))
+            {
                 lista.remove(i);
                 codigosDeVuelo.remove(codigoDeVuelo);
             }
         }
-
-
     }
 
     public ArrayList<Vuelo> getFlightsOnDate(LocalDate date){
@@ -55,7 +54,6 @@ public class ListaDeVuelos {
                 }
             }
         }
-
         return result;
     }
 
@@ -71,7 +69,6 @@ public class ListaDeVuelos {
                 }
             }
         }
-
         return result;
     }
 }
