@@ -1,5 +1,6 @@
 package personas;
 
+import customExceptions.AdministratorNotAbleToSellException;
 import vuelo.Vuelo;
 
 import java.util.ArrayList;
@@ -31,8 +32,9 @@ public class Piloto extends Persona{
         }
     }
 
-    public boolean puedeVender(){
-        return false;
+    //TODO: revisar si esto esta al pedo
+    public void puedeVender(){
+        throw new AdministratorNotAbleToSellException("Un piloto no puede vender pasajes");
     }
 
 }

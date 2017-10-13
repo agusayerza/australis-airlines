@@ -10,17 +10,12 @@ public class Administrador extends Persona {
         this.area = area;
     }
 
-    public boolean puedeVender() {
-        if (area.getCapacidadDeVender()) {
-            return true;
+    public void puedeVender() {
+        if (!area.getCapacidadDeVender()) {
+            throw new AdministratorNotAbleToSellException("Este administrador no puede vender");
         }
-        return false;
     }
 }
-
-    // otro camino: agregarlo directamente como validacion en el constructor y que tire la excepcion de not able to sell.
-
-
 
 
 
