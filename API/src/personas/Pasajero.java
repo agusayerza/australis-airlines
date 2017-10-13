@@ -1,25 +1,25 @@
 package personas;
 
-import avion.Asiento;
+import vuelo.Pasaje;
 
 import java.util.ArrayList;
 
 public class Pasajero extends Persona{
 
-    ArrayList<Asiento> asientosAdquiridos = new ArrayList<>();
+    ArrayList<Pasaje> pasajesAdquiridos = new ArrayList<>();
     
-    public Pasajero(ArrayList<Asiento> asientos) {
-        this.asientosAdquiridos = asientos;
+    public Pasajero(ArrayList<Pasaje> pasajes) {
+        this.pasajesAdquiridos = pasajes;
     }
     
-    public int getCantidadAsientos()
+    public int getCantidadPasajes()
     {
-        return asientosAdquiridos.size();
+        return pasajesAdquiridos.size();
     }
     
-    public ArrayList<Asiento> getListaAsientos()
+    public ArrayList<Pasaje> getListaPasajes()
     {
-        return asientosAdquiridos;
+        return pasajesAdquiridos;
     }
 
     //public ... comprarPasaje(Pasaje){
