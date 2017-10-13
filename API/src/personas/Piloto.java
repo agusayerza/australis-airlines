@@ -1,6 +1,7 @@
 package personas;
 
 import customExceptions.AdministratorNotAbleToSellException;
+import customExceptions.FlightDoesntExistsException;
 import vuelo.Vuelo;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class Piloto extends Persona{
             if(vuelo.equals(unVuelo)){
                 listaDeVuelos.remove(unVuelo);
             } else {
-                throw new RuntimeException("El vuelo no existe.");
+                throw new FlightDoesntExistsException("El vuelo no existe.");
             }
         }
     }
