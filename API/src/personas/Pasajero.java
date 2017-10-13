@@ -27,9 +27,11 @@ public class Pasajero extends Persona{
     {
         return pasajesAdquiridos;
     }
+    
+    //TODO: Terminar esto
+    public void comprarPasaje(Pasaje pasaje)
+    {
 
-    //public ... comprarPasaje(Pasaje){
-
-    //}
+    }
 
 }
