@@ -95,7 +95,7 @@ public class Consola {
 
         cantidadDePasajeros = getPassengerQuantity();
 
-        String[] opcionesEscalas = new String[3];
+        String[] opcionesEscalas = new String[4];
 
         opcionesEscalas[0] = "Sin escalas";
         opcionesEscalas[1] = "Una escala";
