@@ -11,6 +11,7 @@ public class TimeControl {
     private LocalDate now;
 
     public TimeControl() {
+
     }
 
     public boolean hasPassed(String dateToParse) throws ParseException {
