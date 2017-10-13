@@ -93,7 +93,6 @@ public class Scanner {
 
     public LocalDate getLocalDate(String message){
         //TODO: La opcion de pasarle al metodo el formato
-        System.out.print(message);
         try {
             String dateToParse = this.getString(message);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "dd/MM/uu" );
