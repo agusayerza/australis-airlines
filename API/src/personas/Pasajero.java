@@ -17,7 +17,7 @@ public class Pasajero extends Persona{
     {
         for(Pasaje pas : pasajesAdquiridos)
         {
-            if(pas.equals(pasaje)
+            if(pas.equals(pasaje))
                {
                    //TODO: Hacer esta exception
                    throw new RuntimeException("Ya existe este pasaje");
