@@ -15,9 +15,9 @@ public class Administrador extends Persona {
             throw new AdministratorNotAbleToSellException("Este administrador no puede vender");
         }
     }
+    
+    public Area getArea()
+    {
+        return this.area;
+    }
 }
-
-
-
-
-
