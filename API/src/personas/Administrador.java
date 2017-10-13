@@ -2,20 +2,27 @@ package personas;
 
 import customExceptions.AdministratorNotAbleToSellException;
 
-public class Administrador extends Persona implements AreaDeEmpleado{
+public class Administrador extends Persona {
 
-    private boolean puedeVender;
+    private Area area;
 
-    public Administrador(boolean puedeVender){
-        this.puedeVender = puedeVender;
+    public Administrador(Area area) {
+        this.area = area;
     }
 
-    @Override
-    public boolean puedeVender(){
-        if(!puedeVender){
-            throw new AdministratorNotAbleToSellException("El administrador no esta habilitado para vender.");
+    public boolean puedeVender() {
+        if (area.getCapacidadDeVender()) {
+            return true;
         }
-        return true;
+        return false;
     }
-
 }
+
+    // otro camino: agregarlo directamente como validacion en el constructor y que tire la excepcion de not able to sell.
+
+
+
+
+
+
+
