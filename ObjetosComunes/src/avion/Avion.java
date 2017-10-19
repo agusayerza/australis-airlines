@@ -20,7 +20,6 @@ public class Avion {
     }
 
     public HashMap<String, Asiento> getMapaDeAsientos() {
-        //TODO: No hay verdadera razon por la cual usar esto en vez de getClases...
         HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
         for (Clase clase: clases) {
             mapaDeAsientos.putAll(clase.getMapaDeAsientos());
@@ -93,13 +92,4 @@ public class Avion {
         return (char) (65 + columna);
     }
 
-    public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero){
-        for(Clase clase : clases){
-            if(clase.getMapaDeAsientos().containsKey(codigoDeAsiento)){
-                clase.ocuparAsiento(codigoDeAsiento,pasajero);
-            }
-        }
-
-        //TODO: Exception por que no se encontro el codigo de asiento en el avion.
-    }
 }

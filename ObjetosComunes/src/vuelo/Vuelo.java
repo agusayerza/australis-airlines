@@ -1,9 +1,13 @@
 package vuelo;
 
 import java.time.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import avion.*;
 import catalogo.Pricing;
+import customExceptions.SeatAlreadyOccupiedException;
+import customExceptions.SeatNonexistentException;
 import personas.Pasajero;
 
 public class Vuelo {
@@ -27,7 +31,7 @@ public class Vuelo {
     private String codigoDeVuelo;
     private Avion avion;
     private Pricing pricing;
-
+    private HashMap<String, Asiento> mapaDeAsientos;
     private DayOfWeek diaDeVuelo;
     private LocalTime horarioDeVuelo;
 
@@ -39,8 +43,12 @@ public class Vuelo {
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
 
-        this.avion = ;   //Creamos una copia del avion, asi no se pisan los asientos reservados en memoria
-
+        mapaDeAsientos = new HashMap<>();
+        for(Map.Entry<String, Asiento> entrada : avion.getMapaDeAsientos().entrySet()){
+            //Creamos una copia limpia de los asientos para este vuelo
+            Asiento asientoTemp = new Asiento(entrada.getValue().getFila(),entrada.getValue().getColumna(),entrada.getValue().getClase());
+            mapaDeAsientos.put(asientoTemp.getFilaYColumna(),asientoTemp);
+        }
         this.pricing = pricing;
 
         diaDeVuelo = startDate.getDayOfWeek();
@@ -59,14 +67,23 @@ public class Vuelo {
 
                 //La fila solo puede ser numerica
                 if(codigoDeAsientosFila.matches(regex)){
-                    avion.ocuparAsiento(codigoDeAsiento, pasajero);
-                    return;
+                    if(mapaDeAsientos.containsKey(codigoDeAsiento)){
+                        Asiento asiento;
+                        asiento = mapaDeAsientos.get(codigoDeAsiento);
+                        if (asiento.isOcupado()) {
+                            throw new SeatAlreadyOccupiedException("El asiento deseado ya esta ocupado.");
+                        }
+                        int DNI = pasajero.getDni();
+                        asiento.ocupar(DNI);
+                        return;
+                    }
+                        //TODO hacer una custom exception para esto.
+                        throw new RuntimeException("El asiento deseado no pertenece a esta clase.");
                 }
             }
         }
 
-        //TODO: Custom Exception
-        throw new RuntimeException("Codigo de asiento invalido");
+        throw new SeatNonexistentException("No existe el asiento buscado.");
 
 
     }
@@ -112,8 +129,10 @@ public class Vuelo {
     }
 
     public boolean hasFreeSeats(){
-        for(Clase clase : avion.getClases()){
-            if(clase.hasFreeSeats()){
+        // TODO: Toto: cambiar esto a que devuelva un int
+        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
+            Asiento asiento = entrada.getValue();
+            if(!asiento.isOcupado()){
                 return true;
             }
         }

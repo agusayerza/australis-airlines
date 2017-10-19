@@ -46,25 +46,6 @@ public class Clase {
 
     }
 
-    public void ocuparAsiento(String key, Pasajero pasajero) {
-        Asiento asiento;
-        if (mapaDeAsientos.containsKey(key)) {
-            asiento = mapaDeAsientos.get(key);
-            if (asiento.getClase().equals(nombreDeClase)) {
-                if (asiento.isOcupado()) {
-                    throw new SeatAlreadyOccupiedException("El asiento deseado ya esta ocupado.");
-                }
-                int DNI = pasajero.getDni();
-                asiento.ocupar(DNI);
-                return;
-            } else {
-                throw new SeatNonexistentException("No existe el asiento buscado.");
-            }
-        }
-        //TODO hacer una custom exception para esto.
-        throw new RuntimeException("El asiento deseado no pertenece a esta clase.");
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,17 +83,6 @@ public class Clase {
 
     public int getPrimeraFilaDeClase() {
         return primeraFilaDeClase;
-    }
-
-    public boolean hasFreeSeats(){
-        // TODO: Toto: cambiar esto a que devuelva un int
-        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
-            Asiento asiento = entrada.getValue();
-            if(!asiento.isOcupado()){
-                return true;
-            }
-        }
-        return false;
     }
 
     public void vaciarClase(){

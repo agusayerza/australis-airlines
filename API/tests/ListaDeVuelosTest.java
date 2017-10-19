@@ -104,7 +104,7 @@ public class ListaDeVuelosTest {
         Pricing pricing = new Pricing(avion,precio);
 
         Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","esteesotrovuelo",avion, pricing);
+        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
 
         vuelo.ocuparAsiento("1A", pasajero);
         catalogo.addVuelo(vuelo);
@@ -115,8 +115,7 @@ public class ListaDeVuelosTest {
 
         catalogo.addVuelo(otroVuelo);
         expected.add(otroVuelo);
-        otroVuelo.getAvion().getClases();
-        vuelo.getAvion().getClases();
+
         assertTrue(catalogo.getFlightsOnDateFromToDestination(tiempo.toLocalDate(),"Ezeiza","Paris").equals(expected));
 
 
