@@ -31,7 +31,10 @@ public class Vuelo {
     private String codigoDeVuelo;
     private Avion avion;
     private Pricing pricing;
-    private HashMap<String, Asiento> mapaDeAsientos;
+
+    private HashMap<String, Asiento> mapaDeAsientosGeneral;
+    private HashMap<LocalDate, HashMap<String, Asiento>> mapaDeAsientosPorFecha;
+
     private DayOfWeek diaDeVuelo;
     private LocalTime horarioDeVuelo;
 
@@ -43,11 +46,13 @@ public class Vuelo {
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
 
-        mapaDeAsientos = new HashMap<>();
+        mapaDeAsientosGeneral = new HashMap<>();
+        mapaDeAsientosPorFecha = new HashMap<>();
+
         for(Map.Entry<String, Asiento> entrada : avion.getMapaDeAsientos().entrySet()){
             //Creamos una copia limpia de los asientos para este vuelo
             Asiento asientoTemp = new Asiento(entrada.getValue().getFila(),entrada.getValue().getColumna(),entrada.getValue().getClase());
-            mapaDeAsientos.put(asientoTemp.getFilaYColumna(),asientoTemp);
+            mapaDeAsientosGeneral.put(asientoTemp.getFilaYColumna(),asientoTemp);
         }
         this.pricing = pricing;
 
@@ -55,7 +60,21 @@ public class Vuelo {
         horarioDeVuelo = startDate.toLocalTime();
     }
 
-    public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero){
+    public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){
+
+        if(!isValidFlightDate(date)){
+            //TODO: Custom exception??? No estoy seguro si es necesario, por ahora no la hagamos
+            throw new RuntimeException("Este vuelo no existe en la fecha solicitada");
+        }
+
+        if(!mapaDeAsientosPorFecha.containsKey(date)){
+            //Si el vuelo en esta fecha no esta inicializado, lo hacemos.
+            HashMap<String, Asiento> copiaMapaGeneral = new HashMap<>(mapaDeAsientosGeneral);
+            mapaDeAsientosPorFecha.put(date,copiaMapaGeneral);
+        }
+
+        HashMap<String, Asiento> mapaDeAsientosParticular = mapaDeAsientosPorFecha.get(date);
+
         codigoDeAsiento.toUpperCase();
         //El codigo debe terminar con una letra
         if(Character.isLetter(codigoDeAsiento.charAt(codigoDeAsiento.length() - 1))){
@@ -67,9 +86,9 @@ public class Vuelo {
 
                 //La fila solo puede ser numerica
                 if(codigoDeAsientosFila.matches(regex)){
-                    if(mapaDeAsientos.containsKey(codigoDeAsiento)){
+                    if(mapaDeAsientosParticular.containsKey(codigoDeAsiento)){
                         Asiento asiento;
-                        asiento = mapaDeAsientos.get(codigoDeAsiento);
+                        asiento = mapaDeAsientosParticular.get(codigoDeAsiento);
                         if (asiento.isOcupado()) {
                             throw new SeatAlreadyOccupiedException("El asiento deseado ya esta ocupado.");
                         }
@@ -128,14 +147,49 @@ public class Vuelo {
         return pricing;
     }
 
-    public boolean hasFreeSeats(){
+    public boolean hasFreeSeats(LocalDate date){
+        if(!isValidFlightDate(date)){
+            //TODO: Custom exception??? No estoy seguro si es necesario, por ahora no la hagamos
+            throw new RuntimeException("Este vuelo no existe en la fecha solicitada");
+        }
+
+        if(!mapaDeAsientosPorFecha.containsKey(date)){
+            //Si el vuelo en esta fecha no esta inicializado, por lo que esta vacio, tiene lugar.
+            return true;
+        }
+
+        HashMap<String, Asiento> mapaDeAsientosParticular = mapaDeAsientosPorFecha.get(date);
+
         // TODO: Toto: cambiar esto a que devuelva un int
-        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
+        for(Map.Entry<String, Asiento> entrada : mapaDeAsientosParticular.entrySet()){
             Asiento asiento = entrada.getValue();
             if(!asiento.isOcupado()){
                 return true;
             }
         }
+        return false;
+    }
+
+    public boolean isValidFlightDate(LocalDate date){
+        // This flight actually flies on this date?
+        LocalDate test = endDate.plusDays(1);
+        if(date.isAfter(test) || !startDate.getDayOfWeek().equals(date.getDayOfWeek())){
+            return false;
+        }
+        LocalDate bufferDate = startDate.toLocalDate();
+        boolean stillLooping = true;
+
+        while(stillLooping){
+            if(bufferDate.isEqual(date)){
+                return true;
+            }
+            if(bufferDate.isAfter(endDate)){
+                stillLooping = false;
+            }
+
+            bufferDate = bufferDate.plusDays(7);
+        }
+
         return false;
     }
 }

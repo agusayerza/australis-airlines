@@ -93,7 +93,7 @@ public class ListaDeVuelosTest {
         Clase clases[] = new Clase[1];
         clases[0] = clase;
 
-        Avion avion = new Avion("funcional",clases);
+        Avion avion = new Avion("LV-501",clases);
         Pasajero pasajero = new Pasajero(40719053);
 
         LocalDateTime tiempo = LocalDateTime.now();
@@ -106,7 +106,7 @@ public class ListaDeVuelosTest {
         Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
         Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
 
-        vuelo.ocuparAsiento("1A", pasajero);
+        vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
         catalogo.addVuelo(vuelo);
 
         ArrayList<Vuelo> expected = new ArrayList<>();

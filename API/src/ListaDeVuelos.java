@@ -2,6 +2,7 @@
 
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Persona;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
+    ArrayList<Vuelo> vuelosConVentas;
     ArrayList<String> codigosDeVuelo;
 
     public ListaDeVuelos() {
@@ -51,7 +53,7 @@ public class ListaDeVuelos {
             if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
                 if(vuelo.getEndDate().isAfter(date)) {
                     if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
-                        if(vuelo.hasFreeSeats()){
+                        if(vuelo.hasFreeSeats(date)){
                             result.add(vuelo);
                         }
                     }
@@ -71,6 +73,10 @@ public class ListaDeVuelos {
             }
         }
         return result;
+    }
+
+    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Persona persona){
+
     }
 
 

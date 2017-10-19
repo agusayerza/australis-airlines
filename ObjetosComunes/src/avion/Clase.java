@@ -84,12 +84,4 @@ public class Clase {
     public int getPrimeraFilaDeClase() {
         return primeraFilaDeClase;
     }
-
-    public void vaciarClase(){
-        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
-            Asiento asiento = entrada.getValue();
-            asiento.vaciar();
-            mapaDeAsientos.replace(asiento.getFilaYColumna(), asiento);
-        }
-    }
 }
