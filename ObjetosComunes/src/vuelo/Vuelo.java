@@ -4,6 +4,7 @@ import java.time.*;
 
 import avion.*;
 import catalogo.Pricing;
+import personas.Pasajero;
 
 public class Vuelo {
 
@@ -15,6 +16,8 @@ public class Vuelo {
      * @param avion El avion utilizado para el vuelo.
      * @param pricing El precio de cada categoria de asiento.
      */
+
+    //TODO: El avion no tiene piloto.
 
     private LocalDateTime startDate;
     private Duration duracionDeVuelo;
@@ -35,14 +38,36 @@ public class Vuelo {
         this.aeropuertoDePartida = aeropuertoDePartida;
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
-        this.avion = avion;
+
+        this.avion = ;   //Creamos una copia del avion, asi no se pisan los asientos reservados en memoria
+
         this.pricing = pricing;
 
         diaDeVuelo = startDate.getDayOfWeek();
         horarioDeVuelo = startDate.toLocalTime();
     }
 
-    public void ocuparAsiento(){
+    public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero){
+        codigoDeAsiento.toUpperCase();
+        //El codigo debe terminar con una letra
+        if(Character.isLetter(codigoDeAsiento.charAt(codigoDeAsiento.length() - 1))){
+            //El codigo debe tener al menos 2 caracteres
+            if(codigoDeAsiento.length() >= 2){
+
+                String codigoDeAsientosFila = codigoDeAsiento.substring(0,codigoDeAsiento.length() - 1);
+                String regex = "[0-9]+";
+
+                //La fila solo puede ser numerica
+                if(codigoDeAsientosFila.matches(regex)){
+                    avion.ocuparAsiento(codigoDeAsiento, pasajero);
+                    return;
+                }
+            }
+        }
+
+        //TODO: Custom Exception
+        throw new RuntimeException("Codigo de asiento invalido");
+
 
     }
 
@@ -84,5 +109,14 @@ public class Vuelo {
 
     public Pricing getPricing() {
         return pricing;
+    }
+
+    public boolean hasFreeSeats(){
+        for(Clase clase : avion.getClases()){
+            if(clase.hasFreeSeats()){
+                return true;
+            }
+        }
+        return false;
     }
 }

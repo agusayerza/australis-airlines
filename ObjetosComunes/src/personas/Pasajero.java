@@ -9,9 +9,9 @@ import customExceptions.PassageAlreadyExistsException;
 public class Pasajero extends Persona{
 
     ArrayList<Pasaje> pasajesAdquiridos;
-    
-    public Pasajero() 
+    public Pasajero(int dni)
     {
+        this.dni = dni;
         pasajesAdquiridos = new ArrayList<>();
     }
     

@@ -51,7 +51,9 @@ public class ListaDeVuelos {
             if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
                 if(vuelo.getEndDate().isAfter(date)) {
                     if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
-                        result.add(vuelo);
+                        if(vuelo.hasFreeSeats()){
+                            result.add(vuelo);
+                        }
                     }
                 }
             }
@@ -70,4 +72,6 @@ public class ListaDeVuelos {
         }
         return result;
     }
+
+
 }

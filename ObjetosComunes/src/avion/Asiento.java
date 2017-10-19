@@ -47,6 +47,11 @@ public class Asiento {
         ocupado = true;
     }
 
+    public void vaciar(){
+        ocupado = false;
+        DNI = 0;
+    }
+
     public int getDni() {
         return DNI;
     }

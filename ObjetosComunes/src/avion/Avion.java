@@ -1,5 +1,7 @@
 package avion;
 
+import personas.Pasajero;
+
 import java.util.HashMap;
 
 public class Avion {
@@ -91,5 +93,13 @@ public class Avion {
         return (char) (65 + columna);
     }
 
+    public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero){
+        for(Clase clase : clases){
+            if(clase.getMapaDeAsientos().containsKey(codigoDeAsiento)){
+                clase.ocuparAsiento(codigoDeAsiento,pasajero);
+            }
+        }
 
+        //TODO: Exception por que no se encontro el codigo de asiento en el avion.
+    }
 }

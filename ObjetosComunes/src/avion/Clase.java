@@ -1,6 +1,7 @@
 package avion;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import customExceptions.NumberFirstClassRowNegativeZeroException;
 import customExceptions.SeatAlreadyOccupiedException;
@@ -55,6 +56,7 @@ public class Clase {
                 }
                 int DNI = pasajero.getDni();
                 asiento.ocupar(DNI);
+                return;
             } else {
                 throw new SeatNonexistentException("No existe el asiento buscado.");
             }
@@ -100,5 +102,24 @@ public class Clase {
 
     public int getPrimeraFilaDeClase() {
         return primeraFilaDeClase;
+    }
+
+    public boolean hasFreeSeats(){
+        // TODO: Toto: cambiar esto a que devuelva un int
+        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
+            Asiento asiento = entrada.getValue();
+            if(!asiento.isOcupado()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void vaciarClase(){
+        for(Map.Entry<String, Asiento> entrada : mapaDeAsientos.entrySet()){
+            Asiento asiento = entrada.getValue();
+            asiento.vaciar();
+            mapaDeAsientos.replace(asiento.getFilaYColumna(), asiento);
+        }
     }
 }
