@@ -2,6 +2,7 @@
 
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Pasajero;
 import personas.Persona;
 import vuelo.Vuelo;
 
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
-    ArrayList<Vuelo> vuelosConVentas;
     ArrayList<String> codigosDeVuelo;
 
     public ListaDeVuelos() {
@@ -74,9 +74,21 @@ public class ListaDeVuelos {
         }
         return result;
     }
-
-    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Persona persona){
-
+    private Vuelo getFlightByCode(String FlightCode){
+        for (Vuelo vuelo: lista) {
+            if(vuelo.getCodigoDeVuelo().equals(FlightCode)){
+                return vuelo;
+            }
+        }
+        throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
+    }
+    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
+        //TODO: Esto hasta ahora solo ocupa el asiento, no hace chequeos ni se lo carga al cliente como que el pasaje ya es suyo
+        if(codigosDeVuelo.contains(codigoDeVuelo)){
+            getFlightByCode(codigoDeVuelo).ocuparAsiento(codigoDeAsiento,pasajero,date);
+        }else{
+            throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
+        }
     }
 
 

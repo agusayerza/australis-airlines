@@ -69,7 +69,12 @@ public class Vuelo {
 
         if(!mapaDeAsientosPorFecha.containsKey(date)){
             //Si el vuelo en esta fecha no esta inicializado, lo hacemos.
-            HashMap<String, Asiento> copiaMapaGeneral = new HashMap<>(mapaDeAsientosGeneral);
+            HashMap<String, Asiento> copiaMapaGeneral = new HashMap<>();
+            for(Map.Entry<String, Asiento> entrada : mapaDeAsientosGeneral.entrySet()){
+                //Creamos una copia limpia de los asientos para este vuelo
+                Asiento asientoTemp = new Asiento(entrada.getValue().getFila(),entrada.getValue().getColumna(),entrada.getValue().getClase());
+                copiaMapaGeneral.put(asientoTemp.getFilaYColumna(),asientoTemp);
+            }
             mapaDeAsientosPorFecha.put(date,copiaMapaGeneral);
         }
 
@@ -161,6 +166,7 @@ public class Vuelo {
         HashMap<String, Asiento> mapaDeAsientosParticular = mapaDeAsientosPorFecha.get(date);
 
         // TODO: Toto: cambiar esto a que devuelva un int
+        // Nota Agus: ahora es un poco mas complejo y tal vez es al pedo decir cuantos lugares libres tiene
         for(Map.Entry<String, Asiento> entrada : mapaDeAsientosParticular.entrySet()){
             Asiento asiento = entrada.getValue();
             if(!asiento.isOcupado()){

@@ -1,3 +1,4 @@
+import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -25,6 +26,10 @@ public class Catalogo {
 
     public ArrayList<Vuelo> getFlightsOnDateFromToDestination(LocalDate date, String aeropuertoDePartida, String aeropuertoDeArribo){
         return vuelos.getFlightsOnDateFromToDestination(date,aeropuertoDePartida,aeropuertoDeArribo);
+    }
+
+    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
+        vuelos.venderAsiento(date,codigoDeVuelo,codigoDeAsiento,pasajero);
     }
 
 }
