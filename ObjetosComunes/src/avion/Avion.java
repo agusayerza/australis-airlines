@@ -15,6 +15,7 @@ public class Avion {
         this.numeroDeClases = clases.length;
     }
 
+
     public String getPatente() {
         return patente;
     }
