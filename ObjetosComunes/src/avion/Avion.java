@@ -19,6 +19,7 @@ public class Avion {
         return patente;
     }
 
+
     public HashMap<String, Asiento> getMapaDeAsientos() {
         HashMap<String, Asiento> mapaDeAsientos = new HashMap<>();
         for (Clase clase: clases) {
