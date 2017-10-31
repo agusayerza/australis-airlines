@@ -3,10 +3,14 @@ import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public interface Servicios {
 
-    void BuscarVuelo(Vuelo vuelo);
+    ArrayList<Vuelo> BuscarVuelos(LocalDateTime fecha);
+    ArrayList<Vuelo> BuscarVuelos(String aeropuerto);
+    Vuelo BuscarVueloCodigo(String codigo);
 
     void OcuparAsiento(LocalDate fecha, String codigoVuelo, String codigoAsiento, Pasajero pasajero);
 }
