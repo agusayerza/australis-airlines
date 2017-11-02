@@ -1,4 +1,3 @@
-import avion.Asiento;
 import personas.Pasajero;
 import vuelo.Vuelo;
 

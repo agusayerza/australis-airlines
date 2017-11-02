@@ -2,8 +2,7 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.SeatAlreadyOccupiedException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
 import personas.Pasajero;
 import vuelo.Vuelo;
@@ -15,25 +14,38 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class ListaDeVuelosTest {
+    Catalogo catalogo;
+    LocalDateTime tiempo;
+    Vuelo vuelo;
+    Duration duracion;
+    Pricing pricing;
+    Pasajero pasajero;
+    Avion avion;
+    Clase[] clases;
+
+    @Before
+    public void SetUp(){
+        catalogo = new Catalogo();
+        Clase clase = new Clase(1,1,1,"Primera");
+        clases = new Clase[1];
+        clases[0] = clase;
+
+        avion = new Avion("funcional",clases);
+        pasajero = new Pasajero(40719053);
+        tiempo = LocalDateTime.now();
+
+        duracion = Duration.ofHours(8);
+        double precio[] = new double[1];
+        precio[0] = 199.3;
+        pricing = new Pricing(avion,precio);
+        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
+
+        catalogo.addVuelo(vuelo);
+
+    }
 
     @Test
     public void getFlightsOnDate() throws Exception {
-        Catalogo catalogo = new Catalogo();
-        Clase clase = new Clase(1,21,3,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
-
-        Avion avion = new Avion("funcional",clases);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-
-        catalogo.addVuelo(vuelo);
 
         ArrayList<Vuelo> expected = new ArrayList<>();
         expected.add(vuelo);
@@ -48,25 +60,10 @@ public class ListaDeVuelosTest {
 
     @Test
     public void getFlightsOnDateFromToDestination() throws Exception {
-        Catalogo catalogo = new Catalogo();
-        Clase clase = new Clase(1,21,3,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
 
-        Avion avion = new Avion("funcional",clases);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
         Vuelo copiaVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
-
         Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing);
 
-        catalogo.addVuelo(vuelo);
         catalogo.addVuelo(otroVuelo);
         ArrayList<Vuelo> expected = new ArrayList<>();
 
@@ -87,29 +84,17 @@ public class ListaDeVuelosTest {
 
     }
 
+    @After
+    public void tearDown(){
+        catalogo = new Catalogo();
+    }
+
     @Test
     public void hasFlightFreeSeatsTest() throws Exception{
-        Catalogo catalogo = new Catalogo();
 
-        Clase clase = new Clase(1,1,1,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
-
-        Avion avion = new Avion("LV-501",clases);
-        Pasajero pasajero = new Pasajero(40719053);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
-
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
+        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
 
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
-        catalogo.addVuelo(vuelo);
 
         ArrayList<Vuelo> expected = new ArrayList<>();
 
@@ -118,26 +103,13 @@ public class ListaDeVuelosTest {
         catalogo.addVuelo(otroVuelo);
         expected.add(otroVuelo);
 
-        assertTrue(catalogo.getFlightsOnDateFromToDestination(tiempo.toLocalDate(),"Ezeiza","Paris").equals(expected));
+        assertTrue(catalogo.getFlightsOnDateFromToDestination(tiempo.toLocalDate().plusDays(1),"Ezeiza","Paris").equals(expected));
 
 
     }
     @Test(expected = SeatAlreadyOccupiedException.class)
     public void SeatAlreadyOccupiedTest(){
 
-        Clase clase = new Clase(1,1,1,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
-
-        Avion avion = new Avion("LV-501",clases);
-        Pasajero pasajero = new Pasajero(40719053);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
 
         Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
         Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
@@ -148,24 +120,6 @@ public class ListaDeVuelosTest {
 
     @Test
     public void SellSeatsOfSameFlightsOnDifferentDatesTest(){
-        Catalogo catalogo = new Catalogo();
-
-        Clase clase = new Clase(1,1,1,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
-
-        Avion avion = new Avion("LV-501",clases);
-        Pasajero pasajero = new Pasajero(40719053);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
-
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-        catalogo.addVuelo(vuelo);
         catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
         catalogo.venderAsiento(tiempo.toLocalDate().plusDays(7),"BARBAR","1A",pasajero);
 
@@ -173,25 +127,6 @@ public class ListaDeVuelosTest {
 
     @Test(expected = SeatAlreadyOccupiedException.class)
     public void SeatAlreadyOccupiedFromFlightListTest(){
-        Catalogo catalogo = new Catalogo();
-
-        Clase clase = new Clase(1,1,1,"Primera");
-        Clase clases[] = new Clase[1];
-        clases[0] = clase;
-
-        Avion avion = new Avion("LV-501",clases);
-        Pasajero pasajero = new Pasajero(40719053);
-
-        LocalDateTime tiempo = LocalDateTime.now();
-
-        Duration duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
-        precio[0] = 199.3;
-        Pricing pricing = new Pricing(avion,precio);
-
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-
-        catalogo.addVuelo(vuelo);
         catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
         catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
     }

@@ -26,6 +26,10 @@ public class MockServer implements Servicios{
         /*
         * Set up de nuestro server ficticio, crea varios vuelos y aviones y los llena un poco.
         * */
+        lista = new ArrayList<>();
+
+        duracion = Duration.ofHours(8);
+        tiempo = LocalDateTime.now();
 
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
@@ -59,19 +63,20 @@ public class MockServer implements Servicios{
         Vuelo copiaVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing);
         Vuelo otroVuelo = new Vuelo(tiempo.plusDays(2),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing);
 
-        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate());
+        pasajero = new Pasajero(40719057);
+        vuelo.ocuparAsiento("1B",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
         vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
         vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate().plusDays(2));
 
         lista.add(vuelo);
         lista.add(copiaVuelo);
