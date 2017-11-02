@@ -5,9 +5,13 @@ import java.util.ArrayList;
 
 public class Protocol {
     int userDNI;
+    Servicios server;
+
 
     public Protocol(int userDNI) {
+
         this.userDNI = userDNI;
+        server = new MockServer();
     }
 
     public void getTicketsForThisUser(){
@@ -17,6 +21,7 @@ public class Protocol {
     public ArrayList<Vuelo> getPossibleFlights(String from, String to, LocalDate fechaSalida){
 
         ArrayList<Vuelo> result = new ArrayList<>();
+        result = server.getFlightsOnDateFromToDestination(fechaSalida, from, to);
 
 
         return result;
