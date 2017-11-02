@@ -26,6 +26,7 @@ public class MockServer implements Servicios{
         /*
         * Set up de nuestro server ficticio, crea varios vuelos y aviones y los llena un poco.
         * */
+        lista = new ArrayList<>();
 
         duracion = Duration.ofHours(8);
         tiempo = LocalDateTime.now();
