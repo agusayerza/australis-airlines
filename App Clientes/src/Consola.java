@@ -95,22 +95,28 @@ public class Consola {
 
         cantidadDePasajeros = getPassengerQuantity();
 
-        String[] opcionesEscalas = new String[4];
+//        String[] opcionesEscalas = new String[4];
+//
+//        opcionesEscalas[0] = "Sin escalas";
+//        opcionesEscalas[1] = "Una escala";
+//        opcionesEscalas[2] = "Dos escalas";
+//        opcionesEscalas[3] = "Tres escalas";
+//
+//        Menu menuEscalas = new Menu(opcionesEscalas,"Seleccione cuantas escalas desea:");
+//        System.out.println(menuEscalas.strPrintMenu());
+//
+//        int escalas = menuEscalas.pedirOpcionAlUsuario();
 
-        opcionesEscalas[0] = "Sin escalas";
-        opcionesEscalas[1] = "Una escala";
-        opcionesEscalas[2] = "Dos escalas";
-        opcionesEscalas[3] = "Tres escalas";
 
-        Menu menuEscalas = new Menu(opcionesEscalas,"Seleccione cuantas escalas desea:");
-        System.out.println(menuEscalas.strPrintMenu());
+        ArrayList<Vuelo> posiblesVuelos = new ArrayList<>();
+        posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida);
 
-        int escalas = menuEscalas.pedirOpcionAlUsuario();
+        String vuelos[] = new String[posiblesVuelos.size()];
+        int i = 0;
+        for (Vuelo vuelo: posiblesVuelos) {
+            vuelos[i] = i + ". " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+        }
 
-        //ArrayList que contiene ArrayLists con Vuelos. Cada ArrayList es un "set" de escalas. Si solo tiene un vuelo, es un vuelo directo.
-
-        ArrayList<ArrayList<Vuelo>> posiblesVuelos = new ArrayList<>();
-        posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida,cantidadDePasajeros,escalas);
 
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];
