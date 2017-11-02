@@ -117,6 +117,13 @@ public class Consola {
             vuelos[i] = i + ". " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
         }
 
+        Menu menuVuelos = new Menu(vuelos,"Vuelos encontrados");
+
+        System.out.println(menuVuelos.strPrintMenu());
+        int vueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
+
+//Todo: seguir esto
+        System.out.println("Selecciono el vuelo " + vueloseleccionado);
 
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];
