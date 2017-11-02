@@ -12,6 +12,7 @@ public class Consola {
     static Scanner mainScanner;
     static int DNI;
     static boolean programRun = true;
+
     public static void main(String[] args){
 
 
@@ -114,7 +115,7 @@ public class Consola {
         String vuelos[] = new String[posiblesVuelos.size()];
         int i = 0;
         for (Vuelo vuelo: posiblesVuelos) {
-            vuelos[i] = i + ". " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+            vuelos[i] = vuelo.getDiaDeVuelo().toString() + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
         }
 
         Menu menuVuelos = new Menu(vuelos,"Vuelos encontrados");
@@ -122,7 +123,7 @@ public class Consola {
         System.out.println(menuVuelos.strPrintMenu());
         int vueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
-//Todo: seguir esto
+        //Todo: seguir esto
         System.out.println("Selecciono el vuelo " + vueloseleccionado);
 
         //TODO: Esto es despues de que se seleccione un posible vuelo
