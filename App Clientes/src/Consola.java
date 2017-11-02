@@ -93,7 +93,7 @@ public class Consola {
 
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
-        cantidadDePasajeros = getPassengerQuantity();
+       // cantidadDePasajeros = getPassengerQuantity();
 
 //        String[] opcionesEscalas = new String[4];
 //

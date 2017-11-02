@@ -32,6 +32,11 @@ public class MockServer implements Servicios{
         clases[0] = clase;
 
         avion = new Avion("LV-501",clases);
+
+        double precio[] = new double[1];
+        precio[0] = 199.3;
+        pricing = new Pricing(avion,precio);
+
         vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
 
         clase = new Clase(1,4,2,"Primera");
@@ -45,8 +50,10 @@ public class MockServer implements Servicios{
         tiempo = LocalDateTime.now();
 
         duracion = Duration.ofHours(8);
-        double precio[] = new double[1];
+
+        precio = new double[2];
         precio[0] = 199.3;
+        precio[1] = 149.99;
         pricing = new Pricing(avion,precio);
 
         Vuelo copiaVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing);
