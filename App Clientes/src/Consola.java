@@ -91,7 +91,6 @@ public class Consola {
 
         aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
         aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
-
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
        // cantidadDePasajeros = getPassengerQuantity();
@@ -112,19 +111,35 @@ public class Consola {
         ArrayList<Vuelo> posiblesVuelos = new ArrayList<>();
         posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida);
 
+        if(posiblesVuelos.size() == 0){
+            System.out.println("No se encontraron vuelos con los parametros indicados.");
+            return;
+        }
+
         String vuelos[] = new String[posiblesVuelos.size()];
         int i = 0;
         for (Vuelo vuelo: posiblesVuelos) {
-            vuelos[i] = vuelo.getDiaDeVuelo().toString() + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+            vuelos[i] = vuelo.getStartDate().toLocalDate().toString() + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+            i++;
         }
 
         Menu menuVuelos = new Menu(vuelos,"Vuelos encontrados");
 
         System.out.println(menuVuelos.strPrintMenu());
-        int vueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
+        int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
-        //Todo: seguir esto
-        System.out.println("Selecciono el vuelo " + vueloseleccionado);
+        i = 0;
+        Vuelo vueloSeleccionado;
+        for (Vuelo vuelo: posiblesVuelos) {
+            if(i == opcionvueloseleccionado){
+                vueloSeleccionado = vuelo;
+                System.out.println("Selecciono el vuelo " + vueloSeleccionado.getCodigoDeVuelo());
+                System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
+                break;
+            }
+            i++;
+        }
+
 
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];

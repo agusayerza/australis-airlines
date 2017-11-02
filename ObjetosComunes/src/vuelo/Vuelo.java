@@ -59,7 +59,21 @@ public class Vuelo {
         diaDeVuelo = startDate.getDayOfWeek();
         horarioDeVuelo = startDate.toLocalTime();
     }
-
+    public String getAsientoLayout(LocalDate fecha){
+        String result = "";
+        if(mapaDeAsientosPorFecha.containsKey(fecha)){
+            for(Map.Entry<String, Asiento> entrada : mapaDeAsientosPorFecha.get(fecha).entrySet()){
+                result += entrada.getValue().getFilaYColumna() + ": [";
+                if(entrada.getValue().isOcupado()){
+                    result += "X]";
+                }else{
+                    result += "O]";
+                }
+                result += "\n";
+            }
+        }
+        return result;
+    }
     public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){
 
         if(!isValidFlightDate(date)){

@@ -100,11 +100,15 @@ public class MockServer implements Servicios{
         ArrayList<Vuelo> result = new ArrayList<>();
 
         for (Vuelo vuelo: lista) {
-            if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
-                if(vuelo.getEndDate().isAfter(date)) {
-                    if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
-                        if(vuelo.hasFreeSeats(date)){
-                            result.add(vuelo);
+            if(vuelo.getAeropuertoDeArribo().toUpperCase().equals(aeropuertoDeArribo.toUpperCase())){
+                if(vuelo.getAeropuertoDePartida().toUpperCase().equals(aeropuertoDePartida.toUpperCase())){
+                    if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
+                        if(vuelo.getEndDate().isAfter(date)) {
+                            if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
+                                if(vuelo.hasFreeSeats(date)){
+                                    result.add(vuelo);
+                                }
+                            }
                         }
                     }
                 }

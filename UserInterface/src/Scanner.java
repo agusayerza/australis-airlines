@@ -87,20 +87,27 @@ public class Scanner {
     }
 
     public LocalDate getLocalDate(String message){
-        //TODO: La opcion de pasarle al metodo el formato
-        System.out.print(message);
+        String dateToParse = this.getString(message);
         try {
-            String dateToParse = this.getString(message);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "dd/MM/uu" );
-
             //DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
             LocalDate localDate = LocalDate.parse(dateToParse, formatter);
-
             return localDate;
-
         } catch (DateTimeParseException e) {
-            System.out.println("Por favor, utilice el formato dd/MM/yy");
-            return this.getLocalDate(message);
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+                LocalDate localDate = LocalDate.parse(dateToParse, formatter);
+                return localDate;
+            } catch (DateTimeParseException ee) {
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/uu");
+                    LocalDate localDate = LocalDate.parse(dateToParse, formatter);
+                    return localDate;
+                } catch (DateTimeParseException error) {
+                    System.out.println("Por favor, utilice el formato dd/MM/yy");
+                    return this.getLocalDate(message);
+                }
+            }
         }
     }
 }
