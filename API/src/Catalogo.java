@@ -11,21 +11,22 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Catalogo {
-    LocalDateTime tiempo;
-    Vuelo vuelo;
-    Duration duracion;
-    Pricing pricing;
-    Pasajero pasajero;
-    Avion avion;
-    Clase[] clases;
-    ArrayList<String> codigosDeVuelo;
-    ArrayList<Piloto> listaPilotos;
 
     private ListaDeVuelos vuelos;
+    ArrayList<Piloto> listaPilotos;
+    ArrayList<String> codigosDeVuelo;
 
     public Catalogo() {
 
         vuelos = new ListaDeVuelos();
+
+        LocalDateTime tiempo;
+        Vuelo vuelo;
+        Duration duracion;
+        Pricing pricing;
+        Pasajero pasajero;
+        Avion avion;
+        Clase[] clases;
 
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
@@ -35,6 +36,10 @@ public class Catalogo {
         listaPilotos.add(piloto);
         listaPilotos.add(otroPiloto);
         listaPilotos.add(unPiloto);
+
+        duracion = Duration.ofHours(8);
+        pasajero = new Pasajero(40719053);
+        tiempo = LocalDateTime.now();
 
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
@@ -57,9 +62,6 @@ public class Catalogo {
         clases[1] = economica;
 
         avion = new Avion("LV-600",clases);
-        tiempo = LocalDateTime.now();
-
-        duracion = Duration.ofHours(8);
 
         precio = new double[2];
         precio[0] = 199.3;
@@ -71,19 +73,19 @@ public class Catalogo {
         otroPiloto.agregarVuelo(copiaVuelo);
         unPiloto.agregarVuelo(otroVuelo);
 
-        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate());
-
-        pasajero = new Pasajero(40719052);
-        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-
-        pasajero = new Pasajero(40719050);
-        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate());
+//        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
+//        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate().plusDays(2));
+//
+//        pasajero = new Pasajero(40719052);
+//        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
+//        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
+//
+//        pasajero = new Pasajero(40719050);
+//        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
+//        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate().plusDays(2));
 
         vuelos.addVuelo(vuelo);
         vuelos.addVuelo(copiaVuelo);
