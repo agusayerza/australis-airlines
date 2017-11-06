@@ -5,6 +5,7 @@ import customExceptions.SeatAlreadyOccupiedException;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import personas.Pasajero;
+import personas.Piloto;
 import vuelo.Vuelo;
 
 import java.time.Duration;
@@ -29,6 +30,7 @@ public class ListaDeVuelosTest {
         Clase clase = new Clase(1,1,1,"Primera");
         clases = new Clase[1];
         clases[0] = clase;
+        Piloto piloto = new Piloto(17888888);
 
         avion = new Avion("funcional",clases);
         pasajero = new Pasajero(40719053);
@@ -38,7 +40,7 @@ public class ListaDeVuelosTest {
         double precio[] = new double[1];
         precio[0] = 199.3;
         pricing = new Pricing(avion,precio);
-        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
+        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
 
         catalogo.addVuelo(vuelo);
 
@@ -60,9 +62,10 @@ public class ListaDeVuelosTest {
 
     @Test
     public void getFlightsOnDateFromToDestination() throws Exception {
-
-        Vuelo copiaVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
-        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing);
+        Piloto otroPiloto = new Piloto(20000000);
+        Piloto unPiloto = new Piloto(19999998);
+        Vuelo copiaVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
+        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing,unPiloto);
 
         catalogo.addVuelo(otroVuelo);
         ArrayList<Vuelo> expected = new ArrayList<>();
@@ -91,8 +94,8 @@ public class ListaDeVuelosTest {
 
     @Test
     public void hasFlightFreeSeatsTest() throws Exception{
-
-        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
+        Piloto otroPiloto = new Piloto(20000000);
+        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
 
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
 
@@ -110,9 +113,10 @@ public class ListaDeVuelosTest {
     @Test(expected = SeatAlreadyOccupiedException.class)
     public void SeatAlreadyOccupiedTest(){
 
-
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
-        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing);
+        Piloto otroPiloto = new Piloto(20000000);
+        Piloto unPiloto = new Piloto(19999998);
+        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,otroPiloto);
+        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing,unPiloto);
 
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());

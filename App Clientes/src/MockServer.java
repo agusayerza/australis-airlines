@@ -3,6 +3,7 @@ import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
+import personas.Piloto;
 import vuelo.Vuelo;
 
 import java.time.Duration;
@@ -21,15 +22,17 @@ public class MockServer implements Servicios{
     Clase[] clases;
     ArrayList<Vuelo> lista;
     ArrayList<String> codigosDeVuelo;
+    ArrayList<Piloto> listaPilotos;
 
     public MockServer() {
-        /*
-        * Set up de nuestro server ficticio, crea varios vuelos y aviones y los llena un poco.
-        * */
-        lista = new ArrayList<>();
+        Piloto piloto = new Piloto(11111000);
+        Piloto otroPiloto = new Piloto(20000000);
+        Piloto unPiloto = new Piloto(19999998);
 
-        duracion = Duration.ofHours(8);
-        tiempo = LocalDateTime.now();
+        listaPilotos = new ArrayList<>();
+        listaPilotos.add(piloto);
+        listaPilotos.add(otroPiloto);
+        listaPilotos.add(unPiloto);
 
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
@@ -41,7 +44,8 @@ public class MockServer implements Servicios{
         precio[0] = 199.3;
         pricing = new Pricing(avion,precio);
 
-        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
+        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
+        piloto.agregarVuelo(vuelo);
 
         clase = new Clase(1,4,2,"Primera");
         Clase economica = new Clase(2,21,3,"Economica");
@@ -60,23 +64,24 @@ public class MockServer implements Servicios{
         precio[1] = 149.99;
         pricing = new Pricing(avion,precio);
 
-        Vuelo copiaVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing);
-        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(2),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing);
+        Vuelo copiaVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
+        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(2),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing,unPiloto);
+        otroPiloto.agregarVuelo(copiaVuelo);
+        unPiloto.agregarVuelo(otroVuelo);
 
-        pasajero = new Pasajero(40719057);
-        vuelo.ocuparAsiento("1B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
-//        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate().plusDays(2));
+        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
+        //otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate());
 
         pasajero = new Pasajero(40719052);
         vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
-//        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
+        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate());
+        //otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
 
         pasajero = new Pasajero(40719050);
         vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
-//        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate().plusDays(2));
+        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
+        //otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate());
 
         lista.add(vuelo);
         lista.add(copiaVuelo);
@@ -141,5 +146,15 @@ public class MockServer implements Servicios{
     @Override
     public void OcuparAsiento(LocalDate fecha, String codigoVuelo, String codigoAsiento, Pasajero pasajero) {
 
+    }
+
+    @Override
+    public ArrayList<Vuelo> BuscarVuelosPiloto(int dni) {
+        for(Piloto piloto : listaPilotos){
+            if(piloto.getDni() == dni){
+                return piloto.getListaVuelos();
+            }
+        }
+        throw new RuntimeException("Piloto no encontrado");
     }
 }

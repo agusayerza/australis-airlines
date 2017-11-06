@@ -6,7 +6,8 @@ public class Administrador extends Persona {
 
     private Area area;
 
-    public Administrador(Area area) {
+    public Administrador(int dni, Area area) {
+        super(dni);
         this.area = area;
     }
 

@@ -9,6 +9,7 @@ import catalogo.Pricing;
 import customExceptions.SeatAlreadyOccupiedException;
 import customExceptions.SeatNonexistentException;
 import personas.Pasajero;
+import personas.Piloto;
 
 public class Vuelo {
 
@@ -21,30 +22,28 @@ public class Vuelo {
      * @param pricing El precio de cada categoria de asiento.
      */
 
-    //TODO: El avion no tiene piloto.
-
     private LocalDateTime startDate;
     private Duration duracionDeVuelo;
     private LocalDate endDate;
     private String aeropuertoDePartida;
     private String aeropuertoDeArribo;
     private String codigoDeVuelo;
-    private Avion avion;
     private Pricing pricing;
-
+    private Piloto piloto;
     private HashMap<String, Asiento> mapaDeAsientosGeneral;
     private HashMap<LocalDate, HashMap<String, Asiento>> mapaDeAsientosPorFecha;
 
     private DayOfWeek diaDeVuelo;
     private LocalTime horarioDeVuelo;
 
-    public Vuelo(LocalDateTime startDateAndTime, Duration duracionDeVuelo, LocalDate endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing) {
+    public Vuelo(LocalDateTime startDateAndTime, Duration duracionDeVuelo, LocalDate endDate, String aeropuertoDePartida, String aeropuertoDeArribo, String codigoDeVuelo, Avion avion, Pricing pricing, Piloto piloto) {
         this.startDate = startDateAndTime;
         this.duracionDeVuelo = duracionDeVuelo;
         this.endDate = endDate;
         this.aeropuertoDePartida = aeropuertoDePartida;
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
+        this.piloto = piloto;
 
         mapaDeAsientosGeneral = new HashMap<>();
         mapaDeAsientosPorFecha = new HashMap<>();
@@ -59,6 +58,11 @@ public class Vuelo {
         diaDeVuelo = startDate.getDayOfWeek();
         horarioDeVuelo = startDate.toLocalTime();
     }
+
+    public Piloto getPiloto() {
+        return piloto;
+    }
+
     public String getAsientoLayout(LocalDate fecha){
         String result = "";
         if(mapaDeAsientosPorFecha.containsKey(fecha)){
@@ -156,10 +160,6 @@ public class Vuelo {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public Avion getAvion() {
-        return avion;
     }
 
     public Pricing getPricing() {

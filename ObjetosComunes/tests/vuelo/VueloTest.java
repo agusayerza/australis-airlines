@@ -4,6 +4,7 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import org.junit.Test;
+import personas.Piloto;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class VueloTest {
         Clase clase = new Clase(1,21,3,"Primera");
         Clase clases[] = new Clase[1];
         clases[0] = clase;
-
+        Piloto piloto = new Piloto(17888888);
         Avion avion = new Avion("funcional",clases);
 
         LocalDateTime tiempo = LocalDateTime.now();
@@ -34,7 +35,7 @@ public class VueloTest {
         double precio[] = new double[1];
         precio[0] = 199.3;
         Pricing pricing = new Pricing(avion,precio);
-        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing);
+        Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing, piloto);
 
         LocalDate date = tiempo.toLocalDate();
 

@@ -1,4 +1,6 @@
+import avion.Asiento;
 import personas.Pasajero;
+import personas.Piloto;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -18,4 +20,6 @@ public interface Servicios {
     Vuelo BuscarVueloCodigo(String codigo);
 
     void OcuparAsiento(LocalDate fecha, String codigoVuelo, String codigoAsiento, Pasajero pasajero);
+
+    ArrayList<Vuelo> BuscarVuelosPiloto(int dni);
 }

@@ -11,7 +11,7 @@ public class Pasajero extends Persona{
     ArrayList<Pasaje> pasajesAdquiridos;
     public Pasajero(int dni)
     {
-        this.dni = dni;
+        super(dni);
         pasajesAdquiridos = new ArrayList<>();
     }
     
