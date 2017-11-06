@@ -91,16 +91,6 @@ public class MockServer implements Servicios{
     }
 
     @Override
-    public ArrayList<Vuelo> BuscarVuelos(LocalDateTime fecha) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Vuelo> BuscarVuelos(String aeropuerto) {
-        return null;
-    }
-
-    @Override
     public ArrayList<Vuelo> getFlightsOnDateFromToDestination(LocalDate date, String aeropuertoDePartida, String aeropuertoDeArribo) {
         ArrayList<Vuelo> result = new ArrayList<>();
 
@@ -132,16 +122,6 @@ public class MockServer implements Servicios{
             }
         }
         throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
-    }
-
-    @Override
-    public Vuelo BuscarVueloCodigo(String codigo) {
-        return null;
-    }
-
-    @Override
-    public void OcuparAsiento(LocalDate fecha, String codigoVuelo, String codigoAsiento, Pasajero pasajero) {
-
     }
 
     @Override
