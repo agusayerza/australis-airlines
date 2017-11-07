@@ -101,11 +101,12 @@ public class Vuelo {
                 if (entrada.getValue().isOcupado()) {
                     if (entrada.getValue().getDni() == pasajero.getDni()) {
                         result += mapa.getKey().toString() + " || " + aeropuertoDePartida + " ---> " +aeropuertoDeArribo + " || Asiento: " + entrada.getValue().getFilaYColumna();
+                        result += "\n";
                     }
                 }
             }
         }
-        result += "\n";
+
     return result;
     }
 
