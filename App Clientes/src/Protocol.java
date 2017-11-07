@@ -10,7 +10,6 @@ public class Protocol {
     Pasajero user;
 
     public Protocol(int userDNI) {
-
         this.userDNI = userDNI;
         server = new MockServer();
         user = new Pasajero(userDNI);
@@ -27,5 +26,9 @@ public class Protocol {
 
 
         return result;
+    }
+
+    public void sellTicket(String codigoDeVuelo, String asiento, LocalDate date){
+        server.venderAsiento(codigoDeVuelo,asiento,user, date);
     }
 }

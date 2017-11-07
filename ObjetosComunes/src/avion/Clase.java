@@ -46,6 +46,13 @@ public class Clase {
 
     }
 
+    public boolean validarAsiento(String code){
+        if(mapaDeAsientos.containsKey(code)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

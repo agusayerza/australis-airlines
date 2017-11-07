@@ -1,6 +1,8 @@
 
 import customExceptions.InvalidPassengersQuantity;
 import customExceptions.MenuInvalidOptionSelectedException;
+import customExceptions.SeatAlreadyOccupiedException;
+import customExceptions.SeatNonexistentException;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -129,7 +131,7 @@ public class Consola {
         int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
         i = 1;
-        Vuelo vueloSeleccionado;
+        Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
             if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
@@ -140,10 +142,30 @@ public class Consola {
             i++;
         }
 
-        System.out.println("Seleccione el asiento deseado:");
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];
         opcionesCategoria[0] = "Cualquiera";
+
+        boolean seleccionarAsiento = true;
+        String asiento = "";
+        while (seleccionarAsiento){
+            asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
+
+            if(vueloSeleccionado.validarAsiento(asiento)){
+                try {
+                    protocol.sellTicket(vueloSeleccionado.getCodigoDeVuelo(),asiento,fechaDeSalida);
+                    seleccionarAsiento = false;
+                }catch (SeatNonexistentException | SeatAlreadyOccupiedException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        System.out.println("Asiento " + asiento + " vendido a " + DNI);
+        System.out.println();
+
+        System.out.println("Reservas actuales: ");
+        System.out.println(protocol.getTicketsForThisUser());
 
 
     }

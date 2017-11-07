@@ -92,4 +92,12 @@ public class Avion {
         return (char) (65 + columna);
     }
 
+    public boolean validarAsiento(String code){
+        for (Clase clase: clases) {
+            if(clase.validarAsiento(code)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

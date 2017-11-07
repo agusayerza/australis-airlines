@@ -20,7 +20,6 @@ public class MockServer implements Servicios{
 
     public MockServer() {
         LocalDateTime tiempo;
-        Vuelo vuelo;
         Duration duracion;
         Pricing pricing;
         Pasajero pasajero;

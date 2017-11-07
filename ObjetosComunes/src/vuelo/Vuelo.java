@@ -109,7 +109,9 @@ public class Vuelo {
     return result;
     }
 
-
+    public boolean validarAsiento(String code){
+        return avion.validarAsiento(code);
+    }
 
     public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){
 
@@ -198,6 +200,8 @@ public class Vuelo {
     public Pricing getPricing() {
         return pricing;
     }
+
+    public Vuelo(){}
 
     public boolean hasFreeSeats(LocalDate date){
         if(!isValidFlightDate(date)){
