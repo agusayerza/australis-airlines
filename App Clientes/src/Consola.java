@@ -3,6 +3,7 @@ import customExceptions.InvalidPassengersQuantity;
 import customExceptions.MenuInvalidOptionSelectedException;
 import customExceptions.SeatAlreadyOccupiedException;
 import customExceptions.SeatNonexistentException;
+import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -25,15 +26,7 @@ public class Consola {
         //TODO: Sistema de Registro de usuarios? Contraseñas?
         System.out.println("Para empezar, usted debe conectarse");
 
-        boolean validDNI = false;
-        while(!validDNI){
-            DNI = mainScanner.getInt("Ingrese su DNI: ");
-            if((DNI > 999999) && (DNI < 100000000)){
-                validDNI = true;
-            }else {
-                System.out.println("DNI Invalido, vuelva a ingresarlo.");
-            }
-        }
+        DNI = getDNI(true);
 
         protocol = new Protocol(DNI);
 
@@ -81,21 +74,35 @@ public class Consola {
                 throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
     }
+    private static int getDNI(boolean userDNI){
+        boolean validDNI = false;
+        int givenDNI = 0;
+        while(!validDNI){
 
+
+            if(userDNI){
+                givenDNI = mainScanner.getInt("Ingrese su DNI: ");
+            }else{
+                givenDNI = mainScanner.getInt("Ingrese el DNI del pasajero: ");
+            }
+
+            if((givenDNI > 999999) && (givenDNI < 100000000)){
+                validDNI = true;
+            }else {
+                System.out.println("DNI Invalido, vuelva a ingresarlo.");
+            }
+        }
+        return givenDNI;
+    }
     private static void searchFlightForReservation() {
         String aeropuertoSalida;
         String aeropuertoLlegada;
 
         LocalDate fechaDeSalida;
-        String dateToParse;
-
-        int cantidadDePasajeros;
 
         aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
         aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
-
-       // cantidadDePasajeros = getPassengerQuantity();
 
 //        String[] opcionesEscalas = new String[4];
 //
@@ -130,39 +137,48 @@ public class Consola {
         System.out.println(menuVuelos.strPrintMenu());
         int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
+        int cantidadDePasajeros = 1;
+
         i = 1;
         Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
             if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
                 System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
-                System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
+
+
+                cantidadDePasajeros = getPassengerQuantity();
+
                 break;
             }
             i++;
         }
+        for (int j = 0; j < cantidadDePasajeros; j++) {
+            Pasajero pasajero = new Pasajero(getDNI(false));
 
-        //TODO: Esto es despues de que se seleccione un posible vuelo
-        String[] opcionesCategoria = new String[3];
-        opcionesCategoria[0] = "Cualquiera";
+            //TODO: Esto es despues de que se seleccione un posible vuelo
+            String[] opcionesCategoria = new String[3];
+            opcionesCategoria[0] = "Cualquiera";
 
-        boolean seleccionarAsiento = true;
-        String asiento = "";
-        while (seleccionarAsiento){
-            asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
+            boolean seleccionarAsiento = true;
+            String asiento = "";
+            while (seleccionarAsiento){
+                System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
+                asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
 
-            if(vueloSeleccionado.validarAsiento(asiento)){
-                try {
-                    protocol.sellTicket(vueloSeleccionado.getCodigoDeVuelo(),asiento,fechaDeSalida);
-                    seleccionarAsiento = false;
-                }catch (SeatNonexistentException | SeatAlreadyOccupiedException e){
-                    System.out.println(e.getMessage());
+                if(vueloSeleccionado.validarAsiento(asiento)){
+                    try {
+                        protocol.sellTicket(vueloSeleccionado.getCodigoDeVuelo(),asiento,fechaDeSalida, pasajero);
+                        seleccionarAsiento = false;
+                    }catch (SeatNonexistentException | SeatAlreadyOccupiedException e){
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
-        }
 
-        System.out.println("Asiento " + asiento + " vendido a " + DNI);
-        System.out.println();
+            System.out.println("Asiento " + asiento + " vendido a " + DNI);
+            System.out.println();
+        }
 
         System.out.println("Reservas actuales: ");
         System.out.println(protocol.getTicketsForThisUser());

@@ -28,7 +28,7 @@ public class Protocol {
         return result;
     }
 
-    public void sellTicket(String codigoDeVuelo, String asiento, LocalDate date){
-        server.venderAsiento(codigoDeVuelo,asiento,user, date);
+    public void sellTicket(String codigoDeVuelo, String asiento, LocalDate date, Pasajero pasajero){
+        server.venderAsiento(codigoDeVuelo,asiento, pasajero, date);
     }
 }

@@ -74,20 +74,26 @@ public class Vuelo {
             result += clases[i].getNombreDeClase() + "\n";
 
             //TODO: Esto es lo menos optimo del mundo.
+
+            HashMap<String, Asiento> mapa;
             if(mapaDeAsientosPorFecha.containsKey(fecha)){
-                for(Map.Entry<String, Asiento> entrada : mapaDeAsientosPorFecha.get(fecha).entrySet()){
-                    if(entrada.getValue().getClase().equals(clases[i].getNombreDeClase())){
-                        result += entrada.getValue().getFilaYColumna() + ":[";
-                        if(entrada.getValue().isOcupado()){
-                            result += "X] ";
-                        }else{
-                            result += "O] ";
-                        }
+                mapa = mapaDeAsientosPorFecha.get(fecha);
+            }else{
+                mapa = mapaDeAsientosGeneral;
+            }
+
+            for(Map.Entry<String, Asiento> entrada : mapa.entrySet()){
+                if(entrada.getValue().getClase().equals(clases[i].getNombreDeClase())){
+                    result += entrada.getValue().getFilaYColumna() + ":[";
+                    if(entrada.getValue().isOcupado()){
+                        result += "X] ";
+                    }else{
+                        result += "O] ";
                     }
                 }
-                result += "\n";
-
             }
+
+            result += "\n";
         }
 
         return result;
@@ -100,7 +106,7 @@ public class Vuelo {
             for (Map.Entry<String, Asiento> entrada : mapa.getValue().entrySet()) {
                 if (entrada.getValue().isOcupado()) {
                     if (entrada.getValue().getDni() == pasajero.getDni()) {
-                        result += mapa.getKey().toString() + " || " + aeropuertoDePartida + " ---> " +aeropuertoDeArribo + " || Asiento: " + entrada.getValue().getFilaYColumna();
+                        result += mapa.getKey().toString() + " || " + aeropuertoDePartida + " ---> " + aeropuertoDeArribo + " || Asiento: " + entrada.getValue().getFilaYColumna();
                         result += "\n";
                     }
                 }
