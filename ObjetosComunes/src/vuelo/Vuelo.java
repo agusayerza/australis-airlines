@@ -92,6 +92,25 @@ public class Vuelo {
 
         return result;
     }
+
+    public String getReservasCliente(Pasajero pasajero) {
+        //TODO: Esto es lo menos optimo del mundo 2.0
+        String result = "";
+        for (Map.Entry<LocalDate, HashMap<String, Asiento>> mapa : mapaDeAsientosPorFecha.entrySet()){
+            for (Map.Entry<String, Asiento> entrada : mapa.getValue().entrySet()) {
+                if (entrada.getValue().isOcupado()) {
+                    if (entrada.getValue().getDni() == pasajero.getDni()) {
+                        result += mapa.getKey().toString() + " || " + aeropuertoDePartida + " ---> " +aeropuertoDeArribo + " || Asiento: " + entrada.getValue().getFilaYColumna();
+                    }
+                }
+            }
+        }
+        result += "\n";
+    return result;
+    }
+
+
+
     public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){
 
         if(!isValidFlightDate(date)){

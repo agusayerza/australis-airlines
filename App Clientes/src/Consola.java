@@ -66,7 +66,7 @@ public class Consola {
         switch(option){
             case 1:
                 System.out.println("Buscando sus vuelos ...");
-                protocol.getTicketsForThisUser();
+                System.out.println(protocol.getTicketsForThisUser());
                 break;
             case 2:
                 searchFlightForReservation();

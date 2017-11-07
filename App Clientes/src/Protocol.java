@@ -1,3 +1,4 @@
+import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -6,16 +7,17 @@ import java.util.ArrayList;
 public class Protocol {
     int userDNI;
     Servicios server;
-
+    Pasajero user;
 
     public Protocol(int userDNI) {
 
         this.userDNI = userDNI;
         server = new MockServer();
+        user = new Pasajero(userDNI);
     }
 
-    public void getTicketsForThisUser(){
-        //Envia al servidor el pedido de la listaDeVuelos de pasajes
+    public String getTicketsForThisUser(){
+        return server.getReservasCliente(user);
     }
 
     public ArrayList<Vuelo> getPossibleFlights(String from, String to, LocalDate fechaSalida){

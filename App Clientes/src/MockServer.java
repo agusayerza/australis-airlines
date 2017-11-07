@@ -155,4 +155,16 @@ public class MockServer implements Servicios{
         }
 
     }
+
+    public String getReservasCliente(Pasajero pasajero){
+        String result = "";
+        for (Vuelo vuelo: listaDeVuelos) {
+            result += vuelo.getReservasCliente(pasajero);
+        }
+        if(result.equals("")){
+            return "No se encontraron vuelos para el DNI: " + pasajero.getDni();
+        }
+
+        return result;
+    }
 }
