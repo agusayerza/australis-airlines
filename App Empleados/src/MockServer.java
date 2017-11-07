@@ -2,6 +2,8 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Administrador;
+import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;

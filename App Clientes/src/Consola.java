@@ -128,19 +128,19 @@ public class Consola {
         System.out.println(menuVuelos.strPrintMenu());
         int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
-        i = 0;
+        i = 1;
         Vuelo vueloSeleccionado;
         for (Vuelo vuelo: posiblesVuelos) {
             if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
-                System.out.println("Selecciono el vuelo " + vueloSeleccionado.getCodigoDeVuelo());
+                System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
                 System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
                 break;
             }
             i++;
         }
 
-
+        System.out.println("Seleccione el asiento deseado:");
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];
         opcionesCategoria[0] = "Cualquiera";

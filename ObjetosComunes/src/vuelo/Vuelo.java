@@ -30,6 +30,7 @@ public class Vuelo {
     private String codigoDeVuelo;
     private Pricing pricing;
     private Piloto piloto;
+    private Avion avion;
     private HashMap<String, Asiento> mapaDeAsientosGeneral;
     private HashMap<LocalDate, HashMap<String, Asiento>> mapaDeAsientosPorFecha;
 
@@ -44,6 +45,7 @@ public class Vuelo {
         this.aeropuertoDeArribo = aeropuertoDeArribo;
         this.codigoDeVuelo = codigoDeVuelo;
         this.piloto = piloto;
+        this.avion = avion;
 
         mapaDeAsientosGeneral = new HashMap<>();
         mapaDeAsientosPorFecha = new HashMap<>();
@@ -65,17 +67,29 @@ public class Vuelo {
 
     public String getAsientoLayout(LocalDate fecha){
         String result = "";
-        if(mapaDeAsientosPorFecha.containsKey(fecha)){
-            for(Map.Entry<String, Asiento> entrada : mapaDeAsientosPorFecha.get(fecha).entrySet()){
-                result += entrada.getValue().getFilaYColumna() + ": [";
-                if(entrada.getValue().isOcupado()){
-                    result += "X]";
-                }else{
-                    result += "O]";
+        int stop = avion.getNumeroDeClases();
+        Clase[] clases = avion.getClases();
+        for (int i = 0; i < stop; i++) {
+
+            result += clases[i].getNombreDeClase() + "\n";
+
+            //TODO: Esto es lo menos optimo del mundo.
+            if(mapaDeAsientosPorFecha.containsKey(fecha)){
+                for(Map.Entry<String, Asiento> entrada : mapaDeAsientosPorFecha.get(fecha).entrySet()){
+                    if(entrada.getValue().getClase().equals(clases[i].getNombreDeClase())){
+                        result += entrada.getValue().getFilaYColumna() + ":[";
+                        if(entrada.getValue().isOcupado()){
+                            result += "X] ";
+                        }else{
+                            result += "O] ";
+                        }
+                    }
                 }
                 result += "\n";
+
             }
         }
+
         return result;
     }
     public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){

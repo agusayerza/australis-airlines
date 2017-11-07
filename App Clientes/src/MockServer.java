@@ -34,10 +34,6 @@ public class MockServer implements Servicios{
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
 
-//        listaPilotos.add(piloto);
-//        listaPilotos.add(otroPiloto);
-//        listaPilotos.add(unPiloto);
-
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
         clases[0] = clase;
@@ -76,14 +72,14 @@ public class MockServer implements Servicios{
         venderAsiento("BARBOR","1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
-//        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-//        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
-//        otroVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(2));
+        venderAsiento("BARBAR","3B",pasajero,tiempo.toLocalDate());
+        venderAsiento("BARBAR-COPIA","2A",pasajero,tiempo.toLocalDate().plusDays(1));
+        venderAsiento("BARBOR","2B",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
-//        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-//        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
-//        otroVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(2));
+        venderAsiento("BARBAR","1A",pasajero,tiempo.toLocalDate());
+        venderAsiento("BARBAR-COPIA","3B",pasajero,tiempo.toLocalDate().plusDays(1));
+        venderAsiento("BARBOR","3B",pasajero,tiempo.toLocalDate().plusDays(2));
 
 
     }
