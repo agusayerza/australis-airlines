@@ -2,8 +2,6 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
-import personas.Administrador;
-import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
@@ -15,35 +13,35 @@ import java.util.ArrayList;
 
 public class MockServer implements Servicios{
 
-    Administrador empleado;
-    Administrador empleadoNuevo;
-    LocalDateTime tiempo;
-    Vuelo vuelo;
-    Duration duracion;
-    Pricing pricing;
-    Pasajero pasajero;
-    Avion avion;
-    Clase[] clases;
     ArrayList<Vuelo> listaDeVuelos = new ArrayList<>();
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
     ArrayList<Piloto> listaPilotos = new ArrayList<>();
     ArrayList<Avion> aviones = new ArrayList<>();
-
+    Administrador empleado;
+    Administrador empleadoNuevo;
+    
     public MockServer() {
-        
+        LocalDateTime tiempo;
+        Vuelo vuelo;
+        Duration duracion;
+        Pricing pricing;
+        Pasajero pasajero;
+        Avion avion;
+        Clase[] clases;
+
         tiempo = LocalDateTime.now();
         duracion = Duration.ofHours(8);
 
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
-
-        listaPilotos.add(piloto);
-        listaPilotos.add(otroPiloto);
-        listaPilotos.add(unPiloto);
-
+        
         empleado = new Administrador(12345678, new Area(true));
         empleadoNuevo = new Administrador(12345677, new Area(false));
+        
+//        listaPilotos.add(piloto);
+//        listaPilotos.add(otroPiloto);
+//        listaPilotos.add(unPiloto);
 
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
@@ -57,8 +55,7 @@ public class MockServer implements Servicios{
         precio[0] = 199.3;
         pricing = new Pricing(avion,precio);
 
-        vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
-        piloto.agregarVuelo(vuelo);
+        agregarVuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
 
         clase = new Clase(1,4,2,"Primera");
         Clase economica = new Clase(2,21,3,"Economica");
@@ -75,29 +72,23 @@ public class MockServer implements Servicios{
         precio[1] = 149.99;
         pricing = new Pricing(avion,precio);
 
-        Vuelo copiaVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
-        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(2),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing,unPiloto);
-        otroPiloto.agregarVuelo(copiaVuelo);
-        unPiloto.agregarVuelo(otroVuelo);
+        agregarVuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
+        agregarVuelo(tiempo.plusDays(2),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","BARBOR",avion, pricing,unPiloto);
 
         pasajero = new Pasajero(40999222);
-        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
+        venderAsiento("BARBAR","2B",pasajero,tiempo.toLocalDate());
+        venderAsiento("BARBAR-COPIA","2B",pasajero,tiempo.toLocalDate().plusDays(1));
+        venderAsiento("BARBOR","1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
-        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(2));
+//        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
+//        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
-        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(2));
-
-        listaDeVuelos.add(vuelo);
-        listaDeVuelos.add(copiaVuelo);
-        listaDeVuelos.add(otroVuelo);
+//        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
+//        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
+//        otroVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(2));
 
 
     }
@@ -126,7 +117,7 @@ public class MockServer implements Servicios{
     }
 
     @Override
-    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero) {
+    public void venderAsiento(String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero, LocalDate date) {
         getFlightByCode(codigoDeVuelo).ocuparAsiento(codigoDeAsiento,pasajero,date);
     }
 
@@ -147,6 +138,30 @@ public class MockServer implements Servicios{
                 return piloto.getListaVuelos();
             }
         }
-        throw new PilotWasNotFoundException("Piloto no encontrado");
+        throw new RuntimeException("Piloto no encontrado");
+    }
+
+    @Override
+    public void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo,String codigoDeVuelo, Avion avion,Pricing pricing, Piloto piloto) {
+
+        Vuelo vuelo = new Vuelo(tiempo, duracion,  ultimaFechaDeVuelo,aeropuertoSalida,aeropuertoArribo,codigoDeVuelo,avion,pricing,piloto);
+
+        listaDeVuelos.add(vuelo);
+        codigosDeVuelo.add(codigoDeVuelo);
+
+        boolean pilotoEncontrado = false;
+        for (Piloto unPiloto: listaPilotos) {
+            if(unPiloto.getDni() == piloto.getDni()){
+                unPiloto.agregarVuelo(vuelo);
+                pilotoEncontrado = true;
+                break;
+            }
+        }
+
+        if(!pilotoEncontrado){
+            piloto.agregarVuelo(vuelo);
+            listaPilotos.add(piloto);
+        }
+
     }
 }
