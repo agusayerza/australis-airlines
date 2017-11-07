@@ -147,6 +147,6 @@ public class MockServer implements Servicios{
                 return piloto.getListaVuelos();
             }
         }
-        throw new RuntimeException("Piloto no encontrado");
+        throw new PilotWasNotFoundException("Piloto no encontrado");
     }
 }
