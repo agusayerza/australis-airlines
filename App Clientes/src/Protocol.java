@@ -15,7 +15,7 @@ public class Protocol {
     }
 
     public void getTicketsForThisUser(){
-        //Envia al servidor el pedido de la lista de pasajes
+        //Envia al servidor el pedido de la listaDeVuelos de pasajes
     }
 
     public ArrayList<Vuelo> getPossibleFlights(String from, String to, LocalDate fechaSalida){
