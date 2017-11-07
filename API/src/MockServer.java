@@ -20,16 +20,20 @@ public class MockServer implements Servicios{
     Pasajero pasajero;
     Avion avion;
     Clase[] clases;
-    ArrayList<Vuelo> lista;
-    ArrayList<String> codigosDeVuelo;
-    ArrayList<Piloto> listaPilotos;
+    ArrayList<Vuelo> listaDeVuelos = new ArrayList<>();
+    ArrayList<String> codigosDeVuelo = new ArrayList<>();
+    ArrayList<Piloto> listaPilotos = new ArrayList<>();
+    ArrayList<Avion> aviones = new ArrayList<>();
 
     public MockServer() {
+
+        tiempo = LocalDateTime.now();
+        duracion = Duration.ofHours(8);
+
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
 
-        listaPilotos = new ArrayList<>();
         listaPilotos.add(piloto);
         listaPilotos.add(otroPiloto);
         listaPilotos.add(unPiloto);
@@ -39,6 +43,8 @@ public class MockServer implements Servicios{
         clases[0] = clase;
 
         avion = new Avion("LV-501",clases);
+
+        aviones.add(avion);
 
         double precio[] = new double[1];
         precio[0] = 199.3;
@@ -55,9 +61,7 @@ public class MockServer implements Servicios{
         clases[1] = economica;
 
         avion = new Avion("LV-600",clases);
-        tiempo = LocalDateTime.now();
-
-        duracion = Duration.ofHours(8);
+        aviones.add(avion);
 
         precio = new double[2];
         precio[0] = 199.3;
@@ -69,23 +73,24 @@ public class MockServer implements Servicios{
         otroPiloto.agregarVuelo(copiaVuelo);
         unPiloto.agregarVuelo(otroVuelo);
 
+        pasajero = new Pasajero(40999222);
         vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
+        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
         vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
+        otroVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
         vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate());
+        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
+        otroVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(2));
 
-        lista.add(vuelo);
-        lista.add(copiaVuelo);
-        lista.add(otroVuelo);
+        listaDeVuelos.add(vuelo);
+        listaDeVuelos.add(copiaVuelo);
+        listaDeVuelos.add(otroVuelo);
 
 
     }
@@ -94,12 +99,16 @@ public class MockServer implements Servicios{
     public ArrayList<Vuelo> getFlightsOnDateFromToDestination(LocalDate date, String aeropuertoDePartida, String aeropuertoDeArribo) {
         ArrayList<Vuelo> result = new ArrayList<>();
 
-        for (Vuelo vuelo: lista) {
-            if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
-                if(vuelo.getEndDate().isAfter(date)) {
-                    if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
-                        if(vuelo.hasFreeSeats(date)){
-                            result.add(vuelo);
+        for (Vuelo vuelo: listaDeVuelos) {
+            if(vuelo.getAeropuertoDeArribo().toUpperCase().equals(aeropuertoDeArribo.toUpperCase())){
+                if(vuelo.getAeropuertoDePartida().toUpperCase().equals(aeropuertoDePartida.toUpperCase())){
+                    if(vuelo.getDiaDeVuelo().equals(date.getDayOfWeek())){
+                        if(vuelo.getEndDate().isAfter(date)) {
+                            if(vuelo.getStartDate().toLocalDate().isBefore(date) || vuelo.getStartDate().toLocalDate().isEqual(date)) {
+                                if(vuelo.hasFreeSeats(date)){
+                                    result.add(vuelo);
+                                }
+                            }
                         }
                     }
                 }
@@ -116,7 +125,7 @@ public class MockServer implements Servicios{
 
 
     private Vuelo getFlightByCode(String FlightCode){
-        for (Vuelo vuelo: lista) {
+        for (Vuelo vuelo: listaDeVuelos) {
             if(vuelo.getCodigoDeVuelo().equals(FlightCode)){
                 return vuelo;
             }
@@ -132,5 +141,10 @@ public class MockServer implements Servicios{
             }
         }
         throw new RuntimeException("Piloto no encontrado");
+    }
+
+    @Override
+    public void agregarVuelo(Avion avion, Piloto piloto, LocalDate tiempo,String codigoDeVuelo, String aeropuertoSalida, String aeropuertoArribo, LocalDate ultimaFechaDeVuelo) {
+
     }
 }

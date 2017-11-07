@@ -1,4 +1,5 @@
 import avion.Asiento;
+import avion.Avion;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
@@ -14,5 +15,6 @@ public interface Servicios {
     void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero);
 
     ArrayList<Vuelo> BuscarVuelosPiloto(int dni);
-}
 
+    void agregarVuelo(Avion avion, Piloto piloto, LocalDate tiempo, String codigoDeVuelo, String aeropuertoSalida, String aeropuertoArribo, LocalDate ultimaFechaDeVuelo);
+}
