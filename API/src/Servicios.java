@@ -24,5 +24,5 @@ public interface Servicios {
 
     void writeFile(ArrayList<String> pasajes);
 
-    void readFile();
+    void readFile(ArrayList<String> pasajes);
 }

@@ -171,7 +171,7 @@ public class MockServer implements Servicios{
         return result;
     }
 
-    @Override //crea el txt y lo llena con los strings del arrayList
+    @Override
     public void writeFile(ArrayList<String> pasajes) {
         try {
             FileWriter fw = new FileWriter("pasajes.txt");
@@ -186,19 +186,19 @@ public class MockServer implements Servicios{
         }
     }
 
-    @Override //busca el txt y lo imprime, supongo que debe recrear el arrayList de pasajes, lo hare
-    public void readFile() {
+    @Override
+    public void readFile(ArrayList<String> pasajes) {
         try {
             FileReader fr = new FileReader("pasajes.txt");
             BufferedReader br = new BufferedReader(fr);
 
             String str;
             while ( (str = br.readLine()) != null ) {
-                out.println("# " + str);
+                pasajes.add(str);
             }
             br.close();
         } catch (IOException e) {
-            out.println("Archivo no encontrado"); //esta medio al pedo pero ok
+            out.println("Archivo no encontrado");
         }
     }
 }
