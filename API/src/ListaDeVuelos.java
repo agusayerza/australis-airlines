@@ -1,5 +1,3 @@
-
-
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
@@ -8,14 +6,18 @@ import vuelo.Vuelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
     ArrayList<String> codigosDeVuelo;
+    Map<String, ArrayList<String>> aeropuertos;
 
     public ListaDeVuelos() {
         lista = new ArrayList<>();
         codigosDeVuelo = new ArrayList<>();
+        aeropuertos = new HashMap<>();
     }
 
     public ArrayList<Vuelo> getLista() {
@@ -92,4 +94,31 @@ public class ListaDeVuelos {
     }
 
 
+    /* por lo que agus me paso
+    Cuando agregas un vuelo, debe pasar por aqui, falta implementarlo en agregar vuelo cuando lo termine
+    Le pasas un vuelo que va de A -> B, y verifica si existe un arrayList de A (si no existe, lo crear y le agraga B) y
+    verifica si contiene a B, si no, lo agrega, si si, no hace nada (?)
+     */
+    public void verificarAddVuelo(Vuelo vuelo) {
+        String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
+        String aeropuertoB = vuelo.getAeropuertoDeArribo(); //aeropuerto B
+
+        if ( !( aeropuertos.containsKey(aeropuertoA) ) ) {                      //verifica si el hashMap NO contiene el AL del aeropuerto A
+            ArrayList<String> aero = new ArrayList<String>();                        //si no, lo crea
+            aeropuertos.put(aeropuertoA, aero);                                 //y lo agrega
+            aero.add(aeropuertoB);                                              //y le agrega el aeropuerto B
+        } else if ( !( aeropuertos.get(aeropuertoA).contains(aeropuertoB) ) ){  //si exite el AL del aeropuerto A, verifica si NO contiene B
+            aeropuertos.get(aeropuertoA).add(aeropuertoB);                      //si no cintiene B, lo agrega
+        } //lo pense asi, si queres cambia lo que quieras
+    }
+
+    public Map getAeropuertos() {
+        return aeropuertos;
+    }
+
+    public void verificarRemoveVuelo(Vuelo vuelo) {
+        String aeropuetoA = vuelo.getAeropuertoDeArribo();
+        String aeropuetoB = vuelo.getAeropuertoDeArribo();
+        //aun estoy viendo esto, help
+    }
 }

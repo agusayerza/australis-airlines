@@ -21,4 +21,8 @@ public interface Servicios {
     void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo,String codigoDeVuelo, Avion avion,Pricing pricing, Piloto piloto);
 
     String getReservasCliente(Pasajero pasajero);
+
+    void writeFile(ArrayList<String> pasajes);
+
+    void readFile();
 }

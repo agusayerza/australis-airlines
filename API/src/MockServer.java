@@ -6,10 +6,13 @@ import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
 
+import java.io.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import static java.lang.System.out;
 
 public class MockServer implements Servicios{
 
@@ -166,5 +169,36 @@ public class MockServer implements Servicios{
         }
 
         return result;
+    }
+
+    @Override //crea el txt y lo llena con los strings del arrayList
+    public void writeFile(ArrayList<String> pasajes) {
+        try {
+            FileWriter fw = new FileWriter("pasajes.txt");
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(String str : pasajes) {
+                pw.println(str);
+            }
+            pw.close();
+        } catch (IOException e) {
+            out.println("Algo salio mal"); //no deberia pasar nunca
+        }
+    }
+
+    @Override //busca el txt y lo imprime, supongo que debe recrear el arrayList de pasajes, lo hare
+    public void readFile() {
+        try {
+            FileReader fr = new FileReader("pasajes.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            String str;
+            while ( (str = br.readLine()) != null ) {
+                out.println("# " + str);
+            }
+            br.close();
+        } catch (IOException e) {
+            out.println("Archivo no encontrado"); //esta medio al pedo pero ok
+        }
     }
 }
