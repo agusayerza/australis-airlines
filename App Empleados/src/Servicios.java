@@ -23,9 +23,12 @@ public interface Servicios {
 
     String getReservasCliente(Pasajero pasajero);
 
-    public boolean administradorPuedeVender(int dni);
+    boolean administradorPuedeVender(int dni);
 
     boolean esAdmin(int dni);
 
+    void crearAvion(Avion avion);
+
     public ArrayList<Avion> getListaDeAviones();
+
 }

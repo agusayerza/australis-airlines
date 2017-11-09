@@ -56,11 +56,12 @@ public class Consola {
     }
 
     public static void loopMenuPrincipal() throws MenuInvalidOptionSelectedException {
-        String[] opcionesMenuPrincipal = new String[3];
+        String[] opcionesMenuPrincipal = new String[4];
 
-        opcionesMenuPrincipal[0] = "Vender Pasajes";
-        opcionesMenuPrincipal[1] = "Ver Reservas del Cliente";
-        opcionesMenuPrincipal[2] = "Salir";
+        opcionesMenuPrincipal[0] = "Crear Avion";
+        opcionesMenuPrincipal[1] = "Vender Pasajes";
+        opcionesMenuPrincipal[2] = "Ver Reservas del Cliente";
+        opcionesMenuPrincipal[3] = "Salir";
 
         Menu menuPrincipal = new Menu(opcionesMenuPrincipal, "Menu Principal");
 
@@ -69,6 +70,9 @@ public class Consola {
 
         switch (option) {
             case 1:
+                crearAvion();
+                break;
+            case 2:
                 if(protocol.getAdministradorPuedeVender(DNI)) {
                     searchFlightForReservation();
                 } else {
@@ -76,12 +80,12 @@ public class Consola {
                 }
                 break;
 
-            case 2:
+            case 3:
                 int DNICliente = mainScanner.getInt("Ingrese el DNI para el cual quiere ver los pasajes: ");
                 System.out.println( protocol.getTicketsForThisUser(DNICliente) );
                 break;
 
-            case 3:
+            case 4:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;
                 break;
 
@@ -247,6 +251,44 @@ public class Consola {
             }
         }
         return givenDNI;
+    }
+
+    private static void crearAvion() {
+        String patente;
+        int numeroDeClases;
+
+        patente = mainScanner.getString("Introduzca la patente del avion: ");
+        numeroDeClases = mainScanner.getInt("Introduzca la cantidad de clases: ");
+        Clase[] clases = new Clase[numeroDeClases];
+
+
+        int ultimaFilaClaseAnterior = 1;
+        for (int i = 0; i < clases.length; i++) {
+            String nombreDeClase = mainScanner.getString("Introduzca el nombre de la clase "+ (i + 1) +": ");
+
+            int primerFilaDeClase = ultimaFilaClaseAnterior;
+
+            //cantidadDeAsiento multiplo de cantidadDeFila
+            int cantidadDeAsientos = mainScanner.getInt("Introduzca la cantidad de asientos de la clase " + nombreDeClase + ": ");
+            int cantidadDeFilasDeAsientos = mainScanner.getInt("Introduzca la cantidad de filas de asientos de la clase " + nombreDeClase + ": ");
+
+            if(cantidadDeAsientos % cantidadDeFilasDeAsientos != 0){
+                System.out.println("Error, la cantidad de asientos debe ser divisible en las filas de asientos.");
+                return;
+            }
+
+            Clase clase = new Clase(primerFilaDeClase, cantidadDeAsientos, cantidadDeFilasDeAsientos, nombreDeClase);
+
+            ultimaFilaClaseAnterior += cantidadDeFilasDeAsientos;
+
+            clases[i] = clase;
+        }
+
+        Avion avion = new Avion(patente, clases);
+
+        protocol.crearAvion(avion);
+
+        System.out.println("Avion " + patente + " creado con exito.");
     }
 
     public void crearVuelo(){
