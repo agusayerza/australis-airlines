@@ -1,28 +1,35 @@
 package vuelo;
 
-import avion.Asiento;
-import personas.Pasajero;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Pasaje {
-    private Asiento asiento;
-    private Vuelo vuelo;
-    private Pasajero pasajero;
+    private String asiento;
+    private String vuelo;
 
-    public Pasaje(Asiento asiento, Vuelo vuelo, Pasajero pasajero) {
+    private LocalDate date;
+    private int pasajero;
+
+    public Pasaje(String asiento, String vuelo, LocalDate date, int pasajero) {
         this.asiento = asiento;
         this.vuelo = vuelo;
         this.pasajero = pasajero;
+        this.date = date;
     }
 
-    public Asiento getAsiento() {
+    public String getAsiento() {
         return asiento;
     }
 
-    public Vuelo getVuelo() {
+    public String getVuelo() {
         return vuelo;
     }
 
-    public Pasajero getPasajero() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public int getPasajero() {
         return pasajero;
     }
 }

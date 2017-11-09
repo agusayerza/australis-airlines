@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FlightManager {
-    Catalogo catalogo = new Catalogo();
 
     public static void main(String[] args){
-
+        Catalogo catalogo = new Catalogo();
     }
 }
