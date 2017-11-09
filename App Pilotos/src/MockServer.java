@@ -194,12 +194,10 @@ public class MockServer implements Servicios{
         boolean dniExistente = false;
         for(Piloto piloto : listaPilotos){
             if(piloto.getDni() == dni){
-                dniExistente = true;
-            } else {
-                throw new RuntimeException("Piloto no encontrado.");
+                return true;
             }
         }
-        return dniExistente;
+        throw new RuntimeException("Piloto no encontrado.");
     }
 }
 

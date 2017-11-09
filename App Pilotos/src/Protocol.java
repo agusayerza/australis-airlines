@@ -23,16 +23,17 @@ public class Protocol {
     }
 
     public boolean validarDniPiloto(int dni){
-        boolean dniExistente = false;
-        ArrayList<Piloto> listaPilotos = server.getListaDePilotos();
-        for(Piloto piloto : listaPilotos){
-            if(piloto.getDni() == dni){
-                dniExistente = true;
-            } else {
-                throw new RuntimeException("Piloto no encontrado.");
-            }
-        }
-        return dniExistente;
+        return server.validarDniPiloto(dni);
+//        boolean dniExistente = false;
+//        ArrayList<Piloto> listaPilotos = server.getListaDePilotos();
+//        for(Piloto piloto : listaPilotos){
+//            if(piloto.getDni() == dni){
+//                dniExistente = true;
+//            } else {
+//                throw new RuntimeException("Piloto no encontrado.");
+//            }
+//        }
+//        return dniExistente;
     }
 
     private int getDNI(){
