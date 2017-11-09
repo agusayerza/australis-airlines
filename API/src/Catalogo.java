@@ -77,11 +77,19 @@ public class Catalogo {
         otroPiloto.agregarVuelo(copiaVuelo);
         unPiloto.agregarVuelo(otroVuelo);
 
-        venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
-
         vuelos.addVuelo(vuelo);
         vuelos.addVuelo(copiaVuelo);
         vuelos.addVuelo(otroVuelo);
+
+
+        //venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
+    }
+
+    public void ocuparPasajesDelArchivo(){
+        for (Pasaje pasaje : listaPasajes) {
+            Pasajero pasajero = new Pasajero(pasaje.getPasajero());
+            vuelos.venderAsiento(pasaje.getDate(),pasaje.getVuelo(),pasaje.getAsiento(),pasajero);
+        }
     }
 
     public void addVuelo(Vuelo vuelo){
@@ -134,6 +142,7 @@ public class Catalogo {
             }
             ois.close();
         } catch (EOFException ignored) {
+        } catch (FileNotFoundException ignored) {
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }

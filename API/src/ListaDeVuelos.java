@@ -38,10 +38,8 @@ public class ListaDeVuelos {
             throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
         }
 
-        for(int i = 0; i <= lista.size() - 1; i++)
-        {
-            if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo))
-            {
+        for(int i = 0; i <= lista.size() - 1; i++) {
+            if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo)) {
                 lista.remove(i);
                 verificarRemoveVuelo(lista.get(i));
                 codigosDeVuelo.remove(codigoDeVuelo);
@@ -125,7 +123,7 @@ public class ListaDeVuelos {
         String aeropuertoA = vuelo.getAeropuertoDePartida();
         String aeropuertoB = vuelo.getAeropuertoDeArribo();
 
-        ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
+        ArrayList<String> aero = aeropuertos.get(aeropuertoA);
         aero.remove(aeropuertoB);
         aeropuertos.remove(aeropuertoA);
         aeropuertos.put(aeropuertoA,aero);
