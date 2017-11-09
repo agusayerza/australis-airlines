@@ -257,20 +257,31 @@ public class Consola {
         numeroDeClases = mainScanner.getInt("Introduzca la cantidad de clases: ");
         Clase[] clases = new Clase[numeroDeClases];
 
+
+        int ultimaFilaClaseAnterior = 1;
         for (int i = 0; i < clases.length; i++) {
             String nombreDeClase = mainScanner.getString("Introduzca el nombre de la clase "+ (i + 1) +": ");
 
-            int primerFilaDeClase = mainScanner.getInt("Introduzca la primera fila de la clase " + nombreDeClase + ": ");
+            int primerFilaDeClase = ultimaFilaClaseAnterior;
+
             //cantidadDeAsiento multiplo de cantidadDeFila
             int cantidadDeAsientos = mainScanner.getInt("Introduzca la cantidad de asientos de la clase " + nombreDeClase + ": ");
             int cantidadDeFilasDeAsientos = mainScanner.getInt("Introduzca la cantidad de filas de asientos de la clase " + nombreDeClase + ": ");
 
+            if(cantidadDeAsientos % cantidadDeFilasDeAsientos != 0){
+                System.out.println("Error, la cantidad de asientos debe ser divisible en las filas de asientos.");
+            }
+
             Clase clase = new Clase(primerFilaDeClase, cantidadDeAsientos, cantidadDeFilasDeAsientos, nombreDeClase);
+
+            ultimaFilaClaseAnterior += cantidadDeFilasDeAsientos;
 
             clases[i] = clase;
         }
 
         Avion avion = new Avion(patente, clases);
+
+        protocol.crearAvion(avion);
 
         System.out.println("Avion " + patente + " creado con exito.");
     }
