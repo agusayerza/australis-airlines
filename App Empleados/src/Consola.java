@@ -247,6 +247,7 @@ public class Consola {
             if((givenDNI > 999999) && (givenDNI < 100000000)){
                 validDNI = true;
             }else {
+
                 System.out.println("DNI Invalido, vuelva a ingresarlo.");
             }
         }
