@@ -6,15 +6,12 @@ import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
 
-import java.io.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.lang.System.out;
 
 public class MockServer implements Servicios{
 
@@ -175,36 +172,6 @@ public class MockServer implements Servicios{
         return result;
     }
 
-    @Override
-    public void writeFile(ArrayList<String> pasajes) {
-        try {
-            FileWriter fw = new FileWriter("pasajes.txt");
-            PrintWriter pw = new PrintWriter(fw);
-
-            for(String str : pasajes) {
-                pw.println(str);
-            }
-            pw.close();
-        } catch (IOException e) {
-            out.println("Algo salio mal"); //no deberia pasar nunca
-        }
-    }
-
-    @Override
-    public void readFile(ArrayList<String> pasajes) {
-        try {
-            FileReader fr = new FileReader("pasajes.txt");
-            BufferedReader br = new BufferedReader(fr);
-
-            String str;
-            while ( (str = br.readLine()) != null ) {
-                pasajes.add(str);
-            }
-            br.close();
-        } catch (IOException e) {
-            out.println("Archivo no encontrado");
-        }
-    }
 
     public void verificarAddVuelo(Vuelo vuelo) {
         String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
@@ -239,3 +206,4 @@ public class MockServer implements Servicios{
         }
     }
 }
+

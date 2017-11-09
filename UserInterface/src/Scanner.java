@@ -110,4 +110,15 @@ public class Scanner {
             }
         }
     }
+
+    public boolean getYesNo(String message){
+        String yesno = this.getString(message);
+        if(yesno.equals("Y")){
+            return true;
+        }else if(yesno.equals("N")){
+            return false;
+        }else{
+            return getYesNo(message);
+        }
+    }
 }

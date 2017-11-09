@@ -10,6 +10,7 @@ import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Consola {
@@ -97,15 +98,41 @@ public class Consola {
         }
         return givenDNI;
     }
+
     private static void searchFlightForReservation() {
         String aeropuertoSalida;
         String aeropuertoLlegada;
-
-        LocalDate fechaDeSalida;
-
         aeropuertoSalida = mainScanner.getString("Ingrese aeropuerto de origen: ");
         aeropuertoLlegada = mainScanner.getString("Ingrese aeropuerto de destino: ");
+        int passangerQuantity = getPassengerQuantity();
+        LocalDate fechaDeSalida;
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
+
+        boolean roundTrip = false;
+        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta?");
+        if(roundTrip){
+
+            LocalDate fechaDeVuelta;
+            fechaDeVuelta = mainScanner.getLocalDate("Ingrese fecha de vuelta(formato dd/MM/yy):");
+
+            for (int i = 0; i < passangerQuantity; i++) {
+                System.out.println("----- RESERVA PASAJERO "+ i +" -----");
+                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
+                System.out.println(" ---- Reservar vuelta pasajero "+ i +" -----");
+                reserveFlight(aeropuertoLlegada, aeropuertoSalida, fechaDeVuelta);
+            }
+        }else{
+            for (int i = 0; i < passangerQuantity; i++) {
+                System.out.println("----- RESERVA PASAJERO "+ i +" -----");
+                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
+            }
+        }
+
+    }
+
+
+    private static void reserveFlight(String aeropuertoSalida, String aeropuertoLlegada, LocalDate fechaDeSalida){
+
 
 //        String[] opcionesEscalas = new String[4];
 //
@@ -191,15 +218,19 @@ public class Consola {
 
         System.out.println("Reservas actuales: ");
         System.out.println(protocol.getTicketsForThisUser());
-
+        System.out.println("\n\n\n\n");
 
     }
 
     private static int getPassengerQuantity(){
         int cantidadDePasajeros;
         try {
-            cantidadDePasajeros = mainScanner.getInt("Ingrese cantidad de pasajeros: ");
+            cantidadDePasajeros = mainScanner.getInt("Ingrese cantidad de pasajeros (max 5): ");
             if (cantidadDePasajeros < 1) {
+                throw new InvalidPassengersQuantity("Cantidad de pasajeros invalida.");
+            }
+
+            if(cantidadDePasajeros > 5){
                 throw new InvalidPassengersQuantity("Cantidad de pasajeros invalida.");
             }
         }catch(InvalidPassengersQuantity e){
