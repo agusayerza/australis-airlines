@@ -26,4 +26,6 @@ public interface Servicios {
     public boolean administradorPuedeVender(int dni);
 
     boolean esAdmin(int dni);
+
+    void crearAvion(Avion avion);
 }

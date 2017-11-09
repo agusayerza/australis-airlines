@@ -1,8 +1,10 @@
+import avion.Avion;
 import personas.Administrador;
 import personas.Pasajero;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Protocol {
@@ -38,5 +40,13 @@ public class Protocol {
 
     public boolean esAdmin(int dni){
         return server.esAdmin(dni);
+    }
+
+    public void crearAvion(Avion avion){
+        server.crearAvion(avion);
+    }
+
+    public void agregarVuelo(Vuelo vuelo){
+        server.agregarVuelo(vuelo.getStartDate(),vuelo.getDuracionDeVuelo(),vuelo.getEndDate(),vuelo.getAeropuertoDePartida(),vuelo.getAeropuertoDeArribo(),vuelo.getCodigoDeVuelo(),vuelo.getAvion(),vuelo.getPricing(),vuelo.getPiloto());
     }
 }

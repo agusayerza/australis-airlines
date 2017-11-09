@@ -199,4 +199,11 @@ public class MockServer implements Servicios{
         }
         return false;
     }
+
+    @Override
+    public void crearAvion(Avion avion) {
+        aviones.add(avion);
+    }
+
+
 }
