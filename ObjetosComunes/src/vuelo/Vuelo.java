@@ -261,7 +261,8 @@ public class Vuelo {
         String result = "";
         String firstDate = startDate.getDayOfWeek().toString();
         String lastDate = endDate.toString();
-        result += firstDate + " || " + aeropuertoDePartida + " ---> " + aeropuertoDeArribo + " hasta: " + lastDate;
+        String startHour = startDate.getHour()+ ":" +startDate.getMinute();
+        result += firstDate +" Horario:"+ startHour + " || " + aeropuertoDePartida + " ---> " + aeropuertoDeArribo + " hasta: " + lastDate;
         return result;
     }
 }
