@@ -52,9 +52,9 @@ public class Consola {
     }
 
     public static void loopMenuPrincipal() throws MenuInvalidOptionSelectedException {
-        String[] opcionesMenuPrincipal = new String[3];
+        String[] opcionesMenuPrincipal = new String[4];
 
-        opcionesMenuPrincipal[0] = "Crear Vuelo";
+        opcionesMenuPrincipal[0] = "Crear Avion";
         opcionesMenuPrincipal[1] = "Vender Pasajes";
         opcionesMenuPrincipal[2] = "Ver Reservas del Cliente";
         opcionesMenuPrincipal[3] = "Salir";
