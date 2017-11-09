@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Consola {
@@ -299,15 +300,20 @@ public class Consola {
     public static void crearVuelo(){
         int contador = 0;
         String nombreMenuAviones = "Menu aviones:";
-        LocalDateTime startDayTime = LocalDateTime.now();
+        //LocalDateTime startDayTime = LocalDateTime.now();
+
         int dur = mainScanner.getInt("Ingrese la duracion del vuelo EN HORAS:");
         if (dur <= 0){
             throw new RuntimeException("No puede ingresar una duracion de vuelo menor o igual a 0");
         }
+        LocalDate startDate = mainScanner.getLocalDate("Ingrese la fecha de inicio del vuelo en formato (dd/mm/yy):");
+        LocalTime hora = LocalTime.parse(mainScanner.getString("Ingrese el horario de despegue del vuelo (format HH:MM): "));
+        LocalDateTime dateInicio = LocalDateTime.of(startDate,hora);
+
         Duration duration = Duration.ofHours(dur);
         LocalDate endDate = mainScanner.getLocalDate("Ingrese la fecha de finalizacion del vuelo en formato (dd/mm/yy):");
-        String aeropuertoDePartida = mainScanner.getString("Ingrese el aeropuerto de partida:");
-        String aeropuertoDeArribo = mainScanner.getString("Ingrese el aeropuerto de arribo:");
+        String aeropuertoDePartida = mainScanner.getString("Ingrese el aeropuerto de partida:").toUpperCase();
+        String aeropuertoDeArribo = mainScanner.getString("Ingrese el aeropuerto de arribo:").toUpperCase();
         String codigoDeVuelo = mainScanner.getString("Ingrese el codigo de vuelo:");
         ArrayList<Avion> aviones = protocol.getListaDeAviones();
         String[] patentesDeAviones = new String[aviones.size()];
@@ -330,7 +336,8 @@ public class Consola {
         int dniPiloto = mainScanner.getInt("Ingrese el DNI del piloto:");
         Piloto piloto = new Piloto(dniPiloto);
 
-        Vuelo unVuelo = new Vuelo(startDayTime, duration, endDate, aeropuertoDePartida, aeropuertoDeArribo, codigoDeVuelo, avion, pricing, piloto);
+        Vuelo unVuelo = new Vuelo(dateInicio, duration, endDate, aeropuertoDePartida, aeropuertoDeArribo, codigoDeVuelo, avion, pricing, piloto);
+        protocol.agregarVuelo(unVuelo);
 
     }
 
@@ -340,7 +347,7 @@ public class Consola {
         int opcionPatenteSeleccionada = menuAviones.pedirOpcionAlUsuario();
         Avion avion;
         for (Avion unAvion: aviones) {
-            if(unAvion.getPatente() == patentesDeAviones[opcionPatenteSeleccionada]){
+            if(unAvion.getPatente() == patentesDeAviones[opcionPatenteSeleccionada-1]){
                 return unAvion;
             }
         }
