@@ -25,4 +25,6 @@ public interface Servicios {
 
     public ArrayList<Piloto> getListaDePilotos();
 
+    public boolean validarDniPiloto(int dni);
+
 }

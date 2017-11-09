@@ -20,8 +20,8 @@ public class Piloto extends Persona{
             if(vuelo.equals(unVuelo)){
                 throw new RuntimeException("Ya posee el vuelo en su lista de vuelos.");
             }
-            listaDeVuelos.add(unVuelo);
         }
+        listaDeVuelos.add(unVuelo);
     }
 
     public void quitarVuelo(Vuelo unVuelo){

@@ -1,4 +1,7 @@
 
+import avion.Avion;
+import avion.Clase;
+import catalogo.Pricing;
 import customExceptions.InvalidPassengersQuantity;
 import customExceptions.MenuInvalidOptionSelectedException;
 import customExceptions.SeatAlreadyOccupiedException;
@@ -164,6 +167,12 @@ public class Consola {
             String asiento = "";
             while (seleccionarAsiento){
                 System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
+                Pricing pricing = vueloSeleccionado.getPricing();
+                Avion avion = vueloSeleccionado.getAvion();
+
+                for (Clase clase: avion.getClases()) {
+                    System.out.println("Precio clase " + clase.getNombreDeClase() + ": " + pricing.getPrecioDeClase(clase.getNombreDeClase()));
+                }
                 asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
 
                 if(vueloSeleccionado.validarAsiento(asiento)){

@@ -32,6 +32,10 @@ public class MockServer implements Servicios{
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
+        listaPilotos.add(piloto);
+        listaPilotos.add(otroPiloto);
+        listaPilotos.add(unPiloto);
+
 
         Clase clase = new Clase(1,21,3,"Primera");
         clases = new Clase[1];
@@ -190,12 +194,10 @@ public class MockServer implements Servicios{
         boolean dniExistente = false;
         for(Piloto piloto : listaPilotos){
             if(piloto.getDni() == dni){
-                dniExistente = true;
-            } else {
-                throw new RuntimeException("Piloto no encontrado.");
+                return true;
             }
         }
-        return dniExistente;
+        throw new RuntimeException("Piloto no encontrado.");
     }
 }
 

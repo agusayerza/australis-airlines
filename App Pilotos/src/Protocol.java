@@ -3,6 +3,7 @@ import personas.Persona;
 import personas.Piloto;
 import vuelo.Vuelo;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,15 +23,7 @@ public class Protocol {
     }
 
     public boolean validarDniPiloto(int dni){
-        boolean dniExistente = false;
-        for(Piloto piloto : server.getListaDePilotos()){
-            if(piloto.getDni() == dni){
-                dniExistente = true;
-            } else {
-                throw new RuntimeException("Piloto no encontrado.");
-            }
-        }
-        return dniExistente;
+        return server.validarDniPiloto(dni);
     }
 
     private int getDNI(){
