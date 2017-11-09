@@ -3,9 +3,13 @@ import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.*;
 import personas.Pasajero;
+import personas.Piloto;
 import vuelo.Vuelo;
 
+import java.lang.reflect.Array;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Consola {
@@ -156,12 +160,12 @@ public class Consola {
         Menu menuVuelos = new Menu(vuelos,"Vuelos encontrados");
 
         System.out.println(menuVuelos.strPrintMenu());
-        int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
+        int opcionVueloSeleccionado = menuVuelos.pedirOpcionAlUsuario();
 
         i = 1;
         Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
-            if(i == opcionvueloseleccionado){
+            if(i == opcionVueloSeleccionado){
                 vueloSeleccionado = vuelo;
                 System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
                 break;
@@ -243,6 +247,57 @@ public class Consola {
             }
         }
         return givenDNI;
+    }
+
+    public void crearVuelo(){
+        int contador = 0;
+        String nombreMenuAviones = "Menu aviones:";
+        LocalDateTime startDayTime = LocalDateTime.now();
+        int dur = mainScanner.getInt("Ingrese la duracion del vuelo EN HORAS:");
+        if (dur <= 0){
+            throw new RuntimeException("No puede ingresar una duracion de vuelo menor o igual a 0");
+        }
+        Duration duration = Duration.ofHours(dur);
+        LocalDate endDate = mainScanner.getLocalDate("Ingrese la fecha de finalizacion del vuelo en formato (dd/mm/yy):");
+        String aeropuertoDePartida = mainScanner.getString("Ingrese el aeropuerto de partida:");
+        String aeropuertoDeArribo = mainScanner.getString("Ingrese el aeropuerto de arribo:");
+        String codigoDeVuelo = mainScanner.getString("Ingrese el codigo de vuelo:");
+        ArrayList<Avion> aviones = protocol.getListaDeAviones();
+        String[] patentesDeAviones = new String[aviones.size()];
+        for (Avion avion : aviones ) {
+            patentesDeAviones[contador] = avion.getPatente();
+            contador++;
+        }
+        Avion avion = askForPlane(patentesDeAviones,aviones);
+
+        double[] pricings = new double[avion.getClases().length];
+
+        int x = 0;
+
+        for (Clase clase : avion.getClases()) {
+            pricings[x] = mainScanner.getDouble("Ingrese el precio de la clase " + clase.getNombreDeClase() + ": ");
+            x++;
+        }
+        Pricing pricing = new Pricing(avion, pricings);
+
+        int dniPiloto = mainScanner.getInt("Ingrese el DNI del piloto:");
+        Piloto piloto = new Piloto(dniPiloto);
+
+        Vuelo unVuelo = new Vuelo(startDayTime, duration, endDate, aeropuertoDePartida, aeropuertoDeArribo, codigoDeVuelo, avion, pricing, piloto);
+
+    }
+
+    public Avion askForPlane(String[] patentesDeAviones, ArrayList<Avion> aviones){
+        Menu menuAviones = new Menu(patentesDeAviones, "Menu aviones:");
+        System.out.println(menuAviones.strPrintMenu());
+        int opcionPatenteSeleccionada = menuAviones.pedirOpcionAlUsuario();
+        Avion avion;
+        for (Avion unAvion: aviones) {
+            if(unAvion.getPatente() == patentesDeAviones[opcionPatenteSeleccionada]){
+                return unAvion;
+            }
+        }
+        throw new RuntimeException("404 Avion not found.");
     }
 }
 

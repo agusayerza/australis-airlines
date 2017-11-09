@@ -1,3 +1,4 @@
+import avion.Avion;
 import personas.Administrador;
 import personas.Pasajero;
 import vuelo.Vuelo;
@@ -38,5 +39,9 @@ public class Protocol {
 
     public boolean esAdmin(int dni){
         return server.esAdmin(dni);
+    }
+
+    public ArrayList<Avion> getListaDeAviones(){
+        return server.getListaDeAviones();
     }
 }

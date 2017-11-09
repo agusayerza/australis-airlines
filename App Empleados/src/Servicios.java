@@ -26,4 +26,6 @@ public interface Servicios {
     public boolean administradorPuedeVender(int dni);
 
     boolean esAdmin(int dni);
+
+    public ArrayList<Avion> getListaDeAviones();
 }

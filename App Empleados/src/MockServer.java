@@ -199,4 +199,9 @@ public class MockServer implements Servicios{
         }
         return false;
     }
+
+    @Override
+    public ArrayList<Avion> getListaDeAviones() {
+        return aviones;
+    }
 }
