@@ -234,6 +234,8 @@ public class MockServer implements Servicios{
         ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
         aero.remove(aeropuertoB);
         aeropuertos.remove(aeropuertoA);
-        aeropuertos.put(aeropuertoA,aero);
+        if(aero.size() > 0){
+            aeropuertos.put(aeropuertoA,aero);
+        }
     }
 }
