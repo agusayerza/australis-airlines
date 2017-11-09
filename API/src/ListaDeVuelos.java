@@ -30,6 +30,7 @@ public class ListaDeVuelos {
         }
 
         lista.add(vuelo);
+        verificarAddVuelo(vuelo);
         codigosDeVuelo.add(vuelo.getCodigoDeVuelo());
     }
 
