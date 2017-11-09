@@ -114,6 +114,19 @@ public class Consola {
     private static void reserveFlight(String aeropuertoSalida, String aeropuertoLlegada, LocalDate fechaDeSalida){
 
 
+//        String[] opcionesEscalas = new String[4];
+//
+//        opcionesEscalas[0] = "Sin escalas";
+//        opcionesEscalas[1] = "Una escala";
+//        opcionesEscalas[2] = "Dos escalas";
+//        opcionesEscalas[3] = "Tres escalas";
+//
+//        Menu menuEscalas = new Menu(opcionesEscalas,"Seleccione cuantas escalas desea:");
+//        System.out.println(menuEscalas.strPrintMenu());
+//
+//        int escalas = menuEscalas.pedirOpcionAlUsuario();
+
+
         ArrayList<Vuelo> posiblesVuelos = new ArrayList<>();
         posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida);
 
@@ -134,60 +147,54 @@ public class Consola {
         System.out.println(menuVuelos.strPrintMenu());
         int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
-        int cantidadDePasajeros = 1;
-
         i = 1;
         Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
             if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
                 System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
-
-
-                cantidadDePasajeros = getPassengerQuantity();
-
                 break;
             }
             i++;
         }
-        for (int j = 0; j < cantidadDePasajeros; j++) {
-            Pasajero pasajero = new Pasajero(getDNI(false));
 
-            //TODO: Esto es despues de que se seleccione un posible vuelo
-            String[] opcionesCategoria = new String[3];
-            opcionesCategoria[0] = "Cualquiera";
+        Pasajero pasajero = new Pasajero(getDNI(false));
 
-            boolean seleccionarAsiento = true;
-            String asiento = "";
-            while (seleccionarAsiento){
-                System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
-                Pricing pricing = vueloSeleccionado.getPricing();
-                Avion avion = vueloSeleccionado.getAvion();
+        //TODO: Esto es despues de que se seleccione un posible vuelo
+        String[] opcionesCategoria = new String[3];
+        opcionesCategoria[0] = "Cualquiera";
 
-                for (Clase clase: avion.getClases()) {
-                    System.out.println("Precio clase " + clase.getNombreDeClase() + ": " + pricing.getPrecioDeClase(clase.getNombreDeClase()));
-                }
-                asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
+        boolean seleccionarAsiento = true;
+        String asiento = "";
+        while (seleccionarAsiento){
+            System.out.println(vueloSeleccionado.getAsientoLayout(fechaDeSalida));
+            Pricing pricing = vueloSeleccionado.getPricing();
+            Avion avion = vueloSeleccionado.getAvion();
 
-                if(vueloSeleccionado.validarAsiento(asiento)){
-                    try {
-                        protocol.sellTicket(vueloSeleccionado.getCodigoDeVuelo(),asiento,fechaDeSalida, pasajero);
-                        seleccionarAsiento = false;
-                    }catch (SeatNonexistentException | SeatAlreadyOccupiedException e){
-                        System.out.println(e.getMessage());
-                    }
+            for (Clase clase: avion.getClases()) {
+                System.out.println("Precio clase " + clase.getNombreDeClase() + ": " + pricing.getPrecioDeClase(clase.getNombreDeClase()));
+            }
+            asiento = mainScanner.getString("Seleccione el asiento deseado: ").toUpperCase();
+
+            if(vueloSeleccionado.validarAsiento(asiento)){
+                try {
+                    protocol.sellTicket(vueloSeleccionado.getCodigoDeVuelo(),asiento,fechaDeSalida, pasajero);
+                    seleccionarAsiento = false;
+                }catch (SeatNonexistentException | SeatAlreadyOccupiedException e){
+                    System.out.println(e.getMessage());
                 }
             }
-
-            System.out.println("Asiento " + asiento + " vendido a " + DNI);
-            System.out.println();
         }
+
+        System.out.println("Asiento " + asiento + " vendido a " + DNI);
+        System.out.println();
 
         System.out.println("Reservas actuales: ");
         System.out.println(protocol.getTicketsForThisUser());
         System.out.println("\n\n\n\n");
 
     }
+
 
     private static int getPassengerQuantity(){
         int cantidadDePasajeros;

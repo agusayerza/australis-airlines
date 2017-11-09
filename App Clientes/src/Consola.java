@@ -170,23 +170,16 @@ public class Consola {
         System.out.println(menuVuelos.strPrintMenu());
         int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
-        int cantidadDePasajeros = 1;
-
         i = 1;
         Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
             if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
                 System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
-
-
-                cantidadDePasajeros = getPassengerQuantity();
-
                 break;
             }
             i++;
         }
-        for (int j = 0; j < cantidadDePasajeros; j++) {
             Pasajero pasajero = new Pasajero(getDNI(false));
 
             //TODO: Esto es despues de que se seleccione un posible vuelo
@@ -217,7 +210,6 @@ public class Consola {
 
             System.out.println("Asiento " + asiento + " vendido a " + DNI);
             System.out.println();
-        }
 
         System.out.println("Reservas actuales: ");
         System.out.println(protocol.getTicketsForThisUser());
