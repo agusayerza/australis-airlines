@@ -3,6 +3,7 @@ import avion.Avion;
 import catalogo.Pricing;
 import personas.Pasajero;
 import personas.Piloto;
+import vuelo.Pasaje;
 import vuelo.Vuelo;
 
 import java.time.Duration;
@@ -22,7 +23,7 @@ public interface Servicios {
 
     String getReservasCliente(Pasajero pasajero);
 
-    void writeFile(ArrayList<String> pasajes);
+    void writeFile(ArrayList<Pasaje> pasajes);
 
-    void readFile(ArrayList<String> pasajes);
+    void readFile(ArrayList<Pasaje> pasajes);
 }
