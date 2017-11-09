@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Protocol {
-    int userDNI;
     Servicios server;
-    Administrador user;
 
     public Protocol() {
         server = new MockServer();

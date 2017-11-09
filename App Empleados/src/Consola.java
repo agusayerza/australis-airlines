@@ -210,11 +210,11 @@ public class Consola {
             }
         }
 
-        System.out.println("Asiento " + asiento + " vendido a " + pasajeroDNI);
+        System.out.println("Asiento " + asiento + " vendido a " + pasajero.getDni());
         System.out.println();
 
         System.out.println("Reservas actuales: ");
-        System.out.println(protocol.getTicketsForThisUser(pasajeroDNI));
+        System.out.println(protocol.getTicketsForThisUser(pasajero.getDni()));
         System.out.println("\n\n\n\n");
 
     }
