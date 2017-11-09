@@ -1,10 +1,7 @@
 import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
-import customExceptions.InvalidPassengersQuantity;
-import customExceptions.MenuInvalidOptionSelectedException;
-import customExceptions.SeatAlreadyOccupiedException;
-import customExceptions.SeatNonexistentException;
+import customExceptions.*;
 import personas.Pasajero;
 import vuelo.Vuelo;
 
@@ -65,10 +62,15 @@ public class Consola {
 
         switch (option) {
             case 1:
-                searchFlightForReservation();
+                if(protocol.getAdministradorPuedeVender(DNI)) {
+                    searchFlightForReservation();
+                } else {
+                    System.out.println("Usted no esta habiltiado para vender pasajes.");
+                }
                 break;
             case 2:
                 protocol.getTicketsForThisUser(pasajeroDNI);
+
                 break;
             case 3:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;

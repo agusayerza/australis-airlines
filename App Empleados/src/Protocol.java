@@ -15,12 +15,12 @@ public class Protocol {
 
     }
 
-    public String getTicketsForThisUser(int dni){
+    public String getTicketsForThisUser(int dni) {
         Pasajero pasajero = new Pasajero(dni);
         return server.getReservasCliente(pasajero);
     }
 
-    public ArrayList<Vuelo> getPossibleFlights(String from, String to, LocalDate fechaSalida){
+    public ArrayList<Vuelo> getPossibleFlights(String from, String to, LocalDate fechaSalida) {
 
         ArrayList<Vuelo> result = new ArrayList<>();
         result = server.getFlightsOnDateFromToDestination(fechaSalida, from, to);
@@ -29,7 +29,11 @@ public class Protocol {
         return result;
     }
 
-    public void sellTicket(String codigoDeVuelo, String asiento, LocalDate date, Pasajero pasajero){
-        server.venderAsiento(codigoDeVuelo,asiento, pasajero, date);
+    public void sellTicket(String codigoDeVuelo, String asiento, LocalDate date, Pasajero pasajero) {
+        server.venderAsiento(codigoDeVuelo, asiento, pasajero, date);
+    }
+
+    public boolean getAdministradorPuedeVender(int dni) {
+        return server.administradorPuedeVender(dni);
     }
 }

@@ -177,4 +177,14 @@ public class MockServer implements Servicios{
 
         return result;
     }
+
+    @Override
+    public boolean administradorPuedeVender(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getArea().getCapacidadDeVender()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
