@@ -1,9 +1,8 @@
-import avion.Asiento;
+
 import avion.Avion;
 import catalogo.Pricing;
 import personas.Pasajero;
 import personas.Piloto;
-import vuelo.Pasaje;
 import vuelo.Vuelo;
 
 import java.time.Duration;
@@ -22,8 +21,4 @@ public interface Servicios {
     void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo,String codigoDeVuelo, Avion avion,Pricing pricing, Piloto piloto);
 
     String getReservasCliente(Pasajero pasajero);
-
-    void writeFile(ArrayList<Pasaje> pasajes);
-
-    void readFile(ArrayList<Pasaje> pasajes);
 }

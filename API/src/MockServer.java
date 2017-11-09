@@ -4,10 +4,8 @@ import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
 import personas.Piloto;
-import vuelo.Pasaje;
 import vuelo.Vuelo;
 
-import java.io.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -174,38 +172,6 @@ public class MockServer implements Servicios{
         return result;
     }
 
-    @Override
-    public void writeFile(ArrayList<Pasaje> pasajes) {
-        try {
-            FileOutputStream fos = new FileOutputStream("pasajes.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            for (Pasaje pasaje : pasajes) {
-                oos.writeObject(pasaje);
-                oos.reset();
-            }
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void readFile(ArrayList<Pasaje> pasajes) {
-        try {
-            FileInputStream fis = new FileInputStream("pasajes.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Object obj = null;
-            while ((obj = ois.readObject()) != null) {
-                if (obj instanceof Pasaje) {
-                    pasajes.add(((Pasaje) obj));
-                }
-            }
-            ois.close();
-        } catch (EOFException ignored) {
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void verificarAddVuelo(Vuelo vuelo) {
         String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
