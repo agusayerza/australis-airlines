@@ -50,7 +50,7 @@ public class MockServer implements Servicios{
 
         aviones.add(avion);
 
-        double precio[] = new double[1];
+        double precio[] = new double[3];
         precio[0] = 199.3;
         precio[1] = 150.22;
         precio[2] = 80.9;
