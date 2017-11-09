@@ -34,6 +34,8 @@ public class Consola {
 
         protocol = new Protocol(DNI);
 
+
+
         //TODO: Preguntar si el concepto de progRun esta bien.
         while(programRun){
             try{

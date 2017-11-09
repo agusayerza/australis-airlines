@@ -11,7 +11,7 @@ import java.util.Map;
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
     ArrayList<String> codigosDeVuelo;
-    Map<String, ArrayList<String>> aeropuertos;
+    HashMap<String, ArrayList<String>> aeropuertos;
 
     public ListaDeVuelos() {
         lista = new ArrayList<>();
@@ -45,6 +45,15 @@ public class ListaDeVuelos {
                 codigosDeVuelo.remove(codigoDeVuelo);
             }
         }
+    }
+
+    public Vuelo SearchFlight(String aeropuertoSalida, String aeropuertoLlegada){
+        for (Vuelo vuelo:lista             ) {
+            if(vuelo.getAeropuertoDePartida().equals(aeropuertoSalida) && vuelo.getAeropuertoDeArribo().equals(aeropuertoLlegada)){
+                return vuelo;
+            }
+        }
+        throw new RuntimeException("No flight available");
     }
 
     public ArrayList<Vuelo> getFlightsOnDate(LocalDate date){
@@ -115,7 +124,7 @@ public class ListaDeVuelos {
         } //lo pense asi, si queres cambia lo que quieras
     }
 
-    public Map getAeropuertos() {
+    public HashMap getAeropuertos() {
         return aeropuertos;
     }
 

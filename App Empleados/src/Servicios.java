@@ -24,4 +24,6 @@ public interface Servicios {
     String getReservasCliente(Pasajero pasajero);
 
     public boolean administradorPuedeVender(int dni);
+
+    boolean esAdmin(int dni);
 }

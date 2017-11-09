@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Consola {
-    Menu menuPrincipal;
     static Protocol protocol;
     static Scanner mainScanner;
     static int DNI;
@@ -21,19 +20,23 @@ public class Consola {
         mainScanner = new Scanner();
 
         System.out.println("Aplicacion de Empleados de Australis Airlines");
+        protocol = new Protocol();
 
         boolean validDNI = false;
         while (!validDNI) {
             DNI = mainScanner.getInt("Ingrese su DNI:");
-            pasajeroDNI = mainScanner.getInt("Ingrese el DNI del comprador:");
             if ( (DNI > 999999) && (DNI < 100000000) ) {
-                validDNI = true;
+                if(protocol.esAdmin(DNI)){
+                    validDNI = true;
+                } else {
+                    System.out.println("Ese DNI no pertenece a un administrador");
+                }
             } else {
                 System.out.println("DNI invalido, vuelva a ingresarlo");
             }
         }
 
-        protocol = new Protocol();
+
 
         //Lo puse porque agus lo puso
         while (programRun) {
@@ -68,12 +71,16 @@ public class Consola {
                     System.out.println("Usted no esta habiltiado para vender pasajes.");
                 }
                 break;
+
             case 2:
-                System.out.println( protocol.getTicketsForThisUser(pasajeroDNI) );
+                int DNICliente = mainScanner.getInt("Ingrese el DNI para el cual quiere ver los pasajes: ");
+                System.out.println( protocol.getTicketsForThisUser(DNICliente) );
                 break;
+
             case 3:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;
                 break;
+
             default:
                 throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
@@ -90,10 +97,9 @@ public class Consola {
         LocalDate fechaDeSalida;
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
-        boolean roundTrip = false;
-        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta?");
+        boolean roundTrip;
+        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta? (Y/N) ");
         if(roundTrip){
-
             LocalDate fechaDeVuelta;
             fechaDeVuelta = mainScanner.getLocalDate("Ingrese fecha de vuelta(formato dd/MM/yy):");
 

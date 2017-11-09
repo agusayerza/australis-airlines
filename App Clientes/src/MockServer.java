@@ -4,12 +4,15 @@ import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
 import personas.Piloto;
+import vuelo.PaqueteDeVuelos;
 import vuelo.Vuelo;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MockServer implements Servicios{
 
@@ -17,6 +20,7 @@ public class MockServer implements Servicios{
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
     ArrayList<Piloto> listaPilotos = new ArrayList<>();
     ArrayList<Avion> aviones = new ArrayList<>();
+    HashMap<String, ArrayList<String>> aeropuertos = new HashMap<>();
 
     public MockServer() {
         LocalDateTime tiempo;
@@ -137,6 +141,7 @@ public class MockServer implements Servicios{
         Vuelo vuelo = new Vuelo(tiempo, duracion,  ultimaFechaDeVuelo,aeropuertoSalida,aeropuertoArribo,codigoDeVuelo,avion,pricing,piloto);
 
         listaDeVuelos.add(vuelo);
+        verificarAddVuelo(vuelo);
         codigosDeVuelo.add(codigoDeVuelo);
 
         boolean pilotoEncontrado = false;
@@ -167,4 +172,40 @@ public class MockServer implements Servicios{
 
         return result;
     }
+
+
+    public void verificarAddVuelo(Vuelo vuelo) {
+        String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
+        String aeropuertoB = vuelo.getAeropuertoDeArribo(); //aeropuerto B
+
+        if ( !( aeropuertos.containsKey(aeropuertoA) ) ) {                      //verifica si el hashMap NO contiene el AL del aeropuerto A
+            ArrayList<String> aero = new ArrayList<String>();                        //si no, lo crea
+            aero.add(aeropuertoB);
+            aeropuertos.put(aeropuertoA, aero);                                 //y lo agrega
+            //y le agrega el aeropuerto B
+        } else if ( !( aeropuertos.get(aeropuertoA).contains(aeropuertoB) ) ){  //si exite el AL del aeropuerto A, verifica si NO contiene B
+            ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
+            aero.add(aeropuertoB);
+            aeropuertos.remove(aeropuertoA);
+            aeropuertos.put(aeropuertoA,aero);
+        } //lo pense asi, si queres cambia lo que quieras
+    }
+
+    public HashMap getAeropuertos() {
+        return aeropuertos;
+    }
+
+    public void verificarRemoveVuelo(Vuelo vuelo) {
+        String aeropuertoA = vuelo.getAeropuertoDePartida();
+        String aeropuertoB = vuelo.getAeropuertoDeArribo();
+
+        ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
+        aero.remove(aeropuertoB);
+        aeropuertos.remove(aeropuertoA);
+        if(aero.size() > 0){
+            aeropuertos.put(aeropuertoA,aero);
+        }
+    }
+
 }
+

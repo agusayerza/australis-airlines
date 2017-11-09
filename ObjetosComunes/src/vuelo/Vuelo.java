@@ -257,6 +257,25 @@ public class Vuelo {
         return false;
     }
 
+
+    public LocalDate getNextFlightWithSpace(LocalDate date){
+        LocalDate result = searchNextDay(date);
+            if(hasFreeSeats(result)){
+                return result;
+            }else{
+               return getNextFlightWithSpace(result.plusDays(1));
+            }
+
+    }
+
+    private LocalDate searchNextDay(LocalDate date){
+        if(date.getDayOfWeek().equals(startDate.getDayOfWeek())){
+            return date;
+        }else{
+            return searchNextDay(date.plusDays(1));
+        }
+
+    }
     public Avion getAvion() {
         return avion;
     }

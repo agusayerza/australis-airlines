@@ -3,6 +3,8 @@ import avion.Clase;
 import catalogo.Pricing;
 import personas.Pasajero;
 import personas.Piloto;
+import sun.security.krb5.internal.PAData;
+import vuelo.PaqueteDeVuelos;
 import vuelo.Pasaje;
 import vuelo.Vuelo;
 
@@ -11,6 +13,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Catalogo {
 
@@ -18,6 +21,8 @@ public class Catalogo {
     ArrayList<Piloto> listaPilotos;
     ArrayList<String> codigosDeVuelo;
     ArrayList<Pasaje> listaPasajes = new ArrayList<>();
+
+
     public Catalogo() {
 
         readFile(listaPasajes);
@@ -108,7 +113,39 @@ public class Catalogo {
         return vuelos.getFlightsOnDateFromToDestination(date,aeropuertoDePartida,aeropuertoDeArribo);
     }
 
-    public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
+    public ArrayList<PaqueteDeVuelos> buscarVueloConEscalas(String aeropuertoDeSalida, String aeropuertoDeLlegada, int escalasMaximas, LocalDate fechaSalida){
+        ArrayList<PaqueteDeVuelos> paquetes = new ArrayList<>();
+
+        for (Vuelo vuelo: getFlightsOnDateFromToDestination(fechaSalida,aeropuertoDeSalida,aeropuertoDeLlegada)) {
+            PaqueteDeVuelos paquete = new PaqueteDeVuelos();
+            paquete.addVuelo(vuelo);
+        }
+
+        if(escalasMaximas == 0){
+            return paquetes;
+        }
+
+        HashMap<String, ArrayList<String>> aeropuertos = vuelos.getAeropuertos();
+        for (String aeropuertoB : aeropuertos.get(aeropuertoDeSalida)) {
+            if(getFlightsOnDateFromToDestination(fechaSalida.plusDays(1),aeropuertoB,aeropuertoDeLlegada).size() != 0 && getFlightsOnDateFromToDestination(fechaSalida,aeropuertoDeSalida,aeropuertoB).size() != 0){
+                for (Vuelo vuelo: getFlightsOnDateFromToDestination(fechaSalida,aeropuertoDeSalida,aeropuertoB)) {
+                    for (Vuelo vueloB : getFlightsOnDateFromToDestination(fechaSalida,aeropuertoB,aeropuertoDeLlegada)) {
+                        PaqueteDeVuelos paquete = new PaqueteDeVuelos();
+                        paquete.addVuelo(vuelo);
+                        paquete.addVuelo(vueloB);
+                        paquetes.add(paquete);
+                    }
+                }
+            }
+        }
+
+        return paquetes;
+
+    }
+
+
+
+        public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
         vuelos.venderAsiento(date,codigoDeVuelo,codigoDeAsiento,pasajero);
         Pasaje pasaje = new Pasaje(codigoDeAsiento,codigoDeVuelo, date, pasajero.getDni());
 

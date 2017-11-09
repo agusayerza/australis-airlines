@@ -12,7 +12,6 @@ public class Protocol {
 
     public Protocol() {
         server = new MockServer();
-
     }
 
     public String getTicketsForThisUser(int dni) {
@@ -35,5 +34,9 @@ public class Protocol {
 
     public boolean getAdministradorPuedeVender(int dni) {
         return server.administradorPuedeVender(dni);
+    }
+
+    public boolean esAdmin(int dni){
+        return server.esAdmin(dni);
     }
 }
