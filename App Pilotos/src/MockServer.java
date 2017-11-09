@@ -32,6 +32,7 @@ public class MockServer implements Servicios{
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
+
         listaPilotos.add(piloto);
         listaPilotos.add(otroPiloto);
         listaPilotos.add(unPiloto);
@@ -50,7 +51,7 @@ public class MockServer implements Servicios{
 
         aviones.add(avion);
 
-        double precio[] = new double[1];
+        double precio[] = new double[3];
         precio[0] = 199.3;
         precio[1] = 150.22;
         precio[2] = 80.9;

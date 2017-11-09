@@ -1,6 +1,8 @@
+import avion.Avion;
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
+import personas.Piloto;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -11,16 +13,61 @@ import java.util.Map;
 public class ListaDeVuelos {
     ArrayList<Vuelo> lista;
     ArrayList<String> codigosDeVuelo;
+    ArrayList<Piloto> pilotos;
+    ArrayList<Avion> aviones;
     HashMap<String, ArrayList<String>> aeropuertos;
 
     public ListaDeVuelos() {
         lista = new ArrayList<>();
         codigosDeVuelo = new ArrayList<>();
         aeropuertos = new HashMap<>();
+        pilotos = new ArrayList<>();
+        aviones = new ArrayList<>();
     }
 
     public ArrayList<Vuelo> getLista() {
         return lista;
+    }
+
+
+    public void agregarAvion(Avion avion){
+        aviones.add(avion);
+    }
+
+    public boolean existeAvion(Avion avion){
+        for (Avion unAvion: aviones) {
+            if(unAvion.getPatente() == avion.getPatente()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void quitarAvion(Avion avion){
+        if(existeAvion(avion)){
+            aviones.remove(avion);
+        }
+    }
+
+    public void agregarPiloto(Piloto piloto){
+        pilotos.add(piloto);
+    }
+
+
+    public boolean existePiloto(Piloto piloto){
+        for (Piloto unPiloto: pilotos
+             ) {
+            if(unPiloto.getDni() == piloto.getDni()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void quitarPiloto(Piloto piloto){
+        if(existePiloto(piloto)){
+            pilotos.remove(piloto);
+        }
     }
 
     public void addVuelo(Vuelo vuelo){
@@ -30,6 +77,14 @@ public class ListaDeVuelos {
 
         lista.add(vuelo);
         verificarAddVuelo(vuelo);
+        if(!existePiloto(vuelo.getPiloto())){
+            pilotos.add(vuelo.getPiloto());
+        }
+
+        if(!existeAvion(vuelo.getAvion())){
+            aviones.add(vuelo.getAvion());
+        }
+
         codigosDeVuelo.add(vuelo.getCodigoDeVuelo());
     }
 
