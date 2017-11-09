@@ -117,14 +117,16 @@ public class Consola {
             fechaDeVuelta = mainScanner.getLocalDate("Ingrese fecha de vuelta(formato dd/MM/yy):");
 
             for (int i = 0; i < passangerQuantity; i++) {
-                System.out.println("----- RESERVA PASAJERO "+ i +" -----");
+                int ii = i+1;
+                System.out.println("----- RESERVA PASAJERO "+ ii +" -----");
                 reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
-                System.out.println(" ---- Reservar vuelta pasajero "+ i +" -----");
+                System.out.println(" ---- Reservar vuelta pasajero "+ ii +" -----");
                 reserveFlight(aeropuertoLlegada, aeropuertoSalida, fechaDeVuelta);
             }
         }else{
             for (int i = 0; i < passangerQuantity; i++) {
-                System.out.println("----- RESERVA PASAJERO "+ i +" -----");
+                int ii = i+1;
+                System.out.println("----- RESERVA PASAJERO "+ ii +" -----");
                 reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
             }
         }
