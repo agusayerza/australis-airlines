@@ -17,6 +17,8 @@ public class Consola {
     static Scanner mainScanner;
     static int DNI;
     static boolean programRun = true;
+    static int pasajeroDNI;
+
 
     public static void main(String[] args) {
         mainScanner = new Scanner();
@@ -26,6 +28,7 @@ public class Consola {
         boolean validDNI = false;
         while (!validDNI) {
             DNI = mainScanner.getInt("Ingrese su DNI:");
+            pasajeroDNI = mainScanner.getInt("Ingrese el DNI del comprador:");
             if ( (DNI > 999999) && (DNI < 100000000) ) {
                 validDNI = true;
             } else {
@@ -33,7 +36,7 @@ public class Consola {
             }
         }
 
-        protocol = new Protocol(DNI);
+        protocol = new Protocol();
 
         //Lo puse porque agus lo puso
         while (programRun) {
@@ -65,7 +68,7 @@ public class Consola {
                 searchFlightForReservation();
                 break;
             case 2:
-                protocol.getTicketsForThisUser();
+                protocol.getTicketsForThisUser(pasajeroDNI);
                 break;
             case 3:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;
@@ -186,11 +189,11 @@ public class Consola {
             }
         }
 
-        System.out.println("Asiento " + asiento + " vendido a " + DNI);
+        System.out.println("Asiento " + asiento + " vendido a " + pasajeroDNI);
         System.out.println();
 
         System.out.println("Reservas actuales: ");
-        System.out.println(protocol.getTicketsForThisUser());
+        System.out.println(protocol.getTicketsForThisUser(pasajeroDNI));
         System.out.println("\n\n\n\n");
 
     }
