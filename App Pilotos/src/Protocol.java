@@ -3,6 +3,7 @@ import personas.Persona;
 import personas.Piloto;
 import vuelo.Vuelo;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,7 +24,8 @@ public class Protocol {
 
     public boolean validarDniPiloto(int dni){
         boolean dniExistente = false;
-        for(Piloto piloto : server.getListaDePilotos()){
+        ArrayList<Piloto> listaPilotos = server.getListaDePilotos();
+        for(Piloto piloto : listaPilotos){
             if(piloto.getDni() == dni){
                 dniExistente = true;
             } else {
