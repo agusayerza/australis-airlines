@@ -270,6 +270,7 @@ public class Consola {
 
             if(cantidadDeAsientos % cantidadDeFilasDeAsientos != 0){
                 System.out.println("Error, la cantidad de asientos debe ser divisible en las filas de asientos.");
+                return;
             }
 
             Clase clase = new Clase(primerFilaDeClase, cantidadDeAsientos, cantidadDeFilasDeAsientos, nombreDeClase);
