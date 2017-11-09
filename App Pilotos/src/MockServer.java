@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class MockServer /*implements Servicios*/{
+public class MockServer implements Servicios{
 
     ArrayList<Vuelo> listaDeVuelos = new ArrayList<>();
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
@@ -182,6 +182,10 @@ public class MockServer /*implements Servicios*/{
     }
 
     @Override
+    public ArrayList<Piloto> getListaDePilotos() {
+        return listaPilotos;
+    }
+
     public boolean validarDniPiloto(int dni){
         boolean dniExistente = false;
         for(Piloto piloto : listaPilotos){
@@ -193,6 +197,5 @@ public class MockServer /*implements Servicios*/{
         }
         return dniExistente;
     }
-
 }
 

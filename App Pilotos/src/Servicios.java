@@ -23,5 +23,6 @@ public interface Servicios {
 
     ArrayList<Vuelo> getVuelosPiloto(Piloto piloto);
 
-    public boolean validarDniPiloto(int dni);
+    public ArrayList<Piloto> getListaDePilotos();
+
 }

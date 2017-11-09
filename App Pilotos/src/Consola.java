@@ -25,9 +25,7 @@ public class Consola {
         //TODO: Sistema de Registro de usuarios? Contraseñas?
         System.out.println("Para empezar, usted debe conectarse");
 
-        DNI = getDNI(true);
-
-        protocol = new Protocol(DNI);
+        protocol = new Protocol();
 
         //TODO: Preguntar si el concepto de progRun esta bien.
         while(programRun){
@@ -61,7 +59,7 @@ public class Consola {
                 System.out.println("Buscando sus vuelos ...");
                 String todosLosVuelos = "";
                 for (Vuelo vuelo: protocol.getFlightsForPilot()) {
-                    todosLosVuelos += vuelo;
+                    todosLosVuelos += vuelo.getInfoVueloPiloto() + "\n";
                 }
                 System.out.println(todosLosVuelos);
                 break;
@@ -73,24 +71,5 @@ public class Consola {
                 throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
     }
-    private static int getDNI(boolean userDNI){
 
-        boolean validDNI = false;
-        int givenDNI = 0;
-
-        while(!validDNI){
-            if(userDNI){
-                givenDNI = mainScanner.getInt("Ingrese su DNI: ");
-            }else{
-                givenDNI = mainScanner.getInt("Ingrese el DNI del pasajero: ");
-            }
-
-            if((givenDNI > 999999) && (givenDNI < 100000000)){
-                validDNI = true;
-            }else {
-                System.out.println("DNI Invalido, vuelva a ingresarlo.");
-            }
-        }
-        return givenDNI;
-    }
 }

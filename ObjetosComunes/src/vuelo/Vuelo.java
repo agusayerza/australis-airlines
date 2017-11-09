@@ -256,4 +256,12 @@ public class Vuelo {
 
         return false;
     }
+
+    public String getInfoVueloPiloto(){
+        String result = "";
+        String firstDate = startDate.getDayOfWeek().toString();
+        String lastDate = endDate.toString();
+        result += firstDate + " || " + aeropuertoDePartida + " ---> " + aeropuertoDeArribo + " hasta: " + lastDate;
+        return result;
+    }
 }
