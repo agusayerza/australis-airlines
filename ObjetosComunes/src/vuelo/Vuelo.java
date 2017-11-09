@@ -257,6 +257,10 @@ public class Vuelo {
         return false;
     }
 
+    public Avion getAvion() {
+        return avion;
+    }
+
     public String getInfoVueloPiloto(){
         String result = "";
         String firstDate = startDate.getDayOfWeek().toString();
