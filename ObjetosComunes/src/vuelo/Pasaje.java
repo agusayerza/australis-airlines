@@ -1,9 +1,9 @@
 package vuelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Pasaje {
+public class Pasaje implements Serializable {
     private String asiento;
     private String vuelo;
 
