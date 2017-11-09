@@ -43,9 +43,14 @@ public class MockServer implements Servicios{
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
 
-        Clase clase = new Clase(1,21,3,"Primera");
-        clases = new Clase[1];
+        Clase clase = new Clase(1,21,7,"Primera");
+        Clase claseBuss = new Clase(7,32,4,"Business");
+        Clase claseEco = new Clase(11,72,8, "Economica");
+
+        clases = new Clase[3];
         clases[0] = clase;
+        clases[1] = claseBuss;
+        clases[2] = claseEco;
 
         avion = new Avion("LV-501",clases);
 
@@ -53,6 +58,9 @@ public class MockServer implements Servicios{
 
         double precio[] = new double[1];
         precio[0] = 199.3;
+        precio[1] = 150.22;
+        precio[2] = 80.9;
+
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
@@ -70,6 +78,7 @@ public class MockServer implements Servicios{
         precio = new double[2];
         precio[0] = 199.3;
         precio[1] = 149.99;
+
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
