@@ -4,6 +4,7 @@ import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
 import personas.Piloto;
+import vuelo.Pasaje;
 import vuelo.Vuelo;
 
 import java.io.*;
@@ -13,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.lang.System.out;
 
 public class MockServer implements Servicios{
 
@@ -176,33 +175,35 @@ public class MockServer implements Servicios{
     }
 
     @Override
-    public void writeFile(ArrayList<String> pasajes) {
+    public void writeFile(ArrayList<Pasaje> pasajes) {
         try {
-            FileWriter fw = new FileWriter("pasajes.txt");
-            PrintWriter pw = new PrintWriter(fw);
-
-            for(String str : pasajes) {
-                pw.println(str);
+            FileOutputStream fos = new FileOutputStream("pasajes.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (Pasaje pasaje : pasajes) {
+                oos.writeObject(pasaje);
+                oos.reset();
             }
-            pw.close();
+            oos.close();
         } catch (IOException e) {
-            out.println("Algo salio mal"); //no deberia pasar nunca
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void readFile(ArrayList<String> pasajes) {
+    public void readFile(ArrayList<Pasaje> pasajes) {
         try {
-            FileReader fr = new FileReader("pasajes.txt");
-            BufferedReader br = new BufferedReader(fr);
-
-            String str;
-            while ( (str = br.readLine()) != null ) {
-                pasajes.add(str);
+            FileInputStream fis = new FileInputStream("pasajes.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object obj = null;
+            while ((obj = ois.readObject()) != null) {
+                if (obj instanceof Pasaje) {
+                    pasajes.add(((Pasaje) obj));
+                }
             }
-            br.close();
-        } catch (IOException e) {
-            out.println("Archivo no encontrado");
+            ois.close();
+        } catch (EOFException ignored) {
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -239,3 +240,4 @@ public class MockServer implements Servicios{
         }
     }
 }
+
