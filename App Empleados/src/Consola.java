@@ -68,7 +68,7 @@ public class Consola {
                 searchFlightForReservation();
                 break;
             case 2:
-                protocol.getTicketsForThisUser(pasajeroDNI);
+                System.out.println( protocol.getTicketsForThisUser(pasajeroDNI) );
                 break;
             case 3:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;
