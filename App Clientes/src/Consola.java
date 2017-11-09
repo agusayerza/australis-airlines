@@ -28,7 +28,7 @@ public class Consola {
         System.out.println("Bienvenido a la aplicacion de Clientes de Australis Airlines");
 
         //TODO: Sistema de Registro de usuarios? Contraseñas?
-        System.out.println("Para empezar, usted debe conectarse");
+        System.out.println("Para empezar, usted debe conectarse.");
 
         DNI = getDNI(true);
 
