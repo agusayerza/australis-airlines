@@ -214,10 +214,13 @@ public class MockServer implements Servicios{
         aviones.add(avion);
     }
 
-
-
     @Override
     public ArrayList<Avion> getListaDeAviones() {
         return aviones;
+    }
+
+    @Override
+    public void agregarVuelo(Vuelo vuelo){
+        listaDeVuelos.add(vuelo);
     }
 }

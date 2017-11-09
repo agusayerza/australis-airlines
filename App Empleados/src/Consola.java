@@ -56,12 +56,13 @@ public class Consola {
     }
 
     public static void loopMenuPrincipal() throws MenuInvalidOptionSelectedException {
-        String[] opcionesMenuPrincipal = new String[4];
+        String[] opcionesMenuPrincipal = new String[5];
 
         opcionesMenuPrincipal[0] = "Crear Avion";
-        opcionesMenuPrincipal[1] = "Vender Pasajes";
-        opcionesMenuPrincipal[2] = "Ver Reservas del Cliente";
-        opcionesMenuPrincipal[3] = "Salir";
+        opcionesMenuPrincipal[1] = "Agregar nuevo vuelo";
+        opcionesMenuPrincipal[2] = "Vender Pasajes";
+        opcionesMenuPrincipal[3] = "Ver Reservas del Cliente";
+        opcionesMenuPrincipal[4] = "Salir";
 
         Menu menuPrincipal = new Menu(opcionesMenuPrincipal, "Menu Principal");
 
@@ -73,6 +74,9 @@ public class Consola {
                 crearAvion();
                 break;
             case 2:
+                crearVuelo();
+                break;
+            case 3:
                 if(protocol.getAdministradorPuedeVender(DNI)) {
                     searchFlightForReservation();
                 } else {
@@ -80,12 +84,12 @@ public class Consola {
                 }
                 break;
 
-            case 3:
+            case 4:
                 int DNICliente = mainScanner.getInt("Ingrese el DNI para el cual quiere ver los pasajes: ");
                 System.out.println( protocol.getTicketsForThisUser(DNICliente) );
                 break;
 
-            case 4:
+            case 5:
                 programRun = false; //Preguntar a Agus como funciona esto que no entendi ;-;
                 break;
 
@@ -292,7 +296,7 @@ public class Consola {
         System.out.println("Avion " + patente + " creado con exito.");
     }
 
-    public void crearVuelo(){
+    public static void crearVuelo(){
         int contador = 0;
         String nombreMenuAviones = "Menu aviones:";
         LocalDateTime startDayTime = LocalDateTime.now();
@@ -330,7 +334,7 @@ public class Consola {
 
     }
 
-    public Avion askForPlane(String[] patentesDeAviones, ArrayList<Avion> aviones){
+    public static Avion askForPlane(String[] patentesDeAviones, ArrayList<Avion> aviones){
         Menu menuAviones = new Menu(patentesDeAviones, "Menu aviones:");
         System.out.println(menuAviones.strPrintMenu());
         int opcionPatenteSeleccionada = menuAviones.pedirOpcionAlUsuario();

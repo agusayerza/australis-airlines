@@ -29,6 +29,8 @@ public interface Servicios {
 
     void crearAvion(Avion avion);
 
-    public ArrayList<Avion> getListaDeAviones();
+    ArrayList<Avion> getListaDeAviones();
+
+    void agregarVuelo(Vuelo vuelo);
 
 }
