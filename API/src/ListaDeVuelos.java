@@ -1,7 +1,6 @@
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
-import personas.Persona;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -44,6 +43,7 @@ public class ListaDeVuelos {
             if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo))
             {
                 lista.remove(i);
+                verificarRemoveVuelo(lista.get(i));
                 codigosDeVuelo.remove(codigoDeVuelo);
             }
         }
