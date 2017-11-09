@@ -2,6 +2,8 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Administrador;
+import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
@@ -17,6 +19,7 @@ public class MockServer implements Servicios{
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
     ArrayList<Piloto> listaPilotos = new ArrayList<>();
     ArrayList<Avion> aviones = new ArrayList<>();
+    ArrayList<Administrador> administradores = new ArrayList<>();
 
     public MockServer() {
         LocalDateTime tiempo;
@@ -28,6 +31,13 @@ public class MockServer implements Servicios{
 
         tiempo = LocalDateTime.now();
         duracion = Duration.ofHours(8);
+
+        Area areaDeVentas = new Area(true);
+        Area algunArea = new Area(false);
+        Administrador administradorDeVentas = new Administrador(40543537, areaDeVentas);
+        Administrador algunAdministrador = new Administrador(1001001, algunArea);
+        administradores.add(administradorDeVentas);
+        administradores.add(algunAdministrador);
 
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);

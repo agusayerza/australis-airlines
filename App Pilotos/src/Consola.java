@@ -39,7 +39,7 @@ public class Consola {
             }
         }
 
-        System.out.println("Gracias por volar con nosotros.");
+        System.out.println("Gracias por trabajar con nosotros.");
 
     }
 
