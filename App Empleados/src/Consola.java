@@ -66,7 +66,7 @@ public class Consola {
 
         switch (option) {
             case 1:
-                crearVuelo();
+                crearAvion();
                 break;
             case 2:
                 if(protocol.getAdministradorPuedeVender(DNI)) {
@@ -249,7 +249,7 @@ public class Consola {
         return givenDNI;
     }
 
-    private static void crearVuelo() {
+    private static void crearAvion() {
         String patente;
         int numeroDeClases;
 
