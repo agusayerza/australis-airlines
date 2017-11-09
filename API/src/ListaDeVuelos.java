@@ -1,7 +1,6 @@
 import customExceptions.FlightCodeAlreadyExistsException;
 import customExceptions.FlightCodeNonexistentException;
 import personas.Pasajero;
-import personas.Persona;
 import vuelo.Vuelo;
 
 import java.time.LocalDate;
@@ -30,6 +29,7 @@ public class ListaDeVuelos {
         }
 
         lista.add(vuelo);
+        verificarAddVuelo(vuelo);
         codigosDeVuelo.add(vuelo.getCodigoDeVuelo());
     }
 
@@ -43,6 +43,7 @@ public class ListaDeVuelos {
             if(lista.get(i).getCodigoDeVuelo().equals(codigoDeVuelo))
             {
                 lista.remove(i);
+                verificarRemoveVuelo(lista.get(i));
                 codigosDeVuelo.remove(codigoDeVuelo);
             }
         }
@@ -105,10 +106,14 @@ public class ListaDeVuelos {
 
         if ( !( aeropuertos.containsKey(aeropuertoA) ) ) {                      //verifica si el hashMap NO contiene el AL del aeropuerto A
             ArrayList<String> aero = new ArrayList<String>();                        //si no, lo crea
+            aero.add(aeropuertoB);
             aeropuertos.put(aeropuertoA, aero);                                 //y lo agrega
-            aero.add(aeropuertoB);                                              //y le agrega el aeropuerto B
+                                                                                 //y le agrega el aeropuerto B
         } else if ( !( aeropuertos.get(aeropuertoA).contains(aeropuertoB) ) ){  //si exite el AL del aeropuerto A, verifica si NO contiene B
-            aeropuertos.get(aeropuertoA).add(aeropuertoB);                      //si no cintiene B, lo agrega
+            ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
+            aero.add(aeropuertoB);
+            aeropuertos.remove(aeropuertoA);
+            aeropuertos.put(aeropuertoA,aero);
         } //lo pense asi, si queres cambia lo que quieras
     }
 
@@ -117,8 +122,12 @@ public class ListaDeVuelos {
     }
 
     public void verificarRemoveVuelo(Vuelo vuelo) {
-        String aeropuetoA = vuelo.getAeropuertoDeArribo();
-        String aeropuetoB = vuelo.getAeropuertoDeArribo();
-        //aun estoy viendo esto, help
+        String aeropuertoA = vuelo.getAeropuertoDePartida();
+        String aeropuertoB = vuelo.getAeropuertoDeArribo();
+
+        ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
+        aero.remove(aeropuertoB);
+        aeropuertos.remove(aeropuertoA);
+        aeropuertos.put(aeropuertoA,aero);
     }
 }
