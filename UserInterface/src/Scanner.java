@@ -112,7 +112,7 @@ public class Scanner {
     }
 
     public boolean getYesNo(String message){
-        String yesno = this.getString(message);
+        String yesno = this.getString(message).toUpperCase();
         if(yesno.equals("Y")){
             return true;
         }else if(yesno.equals("N")){

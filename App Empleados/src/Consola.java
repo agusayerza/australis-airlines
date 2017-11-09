@@ -87,7 +87,7 @@ public class Consola {
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
         boolean roundTrip = false;
-        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta?");
+        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta? (Y/N)");
         if(roundTrip){
 
             LocalDate fechaDeVuelta;

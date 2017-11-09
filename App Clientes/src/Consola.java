@@ -78,6 +78,7 @@ public class Consola {
                 throw new MenuInvalidOptionSelectedException("Se selecciono una opcion invalida");
         }
     }
+
     private static int getDNI(boolean userDNI){
         boolean validDNI = false;
         int givenDNI = 0;
