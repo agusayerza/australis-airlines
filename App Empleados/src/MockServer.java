@@ -179,12 +179,31 @@ public class MockServer implements Servicios{
     }
 
     @Override
-    public boolean administradorPuedeVender(int dni){
+    public boolean esAdmin(int dni){
         for (Administrador administrador: administradores) {
-            if(administrador.getArea().getCapacidadDeVender()){
+            if(administrador.getDni() == dni) {
                 return true;
             }
         }
         return false;
     }
+
+    @Override
+    public boolean administradorPuedeVender(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                if (administrador.getArea().getCapacidadDeVender()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void crearAvion(Avion avion) {
+        aviones.add(avion);
+    }
+
+
 }
