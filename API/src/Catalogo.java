@@ -77,19 +77,7 @@ public class Catalogo {
         otroPiloto.agregarVuelo(copiaVuelo);
         unPiloto.agregarVuelo(otroVuelo);
 
-        vuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2B",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("5C",pasajero,tiempo.toLocalDate().plusDays(2));
-
-        pasajero = new Pasajero(40719052);
-        vuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("2A",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate().plusDays(2));
-
-        pasajero = new Pasajero(40719050);
-        vuelo.ocuparAsiento("1A",pasajero,tiempo.toLocalDate());
-        copiaVuelo.ocuparAsiento("3B",pasajero,tiempo.toLocalDate().plusDays(1));
-        otroVuelo.ocuparAsiento("2C",pasajero,tiempo.toLocalDate().plusDays(2));
+        venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
 
         vuelos.addVuelo(vuelo);
         vuelos.addVuelo(copiaVuelo);

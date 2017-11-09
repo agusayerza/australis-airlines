@@ -6,6 +6,7 @@ import java.util.Date;
 public class Pasaje {
     private String asiento;
     private String vuelo;
+
     private LocalDate date;
     private int pasajero;
 
