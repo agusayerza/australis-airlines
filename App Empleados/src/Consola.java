@@ -170,10 +170,6 @@ public class Consola {
         }
         Pasajero pasajero = new Pasajero(dniPasajero);
 
-        //TODO: Esto es despues de que se seleccione un posible vuelo
-        String[] opcionesCategoria = new String[3];
-        opcionesCategoria[0] = "Cualquiera";
-
         boolean seleccionarAsiento = true;
         String asiento = "";
         while (seleccionarAsiento){

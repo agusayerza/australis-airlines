@@ -22,17 +22,14 @@ public class Consola {
 
         System.out.println("Bienvenido a la aplicacion de Pilotos de Australis Airlines");
 
-        //TODO: Sistema de Registro de usuarios? Contraseñas?
         System.out.println("Para empezar, usted debe conectarse");
 
         protocol = new Protocol();
 
-        //TODO: Preguntar si el concepto de progRun esta bien.
         while(programRun){
             try{
                 loopMenuPrincipal();
             } catch (MenuInvalidOptionSelectedException e){
-                //TODO: Consultar si este tipo de redundancias se ponen o no
                 // Esto NUNCA deberia pasar, ya que se chequea en UI.Menu
                 System.out.println(e.getMessage());
                 System.exit(1); //End with error

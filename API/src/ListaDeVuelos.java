@@ -157,7 +157,6 @@ public class ListaDeVuelos {
         throw new FlightCodeNonexistentException("No existe un vuelo con este codigo");
     }
     public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
-        //TODO: Esto hasta ahora solo ocupa el asiento, no hace chequeos ni se lo carga al cliente como que el pasaje ya es suyo
         if(codigosDeVuelo.contains(codigoDeVuelo)){
             getFlightByCode(codigoDeVuelo).ocuparAsiento(codigoDeAsiento,pasajero,date);
         }else{

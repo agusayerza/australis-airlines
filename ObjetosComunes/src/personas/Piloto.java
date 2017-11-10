@@ -39,7 +39,6 @@ public class Piloto extends Persona{
         return listaDeVuelos;
     }
 
-    //TODO: revisar si esto esta al pedo
     public void puedeVender(){
         throw new AdministratorNotAbleToSellException("Un piloto no puede vender pasajes");
     }

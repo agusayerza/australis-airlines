@@ -123,7 +123,6 @@ public class Vuelo {
     public void ocuparAsiento(String codigoDeAsiento, Pasajero pasajero, LocalDate date){
 
         if(!isValidFlightDate(date)){
-            //TODO: Custom exception??? No estoy seguro si es necesario, por ahora no la hagamos
             throw new RuntimeException("Este vuelo no existe en la fecha solicitada");
         }
 
@@ -161,7 +160,6 @@ public class Vuelo {
                         asiento.ocupar(DNI);
                         return;
                     }
-                        //TODO hacer una custom exception para esto.
                         throw new RuntimeException("El asiento deseado no pertenece a esta clase.");
                 }
             }
@@ -212,7 +210,6 @@ public class Vuelo {
 
     public boolean hasFreeSeats(LocalDate date){
         if(!isValidFlightDate(date)){
-            //TODO: Custom exception??? No estoy seguro si es necesario, por ahora no la hagamos
             throw new RuntimeException("Este vuelo no existe en la fecha solicitada");
         }
 
@@ -223,7 +220,6 @@ public class Vuelo {
 
         HashMap<String, Asiento> mapaDeAsientosParticular = mapaDeAsientosPorFecha.get(date);
 
-        // TODO: Toto: cambiar esto a que devuelva un int
         // Nota Agus: ahora es un poco mas complejo y tal vez es al pedo decir cuantos lugares libres tiene
         for(Map.Entry<String, Asiento> entrada : mapaDeAsientosParticular.entrySet()){
             Asiento asiento = entrada.getValue();

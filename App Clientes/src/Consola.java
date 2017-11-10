@@ -27,21 +27,16 @@ public class Consola {
 
         System.out.println("Bienvenido a la aplicacion de Clientes de Australis Airlines");
 
-        //TODO: Sistema de Registro de usuarios? Contraseñas?
         System.out.println("Para empezar, usted debe conectarse.");
 
         DNI = getDNI(true);
 
         protocol = new Protocol(DNI);
 
-
-
-        //TODO: Preguntar si el concepto de progRun esta bien.
         while(programRun){
             try{
                 loopMenuPrincipal();
             } catch (MenuInvalidOptionSelectedException e){
-                //TODO: Consultar si este tipo de redundancias se ponen o no
                 // Esto NUNCA deberia pasar, ya que se chequea en UI.Menu
                 System.out.println(e.getMessage());
                 System.exit(1); //End with error
@@ -170,10 +165,6 @@ public class Consola {
             i++;
         }
         Pasajero pasajero = new Pasajero(dniPasajero);
-
-        //TODO: Esto es despues de que se seleccione un posible vuelo
-        String[] opcionesCategoria = new String[3];
-        opcionesCategoria[0] = "Cualquiera";
 
         boolean seleccionarAsiento = true;
         String asiento = "";

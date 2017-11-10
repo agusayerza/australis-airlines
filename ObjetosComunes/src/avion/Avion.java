@@ -87,7 +87,6 @@ public class Avion {
         return patente.equals(avion.patente);
     }
 
-    //TODO: Creo que columnaToChar no se usa mas en esta clase
     private char columnaToChar(int columna){
         return (char) (65 + columna);
     }
