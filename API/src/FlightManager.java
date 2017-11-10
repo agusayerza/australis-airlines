@@ -27,9 +27,9 @@ public class FlightManager {
         System.out.println("Servidor de Australis Airlines.");
 
         while (true){
-            System.out.println("Escuchando");
+            System.out.print("\nEscuchando");
             for (int i = 0; i < 6; i++) {
-                System.out.println(".");
+                System.out.print(".");
                 //Pause for 2 seconds
                 Thread.sleep(2000);
             }
