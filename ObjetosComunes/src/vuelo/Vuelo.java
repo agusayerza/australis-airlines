@@ -46,6 +46,7 @@ public class Vuelo {
         this.codigoDeVuelo = codigoDeVuelo;
         this.piloto = piloto;
         this.avion = avion;
+        this.horarioDeVuelo = startDateAndTime.toLocalTime();
 
         mapaDeAsientosGeneral = new HashMap<>();
         mapaDeAsientosPorFecha = new HashMap<>();

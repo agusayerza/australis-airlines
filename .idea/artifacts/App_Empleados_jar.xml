@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="App Empleados:jar">
+    <output-path>$PROJECT_DIR$/artifacts/App_Empleados_jar</output-path>
+    <root id="archive" name="App Empleados.jar">
+      <element id="module-output" name="App Empleados" />
+      <element id="module-output" name="ObjetosComunes" />
+      <element id="module-output" name="UserInterface" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="App Pilotos:jar">
+    <output-path>$PROJECT_DIR$/artifacts/App_Pilotos_jar</output-path>
+    <root id="archive" name="App Pilotos.jar">
+      <element id="module-output" name="App Pilotos" />
+      <element id="module-output" name="ObjetosComunes" />
+      <element id="module-output" name="UserInterface" />
+    </root>
+  </artifact>
+</component>

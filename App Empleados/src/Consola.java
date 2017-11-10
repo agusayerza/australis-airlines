@@ -149,7 +149,8 @@ public class Consola {
         String vuelos[] = new String[posiblesVuelos.size()];
         int i = 0;
         for (Vuelo vuelo: posiblesVuelos) {
-            vuelos[i] = fechaDeSalida + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+            LocalTime hora = vuelo.getHorarioDeVuelo();
+            vuelos[i] = fechaDeSalida + " " + hora + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
             i++;
         }
 
