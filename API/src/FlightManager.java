@@ -11,8 +11,11 @@ import java.util.ArrayList;
 public class FlightManager {
     static ArrayList<Administrador> administradores = new ArrayList<>();
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         Catalogo catalogo = new Catalogo();
+
+        System.out.println("Servidor de Australis Airlines.");
+        System.out.println("Cargando...");
 
         Area areaDeVentas = new Area(true);
         Area algunArea = new Area(false);
@@ -20,6 +23,18 @@ public class FlightManager {
         Administrador algunAdministrador = new Administrador(1001001, algunArea);
         administradores.add(administradorDeVentas);
         administradores.add(algunAdministrador);
+
+        System.out.println("Servidor de Australis Airlines.");
+
+        while (true){
+            System.out.println("Escuchando");
+            for (int i = 0; i < 6; i++) {
+                System.out.println(".");
+                //Pause for 2 seconds
+                Thread.sleep(2000);
+            }
+
+        }
 
     }
 }
