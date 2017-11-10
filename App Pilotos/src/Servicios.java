@@ -15,16 +15,25 @@ public interface Servicios {
 
     void venderAsiento(String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero, LocalDate date);
 
-    ArrayList<Vuelo> buscarVuelosPiloto(int dni);
+    ArrayList<Vuelo> BuscarVuelosPiloto(int dni);
 
-    void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo, String codigoDeVuelo, Avion avion, Pricing pricing, Piloto piloto);
+    void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo,String codigoDeVuelo, Avion avion,Pricing pricing, Piloto piloto);
 
     String getReservasCliente(Pasajero pasajero);
 
+    boolean administradorPuedeVender(int dni);
+
+    boolean esAdmin(int dni);
+
+    void crearAvion(Avion avion);
+
+    ArrayList<Avion> getListaDeAviones();
+
+    void agregarVuelo(Vuelo vuelo);
+
     ArrayList<Vuelo> getVuelosPiloto(Piloto piloto);
 
-    public ArrayList<Piloto> getListaDePilotos();
+    ArrayList<Piloto> getListaDePilotos();
 
-    public boolean validarDniPiloto(int dni);
-
+    boolean validarDniPiloto(int dni);
 }

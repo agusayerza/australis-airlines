@@ -1,7 +1,5 @@
-import avion.Asiento;
 import avion.Avion;
 import catalogo.Pricing;
-import personas.Administrador;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
@@ -33,4 +31,9 @@ public interface Servicios {
 
     void agregarVuelo(Vuelo vuelo);
 
+    ArrayList<Vuelo> getVuelosPiloto(Piloto piloto);
+
+    ArrayList<Piloto> getListaDePilotos();
+
+    boolean validarDniPiloto(int dni);
 }

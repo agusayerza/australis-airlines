@@ -33,7 +33,7 @@ public interface Servicios {
 
     ArrayList<Vuelo> getVuelosPiloto(Piloto piloto);
 
-    public ArrayList<Piloto> getListaDePilotos();
+    ArrayList<Piloto> getListaDePilotos();
 
-    public boolean validarDniPiloto(int dni);
+    boolean validarDniPiloto(int dni);
 }

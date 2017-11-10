@@ -2,17 +2,16 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Administrador;
+import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
-import vuelo.PaqueteDeVuelos;
 import vuelo.Vuelo;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MockServer implements Servicios{
 
@@ -20,7 +19,7 @@ public class MockServer implements Servicios{
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
     ArrayList<Piloto> listaPilotos = new ArrayList<>();
     ArrayList<Avion> aviones = new ArrayList<>();
-    HashMap<String, ArrayList<String>> aeropuertos = new HashMap<>();
+    ArrayList<Administrador> administradores = new ArrayList<>();
 
     public MockServer() {
         LocalDateTime tiempo;
@@ -32,6 +31,13 @@ public class MockServer implements Servicios{
 
         tiempo = LocalDateTime.now();
         duracion = Duration.ofHours(8);
+
+        Area areaDeVentas = new Area(true);
+        Area algunArea = new Area(false);
+        Administrador administradorDeVentas = new Administrador(40543537, areaDeVentas);
+        Administrador algunAdministrador = new Administrador(1001001, algunArea);
+        administradores.add(administradorDeVentas);
+        administradores.add(algunAdministrador);
 
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
@@ -58,6 +64,7 @@ public class MockServer implements Servicios{
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
+        agregarVuelo(tiempo.plusDays(7),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","LOLBAR",avion, pricing,piloto);
 
         clase = new Clase(1,4,2,"Primera");
         Clase economica = new Clase(2,21,3,"Economica");
@@ -72,6 +79,7 @@ public class MockServer implements Servicios{
         precio = new double[2];
         precio[0] = 199.3;
         precio[1] = 149.99;
+
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
@@ -79,16 +87,19 @@ public class MockServer implements Servicios{
 
         pasajero = new Pasajero(40999222);
         venderAsiento("BARBAR","2B",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","2B",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","2B",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
         venderAsiento("BARBAR","3B",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","3B",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","2A",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","2B",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
         venderAsiento("BARBAR","1A",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","1A",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","3B",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","3B",pasajero,tiempo.toLocalDate().plusDays(2));
 
@@ -149,7 +160,6 @@ public class MockServer implements Servicios{
         Vuelo vuelo = new Vuelo(tiempo, duracion,  ultimaFechaDeVuelo,aeropuertoSalida,aeropuertoArribo,codigoDeVuelo,avion,pricing,piloto);
 
         listaDeVuelos.add(vuelo);
-        verificarAddVuelo(vuelo);
         codigosDeVuelo.add(codigoDeVuelo);
 
         boolean pilotoEncontrado = false;
@@ -181,39 +191,71 @@ public class MockServer implements Servicios{
         return result;
     }
 
-
-    public void verificarAddVuelo(Vuelo vuelo) {
-        String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
-        String aeropuertoB = vuelo.getAeropuertoDeArribo(); //aeropuerto B
-
-        if ( !( aeropuertos.containsKey(aeropuertoA) ) ) {                      //verifica si el hashMap NO contiene el AL del aeropuerto A
-            ArrayList<String> aero = new ArrayList<String>();                        //si no, lo crea
-            aero.add(aeropuertoB);
-            aeropuertos.put(aeropuertoA, aero);                                 //y lo agrega
-            //y le agrega el aeropuerto B
-        } else if ( !( aeropuertos.get(aeropuertoA).contains(aeropuertoB) ) ){  //si exite el AL del aeropuerto A, verifica si NO contiene B
-            ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
-            aero.add(aeropuertoB);
-            aeropuertos.remove(aeropuertoA);
-            aeropuertos.put(aeropuertoA,aero);
-        } //lo pense asi, si queres cambia lo que quieras
-    }
-
-    public HashMap getAeropuertos() {
-        return aeropuertos;
-    }
-
-    public void verificarRemoveVuelo(Vuelo vuelo) {
-        String aeropuertoA = vuelo.getAeropuertoDePartida();
-        String aeropuertoB = vuelo.getAeropuertoDeArribo();
-
-        ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
-        aero.remove(aeropuertoB);
-        aeropuertos.remove(aeropuertoA);
-        if(aero.size() > 0){
-            aeropuertos.put(aeropuertoA,aero);
+    @Override
+    public boolean esAdmin(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                return true;
+            }
         }
+        return false;
     }
 
+    @Override
+    public boolean administradorPuedeVender(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                if (administrador.getArea().getCapacidadDeVender()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void crearAvion(Avion avion) {
+        aviones.add(avion);
+    }
+
+    @Override
+    public ArrayList<Avion> getListaDeAviones() {
+        return aviones;
+    }
+
+    @Override
+    public void agregarVuelo(Vuelo vuelo){
+        listaDeVuelos.add(vuelo);
+    }
+
+    @Override
+    public ArrayList<Vuelo> getVuelosPiloto(Piloto piloto){
+        //Ver buscarVuelosPiloto, esta mejor
+        validarDniPiloto(piloto.getDni());
+
+        for(Piloto unPiloto : listaPilotos){
+            if(unPiloto.getDni() == piloto.getDni()){
+                return unPiloto.getListaVuelos();
+            }
+        }
+        return piloto.getListaVuelos();
+    }
+
+    @Override
+    public ArrayList<Piloto> getListaDePilotos() {
+        return listaPilotos;
+    }
+
+    public boolean validarDniPiloto(int dni){
+        boolean dniExistente = false;
+        for(Piloto piloto : listaPilotos){
+            if(piloto.getDni() == dni){
+                return true;
+            }
+        }
+        throw new RuntimeException("Piloto no encontrado.");
+    }
 }
+
+
 

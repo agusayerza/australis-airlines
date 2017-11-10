@@ -64,6 +64,7 @@ public class MockServer implements Servicios{
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
+        agregarVuelo(tiempo.plusDays(7),duracion,tiempo.plusYears(1).toLocalDate(),"Paris","Ezeiza","LOLBAR",avion, pricing,piloto);
 
         clase = new Clase(1,4,2,"Primera");
         Clase economica = new Clase(2,21,3,"Economica");
@@ -86,16 +87,19 @@ public class MockServer implements Servicios{
 
         pasajero = new Pasajero(40999222);
         venderAsiento("BARBAR","2B",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","2B",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","2B",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","1A",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719052);
         venderAsiento("BARBAR","3B",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","3B",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","2A",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","2B",pasajero,tiempo.toLocalDate().plusDays(2));
 
         pasajero = new Pasajero(40719050);
         venderAsiento("BARBAR","1A",pasajero,tiempo.toLocalDate());
+        venderAsiento("LOLBAR","1A",pasajero,tiempo.toLocalDate().plusDays(7));
         venderAsiento("BARBAR-COPIA","3B",pasajero,tiempo.toLocalDate().plusDays(1));
         venderAsiento("BARBOR","3B",pasajero,tiempo.toLocalDate().plusDays(2));
 
