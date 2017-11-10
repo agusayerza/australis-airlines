@@ -112,7 +112,7 @@ public class Consola {
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
         boolean roundTrip = false;
-        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta?");
+        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta? (Y/N)");
         if(roundTrip){
 
             LocalDate fechaDeVuelta;
@@ -197,10 +197,10 @@ public class Consola {
             }
         }
 
-        System.out.println("Asiento " + asiento + " vendido a " + DNI);
+        System.out.println("Asiento " + asiento + " vendido a " + dniPasajero);
         System.out.println();
 
-        System.out.println("Reservas actuales: ");
+        System.out.println("Reservas propias actuales: ");
         System.out.println(protocol.getTicketsForThisUser());
         System.out.println("\n\n\n\n");
 

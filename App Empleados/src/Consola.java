@@ -110,46 +110,33 @@ public class Consola {
         LocalDate fechaDeSalida;
         fechaDeSalida = mainScanner.getLocalDate("Ingrese fecha de salida (formato dd/MM/yy):");
 
-        boolean roundTrip;
-        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta? (Y/N) ");
+        boolean roundTrip = false;
+        roundTrip = mainScanner.getYesNo("Desea reservar ida y vuelta? (Y/N)");
         if(roundTrip){
+
             LocalDate fechaDeVuelta;
             fechaDeVuelta = mainScanner.getLocalDate("Ingrese fecha de vuelta(formato dd/MM/yy):");
 
             for (int i = 0; i < passangerQuantity; i++) {
                 int ii = i+1;
                 System.out.println("----- RESERVA PASAJERO "+ ii +" -----");
-                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
+                int dniPasajero = getDNI(false);
+                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida,dniPasajero);
                 System.out.println(" ---- Reservar vuelta pasajero "+ ii +" -----");
-                reserveFlight(aeropuertoLlegada, aeropuertoSalida, fechaDeVuelta);
+                reserveFlight(aeropuertoLlegada, aeropuertoSalida, fechaDeVuelta,dniPasajero);
             }
         }else{
             for (int i = 0; i < passangerQuantity; i++) {
                 int ii = i+1;
                 System.out.println("----- RESERVA PASAJERO "+ ii +" -----");
-                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida);
+                int dniPasajero = getDNI(false);
+                reserveFlight(aeropuertoSalida, aeropuertoLlegada, fechaDeSalida,dniPasajero);
             }
         }
 
-
     }
 
-
-    private static void reserveFlight(String aeropuertoSalida, String aeropuertoLlegada, LocalDate fechaDeSalida){
-
-
-//        String[] opcionesEscalas = new String[4];
-//
-//        opcionesEscalas[0] = "Sin escalas";
-//        opcionesEscalas[1] = "Una escala";
-//        opcionesEscalas[2] = "Dos escalas";
-//        opcionesEscalas[3] = "Tres escalas";
-//
-//        Menu menuEscalas = new Menu(opcionesEscalas,"Seleccione cuantas escalas desea:");
-//        System.out.println(menuEscalas.strPrintMenu());
-//
-//        int escalas = menuEscalas.pedirOpcionAlUsuario();
-
+    private static void reserveFlight(String aeropuertoSalida, String aeropuertoLlegada, LocalDate fechaDeSalida, int dniPasajero){
 
         ArrayList<Vuelo> posiblesVuelos = new ArrayList<>();
         posiblesVuelos = protocol.getPossibleFlights(aeropuertoSalida,aeropuertoLlegada,fechaDeSalida);
@@ -169,20 +156,19 @@ public class Consola {
         Menu menuVuelos = new Menu(vuelos,"Vuelos encontrados");
 
         System.out.println(menuVuelos.strPrintMenu());
-        int opcionVueloSeleccionado = menuVuelos.pedirOpcionAlUsuario();
+        int opcionvueloseleccionado = menuVuelos.pedirOpcionAlUsuario();
 
         i = 1;
         Vuelo vueloSeleccionado = new Vuelo();
         for (Vuelo vuelo: posiblesVuelos) {
-            if(i == opcionVueloSeleccionado){
+            if(i == opcionvueloseleccionado){
                 vueloSeleccionado = vuelo;
                 System.out.println("Selecciono el vuelo con codigo " + vueloSeleccionado.getCodigoDeVuelo());
                 break;
             }
             i++;
         }
-
-        Pasajero pasajero = new Pasajero(getDNI(false));
+        Pasajero pasajero = new Pasajero(dniPasajero);
 
         //TODO: Esto es despues de que se seleccione un posible vuelo
         String[] opcionesCategoria = new String[3];
@@ -210,12 +196,12 @@ public class Consola {
             }
         }
 
-        System.out.println("Asiento " + asiento + " vendido a " + pasajero.getDni());
+        System.out.println("Asiento " + asiento + " vendido a " + dniPasajero);
         System.out.println();
 
         System.out.println("Reservas actuales: ");
-        System.out.println(protocol.getTicketsForThisUser(pasajero.getDni()));
-        System.out.println("\n\n\n\n");
+        System.out.println(protocol.getTicketsForThisUser(dniPasajero));
+        System.out.println("\n\n");
 
     }
 
