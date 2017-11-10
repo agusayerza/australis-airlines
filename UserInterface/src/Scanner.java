@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -120,5 +121,15 @@ public class Scanner {
         }else{
             return getYesNo(message);
         }
+    }
+
+    public LocalTime getHorario(String message){
+        try {
+            LocalTime hora = LocalTime.parse(this.getString(message));
+            return hora;
+        }catch (Exception e){
+            return getHorario(message);
+        }
+
     }
 }

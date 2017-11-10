@@ -282,14 +282,13 @@ public class Consola {
     public static void crearVuelo(){
         int contador = 0;
         String nombreMenuAviones = "Menu aviones:";
-        //LocalDateTime startDayTime = LocalDateTime.now();
 
         int dur = mainScanner.getInt("Ingrese la duracion del vuelo EN HORAS:");
         if (dur <= 0){
             throw new RuntimeException("No puede ingresar una duracion de vuelo menor o igual a 0");
         }
-        LocalDate startDate = mainScanner.getLocalDate("Ingrese la fecha de inicio del vuelo en formato (dd/mm/yy):");
-        LocalTime hora = LocalTime.parse(mainScanner.getString("Ingrese el horario de despegue del vuelo (format HH:MM): "));
+        LocalDate startDate = mainScanner.getLocalDate("Ingrese la fecha de inicio del vuelo en formato (dd/mm/yy): ");
+        LocalTime hora = mainScanner.getHorario("Ingrese el horario de despegue del vuelo (formato HH:MM): ");
         LocalDateTime dateInicio = LocalDateTime.of(startDate,hora);
 
         Duration duration = Duration.ofHours(dur);
