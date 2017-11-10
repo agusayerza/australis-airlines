@@ -43,7 +43,6 @@ public class ListaDeVuelosTest {
         pricing = new Pricing(avion,precio);
         vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
 
-//        catalogo.addVuelo(vuelo);
 
     }
 
@@ -104,25 +103,9 @@ public class ListaDeVuelosTest {
 
     @After
     public void tearDown(){
-        catalogo = new Catalogo();
+
     }
 
-//    @Test
-//    public void hasFlightFreeSeatsTest() throws Exception{
-////        Piloto otroPiloto = new Piloto(20000000);
-////        Vuelo otroVuelo = new Vuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
-////
-////        vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
-////
-////        ArrayList<Vuelo> expected = new ArrayList<>();
-////
-////       // assertTrue(flightListEquals(catalogo.getFlightsOnDateFromToDestination(tiempo.toLocalDate(),"Ezeiza","Paris"),expected));
-////
-////        expected.add(otroVuelo);
-////
-////        assertTrue(flightListEquals(catalogo.getFlightsOnDateFromToDestination(tiempo.toLocalDate().plusDays(1),"Ezeiza","Paris"),expected));
-//
-//  }
 
     @Test(expected = SeatAlreadyOccupiedException.class)
     public void SeatAlreadyOccupiedTest(){
