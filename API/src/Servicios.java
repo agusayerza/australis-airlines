@@ -1,4 +1,3 @@
-
 import avion.Avion;
 import catalogo.Pricing;
 import personas.Pasajero;
@@ -21,4 +20,20 @@ public interface Servicios {
     void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo,String codigoDeVuelo, Avion avion,Pricing pricing, Piloto piloto);
 
     String getReservasCliente(Pasajero pasajero);
+
+    boolean administradorPuedeVender(int dni);
+
+    boolean esAdmin(int dni);
+
+    void crearAvion(Avion avion);
+
+    ArrayList<Avion> getListaDeAviones();
+
+    void agregarVuelo(Vuelo vuelo);
+
+    ArrayList<Vuelo> getVuelosPiloto(Piloto piloto);
+
+    public ArrayList<Piloto> getListaDePilotos();
+
+    public boolean validarDniPiloto(int dni);
 }

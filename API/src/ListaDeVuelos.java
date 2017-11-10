@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ListaDeVuelos {
-    ArrayList<Vuelo> lista;
-    ArrayList<String> codigosDeVuelo;
-    ArrayList<Piloto> pilotos;
-    ArrayList<Avion> aviones;
-    HashMap<String, ArrayList<String>> aeropuertos;
+    private ArrayList<Vuelo> lista;
+    private ArrayList<String> codigosDeVuelo;
+    private ArrayList<Piloto> pilotos;
+    private ArrayList<Avion> aviones;
+    private HashMap<String, ArrayList<String>> aeropuertos;
 
     public ListaDeVuelos() {
         lista = new ArrayList<>();
@@ -53,6 +53,15 @@ public class ListaDeVuelos {
         pilotos.add(piloto);
     }
 
+
+    public ArrayList<Vuelo> BuscarVuelosPiloto(int dni) {
+        for(Piloto piloto : pilotos){
+            if(piloto.getDni() == dni){
+                return piloto.getListaVuelos();
+            }
+        }
+        throw new RuntimeException("Piloto no encontrado");
+    }
 
     public boolean existePiloto(Piloto piloto){
         for (Piloto unPiloto: pilotos

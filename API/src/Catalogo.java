@@ -1,6 +1,8 @@
 import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
+import personas.Administrador;
+import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
 import sun.security.krb5.internal.PAData;
@@ -15,17 +17,27 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Catalogo {
+public class Catalogo implements Servicios{
 
     private ListaDeVuelos vuelos;
     ArrayList<Piloto> listaPilotos;
     ArrayList<String> codigosDeVuelo;
     ArrayList<Pasaje> listaPasajes = new ArrayList<>();
+    ArrayList<Administrador> administradores = new ArrayList<>();
+    ArrayList<Avion> aviones = new ArrayList<>();
+
+    Area areaDeVentas = new Area(true);
+    Area algunArea = new Area(false);
+    Administrador administradorDeVentas = new Administrador(40543537, areaDeVentas);
+    Administrador algunAdministrador = new Administrador(1001001, algunArea);
 
 
     public Catalogo() {
 
         readFile(listaPasajes);
+
+        administradores.add(administradorDeVentas);
+        administradores.add(algunAdministrador);
 
         vuelos = new ListaDeVuelos();
 
@@ -145,7 +157,7 @@ public class Catalogo {
 
 
 
-        public void venderAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
+    public void ocuparAsiento(LocalDate date, String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero){
         vuelos.venderAsiento(date,codigoDeVuelo,codigoDeAsiento,pasajero);
         Pasaje pasaje = new Pasaje(codigoDeAsiento,codigoDeVuelo, date, pasajero.getDni());
 
@@ -185,4 +197,96 @@ public class Catalogo {
         }
     }
 
+    public String getReservasCliente(Pasajero pasajero){
+        String result = "";
+        for (Vuelo vuelo: vuelos.getLista()) {
+            result += vuelo.getReservasCliente(pasajero);
+        }
+        if(result.equals("")){
+            return "No se encontraron vuelos para el DNI: " + pasajero.getDni();
+        }
+
+        return result;
+    }
+
+    @Override
+    public void venderAsiento(String codigoDeVuelo, String codigoDeAsiento, Pasajero pasajero, LocalDate date) {
+        this.ocuparAsiento(date,codigoDeVuelo,codigoDeAsiento,pasajero);
+    }
+
+    @Override
+    public ArrayList<Vuelo> BuscarVuelosPiloto(int dni) {
+        return vuelos.BuscarVuelosPiloto(dni);
+    }
+
+    @Override
+    public void agregarVuelo(LocalDateTime tiempo, Duration duracion, LocalDate ultimaFechaDeVuelo, String aeropuertoSalida, String aeropuertoArribo, String codigoDeVuelo, Avion avion, Pricing pricing, Piloto piloto) {
+        Vuelo vuelo = new Vuelo(tiempo, duracion,ultimaFechaDeVuelo,aeropuertoSalida,aeropuertoArribo,codigoDeVuelo,avion,pricing,piloto);
+        this.addVuelo(vuelo);
+    }
+
+    @Override
+    public boolean administradorPuedeVender(int dni) {
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                if (administrador.getArea().getCapacidadDeVender()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean esAdmin(int dni) {
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void crearAvion(Avion avion) {
+        aviones.add(avion);
+    }
+
+    @Override
+    public ArrayList<Avion> getListaDeAviones() {
+        return aviones;
+    }
+
+    @Override
+    public void agregarVuelo(Vuelo vuelo){
+        this.addVuelo(vuelo);
+    }
+
+    @Override
+    public ArrayList<Vuelo> getVuelosPiloto(Piloto piloto) {
+        //Ver buscarVuelosPiloto, esta mejor
+        validarDniPiloto(piloto.getDni());
+
+        for(Piloto unPiloto : listaPilotos){
+            if(unPiloto.getDni() == piloto.getDni()){
+                return unPiloto.getListaVuelos();
+            }
+        }
+        return piloto.getListaVuelos();
+    }
+
+    @Override
+    public ArrayList<Piloto> getListaDePilotos() {
+        return this.listaPilotos;
+    }
+
+    @Override
+    public boolean validarDniPiloto(int dni) {
+        for(Piloto piloto : listaPilotos){
+            if(piloto.getDni() == dni){
+                return true;
+            }
+        }
+        return false;
+    }
 }
