@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Consola {
@@ -149,8 +150,9 @@ public class Consola {
         String vuelos[] = new String[posiblesVuelos.size()];
         int i = 0;
         for (Vuelo vuelo: posiblesVuelos) {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime hora = vuelo.getHorarioDeVuelo();
-            vuelos[i] = fechaDeSalida + " " + hora + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
+            vuelos[i] = fechaDeSalida + " " + hora.format(dtf) + "  ||  " + vuelo.getAeropuertoDePartida() + " --> " + vuelo.getAeropuertoDeArribo();
             i++;
         }
 
