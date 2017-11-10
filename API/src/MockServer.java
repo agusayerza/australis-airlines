@@ -2,6 +2,8 @@ import avion.Avion;
 import avion.Clase;
 import catalogo.Pricing;
 import customExceptions.FlightCodeNonexistentException;
+import personas.Administrador;
+import personas.Area;
 import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
@@ -10,8 +12,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MockServer implements Servicios{
 
@@ -19,7 +19,7 @@ public class MockServer implements Servicios{
     ArrayList<String> codigosDeVuelo = new ArrayList<>();
     ArrayList<Piloto> listaPilotos = new ArrayList<>();
     ArrayList<Avion> aviones = new ArrayList<>();
-    Map<String, ArrayList<String>> aeropuertos = new HashMap<>();
+    ArrayList<Administrador> administradores = new ArrayList<>();
 
     public MockServer() {
         LocalDateTime tiempo;
@@ -32,20 +32,35 @@ public class MockServer implements Servicios{
         tiempo = LocalDateTime.now();
         duracion = Duration.ofHours(8);
 
+        Area areaDeVentas = new Area(true);
+        Area algunArea = new Area(false);
+        Administrador administradorDeVentas = new Administrador(40543537, areaDeVentas);
+        Administrador algunAdministrador = new Administrador(1001001, algunArea);
+        administradores.add(administradorDeVentas);
+        administradores.add(algunAdministrador);
+
         Piloto piloto = new Piloto(11111000);
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
 
-        Clase clase = new Clase(1,21,3,"Primera");
-        clases = new Clase[1];
+        Clase clase = new Clase(1,21,7,"Primera");
+        Clase claseBuss = new Clase(7,32,4,"Business");
+        Clase claseEco = new Clase(11,72,8, "Economica");
+
+        clases = new Clase[3];
         clases[0] = clase;
+        clases[1] = claseBuss;
+        clases[2] = claseEco;
 
         avion = new Avion("LV-501",clases);
 
         aviones.add(avion);
 
-        double precio[] = new double[1];
+        double precio[] = new double[3];
         precio[0] = 199.3;
+        precio[1] = 150.22;
+        precio[2] = 80.9;
+
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,piloto);
@@ -63,6 +78,7 @@ public class MockServer implements Servicios{
         precio = new double[2];
         precio[0] = 199.3;
         precio[1] = 149.99;
+
         pricing = new Pricing(avion,precio);
 
         agregarVuelo(tiempo.plusDays(1),duracion,tiempo.plusYears(1).toLocalDate(),"Madrid","Paris","BARBAR-COPIA",avion, pricing,otroPiloto);
@@ -140,7 +156,6 @@ public class MockServer implements Servicios{
         Vuelo vuelo = new Vuelo(tiempo, duracion,  ultimaFechaDeVuelo,aeropuertoSalida,aeropuertoArribo,codigoDeVuelo,avion,pricing,piloto);
 
         listaDeVuelos.add(vuelo);
-        verificarAddVuelo(vuelo);
         codigosDeVuelo.add(codigoDeVuelo);
 
         boolean pilotoEncontrado = false;
@@ -172,38 +187,70 @@ public class MockServer implements Servicios{
         return result;
     }
 
-
-    public void verificarAddVuelo(Vuelo vuelo) {
-        String aeropuertoA = vuelo.getAeropuertoDePartida(); //aeropuerto A
-        String aeropuertoB = vuelo.getAeropuertoDeArribo(); //aeropuerto B
-
-        if ( !( aeropuertos.containsKey(aeropuertoA) ) ) {                      //verifica si el hashMap NO contiene el AL del aeropuerto A
-            ArrayList<String> aero = new ArrayList<String>();                        //si no, lo crea
-            aero.add(aeropuertoB);
-            aeropuertos.put(aeropuertoA, aero);                                 //y lo agrega
-            //y le agrega el aeropuerto B
-        } else if ( !( aeropuertos.get(aeropuertoA).contains(aeropuertoB) ) ){  //si exite el AL del aeropuerto A, verifica si NO contiene B
-            ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
-            aero.add(aeropuertoB);
-            aeropuertos.remove(aeropuertoA);
-            aeropuertos.put(aeropuertoA,aero);
-        } //lo pense asi, si queres cambia lo que quieras
-    }
-
-    public Map getAeropuertos() {
-        return aeropuertos;
-    }
-
-    public void verificarRemoveVuelo(Vuelo vuelo) {
-        String aeropuertoA = vuelo.getAeropuertoDePartida();
-        String aeropuertoB = vuelo.getAeropuertoDeArribo();
-
-        ArrayList<String> aero = aeropuertos.get(aeropuertoA);                                        //si no cintiene B, lo agrega
-        aero.remove(aeropuertoB);
-        aeropuertos.remove(aeropuertoA);
-        if(aero.size() > 0){
-            aeropuertos.put(aeropuertoA,aero);
+    @Override
+    public boolean esAdmin(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public boolean administradorPuedeVender(int dni){
+        for (Administrador administrador: administradores) {
+            if(administrador.getDni() == dni) {
+                if (administrador.getArea().getCapacidadDeVender()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void crearAvion(Avion avion) {
+        aviones.add(avion);
+    }
+
+    @Override
+    public ArrayList<Avion> getListaDeAviones() {
+        return aviones;
+    }
+
+    @Override
+    public void agregarVuelo(Vuelo vuelo){
+        listaDeVuelos.add(vuelo);
+    }
+
+    @Override
+    public ArrayList<Vuelo> getVuelosPiloto(Piloto piloto){
+        //Ver buscarVuelosPiloto, esta mejor
+        validarDniPiloto(piloto.getDni());
+
+        for(Piloto unPiloto : listaPilotos){
+            if(unPiloto.getDni() == piloto.getDni()){
+                return unPiloto.getListaVuelos();
+            }
+        }
+        return piloto.getListaVuelos();
+    }
+
+    @Override
+    public ArrayList<Piloto> getListaDePilotos() {
+        return listaPilotos;
+    }
+
+    public boolean validarDniPiloto(int dni){
+        boolean dniExistente = false;
+        for(Piloto piloto : listaPilotos){
+            if(piloto.getDni() == dni){
+                return true;
+            }
+        }
+        throw new RuntimeException("Piloto no encontrado.");
     }
 }
+
 

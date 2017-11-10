@@ -138,15 +138,15 @@ public class ListaDeVuelosTest {
 
     @Test
     public void SellSeatsOfSameFlightsOnDifferentDatesTest(){
-        catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
-        catalogo.venderAsiento(tiempo.toLocalDate().plusDays(7),"BARBAR","1A",pasajero);
+        catalogo.ocuparAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
+        catalogo.ocuparAsiento(tiempo.toLocalDate().plusDays(7),"BARBAR","1A",pasajero);
 
     }
 
     @Test(expected = SeatAlreadyOccupiedException.class)
     public void SeatAlreadyOccupiedFromFlightListTest(){
-        catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
-        catalogo.venderAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
+        catalogo.ocuparAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
+        catalogo.ocuparAsiento(tiempo.toLocalDate(),"BARBAR","1A",pasajero);
     }
 
 }
