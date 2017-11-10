@@ -130,7 +130,6 @@ public class ListaDeVuelosTest {
         Piloto otroPiloto = new Piloto(20000000);
         Piloto unPiloto = new Piloto(19999998);
         Vuelo vuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR",avion, pricing,otroPiloto);
-        Vuelo otroVuelo = new Vuelo(tiempo,duracion,tiempo.plusYears(1).toLocalDate(),"Ezeiza","Paris","BARBAR-COPIA",avion, pricing,unPiloto);
 
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
         vuelo.ocuparAsiento("1A", pasajero,tiempo.toLocalDate());
