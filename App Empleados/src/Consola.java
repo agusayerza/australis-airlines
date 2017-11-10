@@ -6,7 +6,6 @@ import personas.Pasajero;
 import personas.Piloto;
 import vuelo.Vuelo;
 
-import java.lang.reflect.Array;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,9 +41,6 @@ public class Consola {
             }
         }
 
-
-
-        //Lo puse porque agus lo puso
         while (programRun) {
             try {
                 loopMenuPrincipal();
