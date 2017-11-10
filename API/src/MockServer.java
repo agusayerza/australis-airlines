@@ -69,16 +69,18 @@ public class MockServer implements Servicios{
         clase = new Clase(1,4,2,"Primera");
         Clase economica = new Clase(2,21,3,"Economica");
 
-        clases = new Clase[2];
+        clases = new Clase[3];
         clases[0] = clase;
         clases[1] = economica;
+        clases[2] = claseEco;
 
         avion = new Avion("LV-600",clases);
         aviones.add(avion);
 
-        precio = new double[2];
+        precio = new double[3];
         precio[0] = 199.3;
         precio[1] = 149.99;
+        precio[2] = 90.33;
 
         pricing = new Pricing(avion,precio);
 
